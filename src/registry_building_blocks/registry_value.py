@@ -9,6 +9,10 @@ class ValueType(Enum):
 
 @dataclass
 class RegistryValue:
+    """
+    Represents a Registry Value as defined in https://learn.microsoft.com/en-us/windows/win32/sysinfo/structure-of-the-registry
+    """
+
     name: str
     type: ValueType
     data: Any
