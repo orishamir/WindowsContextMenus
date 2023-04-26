@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Literal
+from winreg import HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_USERS, HKEY_CURRENT_CONFIG, HKEY_LOCAL_MACHINE
 from enum import EnumMeta
 
 
@@ -13,3 +18,20 @@ class Location(EnumMeta):
     FILE = r"HKEY_CURRENT_USER\Software\Classes\*\shell"
     FILE_ADMIN = r"HKEY_CLASSES_ROOT\*\shell"
     DESKTOP = r"HKEY_CLASSES_ROOT\DesktopBackground\Shell"
+
+
+@dataclass
+class RegistryLocation:
+    top_level: Literal[
+        HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_USERS, HKEY_CURRENT_CONFIG, HKEY_LOCAL_MACHINE
+    ]
+    subkey: str
+
+    def __truediv__(self, other: str) -> RegistryLocation:
+        if not isinstance(other, str):
+            raise TypeError("Can't do that")
+
+        return RegistryLocation(
+            self.top_level,
+            f"{self.subkey}\\{other}"
+        )
