@@ -7,6 +7,11 @@ from src.features.sub_commands import SubCommands
 
 
 class ContextMenu:
+    """
+    Represents a context menu,
+    that has a name, features, and submenus.
+    """
+
     def __init__(
             self,
             name: str,
@@ -21,6 +26,13 @@ class ContextMenu:
         self.submenus = submenus
 
     def build(self) -> RegistryKey:
+        """
+        Convert the context menu to RegistryKey which can then
+        be added to the registry in the correct location.
+
+        :return: The registry-key representation of the context menu.
+        """
+
         cm = RegistryKey(
             self.name,
         )
@@ -40,12 +52,11 @@ class ContextMenu:
 
         return cm
 
-    def _modify_because_submenus(self):
+    def _modify_because_submenus(self) -> None:
         """
         If we have submenus, then for whatever reason instead of using (Default) as
         a way to tell the label, we need to set MUIVerb to the label.
         Also, we need to add an empty SubCommands value.
-        :return:
         """
 
         self.features = [

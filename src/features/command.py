@@ -6,6 +6,11 @@ COMMAND_KEY_NAME = "command"
 
 
 class Command(IFeature):
+    """
+    This feature determines which command gets
+    executed on-click of the context menu item.
+    """
+
     def __init__(self, command: str):
         self.command = command
 

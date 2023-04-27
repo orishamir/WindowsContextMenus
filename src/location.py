@@ -22,8 +22,16 @@ class Location(EnumMeta):
 
 @dataclass
 class RegistryLocation:
+    """
+    A convenient way of handling registry locations with `winreg`
+    """
+
     top_level: Literal[
-        HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_USERS, HKEY_CURRENT_CONFIG, HKEY_LOCAL_MACHINE
+        HKEY_CLASSES_ROOT,
+        HKEY_CURRENT_USER,
+        HKEY_USERS,
+        HKEY_CURRENT_CONFIG,
+        HKEY_LOCAL_MACHINE,
     ]
     subkey: str
 

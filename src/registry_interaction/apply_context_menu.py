@@ -8,14 +8,25 @@ from winreg import (
     HKEY_LOCAL_MACHINE
 )
 from src.context_menu import ContextMenu
-from src.registry_structs import RegistryKey
+from src.registry_structs import RegistryKey, ValueType
 from src.location import Location, RegistryLocation
+
+TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {
+    "HKEY_CLASSES_ROOT": HKEY_CLASSES_ROOT,
+    "HKEY_CURRENT_USER": HKEY_CURRENT_USER,
+    "HKEY_LOCAL_MACHINE": HKEY_LOCAL_MACHINE,
+    "HKEY_USERS": HKEY_USERS,
+    "HKEY_CURRENT_CONFIG": HKEY_CURRENT_CONFIG
+}
 
 
 def apply_context_menu(
         menu: ContextMenu,
         locations: list[Location],
-):
+) -> None:
+    """
+    Apply context menu to the registry at `locations`
+    """
     built_menu: RegistryKey = menu.build()
 
     locations = map(_location_to_registry_location, locations)
@@ -27,17 +38,11 @@ def _location_to_registry_location(location: Location) -> RegistryLocation:
     top_level, *subkey = location.split("\\")
     subkey = "\\".join(subkey)
 
-    if top_level == "HKEY_CLASSES_ROOT":
-        top_level = HKEY_CLASSES_ROOT
-    elif top_level == "HKEY_CURRENT_USER":
-        top_level = HKEY_CURRENT_USER
-    elif top_level == "HKEY_LOCAL_MACHINE":
-        top_level = HKEY_LOCAL_MACHINE
-    elif top_level == "HKEY_USERS":
-        top_level = HKEY_USERS
+    if top_level not in TOP_LEVEL_STR_TO_HKEY:
+        raise ValueError(f'Invalid location top-key "{top_level}"')
 
     return RegistryLocation(
-        top_level,
+        TOP_LEVEL_STR_TO_HKEY[top_level],
         subkey
     )
 

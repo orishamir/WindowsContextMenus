@@ -4,6 +4,12 @@ from src.registry_structs.registry_value import RegistryValue, ValueType
 
 
 class EntryName(IFeature):
+    """
+    This feature defines what text shows up
+    in the actual context menu, i.e. the
+    text that appears after right-click
+    """
+
     def __init__(self, name: str):
         self.name = name
 
