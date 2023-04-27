@@ -8,7 +8,7 @@ from winreg import (
     HKEY_LOCAL_MACHINE
 )
 from src.context_menu import ContextMenu
-from src.registry_structs import RegistryKey, ValueType
+from src.registry_structs import RegistryKey
 from src.location import Location, RegistryLocation
 
 TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {
