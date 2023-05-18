@@ -16,14 +16,14 @@ ACCEPTED_ICON_EXTENSIONS = (
 
 def _validate_path(path_to_icon: Path):
     if not path_to_icon.exists():
-        raise FileNotFoundError(f"Icon {path_to_icon} not found.")
+        raise FileNotFoundError(f"Icon not found: {path_to_icon}")
 
     if not path_to_icon.is_file():
-        raise NotAFileError(f"Icon {path_to_icon} is not a file.")
+        raise NotAFileError(f"Icon is not a file: {path_to_icon}")
 
     if path_to_icon.suffix not in ACCEPTED_ICON_EXTENSIONS:
         raise BadIconExtensionError(
-            f"Icon {path_to_icon} should be any of these extensions: {ACCEPTED_ICON_EXTENSIONS}"
+            f"Icon not in acceptable extensions: {path_to_icon}. Available extensions: {ACCEPTED_ICON_EXTENSIONS}"
         )
 
 
@@ -36,11 +36,11 @@ class Icon(IFeature):
         if not isinstance(path_to_icon, Path | str):
             raise TypeError("path_to_icon should be of type Path or str.")
 
-        _validate_path(path_to_icon)
-
         self.path_to_icon = Path(path_to_icon)
+
+        _validate_path(self.path_to_icon)
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(ICON_FEATURE_VALUE, ValueType.REG_SZ, self.path_to_icon)
+            RegistryValue(ICON_FEATURE_VALUE, ValueType.REG_SZ, str(self.path_to_icon))
         )
