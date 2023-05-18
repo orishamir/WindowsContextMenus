@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.registry_structs.registry_key import RegistryKey
+from src.registry_structs import RegistryKey
 from src.features import IFeature, EntryName
 from src.features.mui_verb import MUIVerb
 from src.features.sub_commands import SubCommands
