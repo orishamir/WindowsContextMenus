@@ -1,5 +1,9 @@
 """
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#getting-dynamic-behavior-for-static-verbs-by-using-advanced-query-syntax
+Choose in what condition should the
+context menu item be displayed
+
+Sources:
+    [1]
 """
 
 from src.conditions import ICondition
