@@ -1,33 +1,32 @@
+"""
+https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
+
+https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
+"""
+from src.conditions import ExtensionType
 from src.location import Location
 from src.registry_interaction import apply_context_menu
-from src.registry_structs.registry_key import RegistryKey
 from src.context_menu import ContextMenu
-from src.features import Command, EntryName
+from src.features import Command, EntryName, Icon, ShiftClick, Condition
 
 main: ContextMenu = ContextMenu(
-    "main",
+    "SearchGoogle",
     [
-        EntryName("ballssszz"),
-    ],
-    [
-        ContextMenu(
-            "MyTest2",
-            [
-                EntryName("Open with MyTest555"),
-                Command('"c:\\windows\\system32\\cmd.exe" /c start chrome www.gmail.com'),
-            ]
-        ),
-        ContextMenu(
-            "MyTest1",
-            [
-                EntryName("Open with MyTest1312"),
-                Command('"c:\\windows\\system32\\cmd.exe" /c start chrome www.ynet.co.il'),
-            ]
+        EntryName("Search in google"),
+        Icon(r'C:\Program Files\Google\Chrome\Application\chrome.exe'),
+        ShiftClick(),
+        Command(r'"cmd.exe" /c start chrome www.google.com/search?q="%V"'),
+        Condition(
+            (ExtensionType != ".exe") & (ExtensionType != ".dll") & (ExtensionType != ".pdf")
         )
     ]
 )
 
-apply_context_menu(
-    main,
-    [Location.FILE]
-)
+
+if __name__ == '__main__':
+    apply_context_menu(
+        main,
+        [
+            Location.FILE_ADMIN
+        ]
+    )
