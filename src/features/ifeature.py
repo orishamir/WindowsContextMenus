@@ -6,7 +6,7 @@ from src.registry_structs.registry_key import RegistryKey
 class IFeature(ABC):
     """
     This interface represents classes which are "features",
-    i.e. somethingthat is added to the context menu
+    i.e. something that is added to the context menu
     """
 
     @abstractmethod
