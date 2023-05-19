@@ -14,7 +14,7 @@ class ExtensionType(ConditionBase):
             ext = Equal(ext)
 
         if not isinstance(ext, IOperator):
-            raise ValueError("Extension should either be a string or an operator.")
+            raise TypeError(f"Extension should either be a string or an operator. Not {type(ext)}")
 
         self.ext = ext
 
