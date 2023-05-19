@@ -7,6 +7,7 @@ from winreg import (
     HKEY_CURRENT_CONFIG,
     HKEY_LOCAL_MACHINE
 )
+
 from src.context_menu import ContextMenu
 from src.registry_structs import RegistryKey
 from src.location import Location, RegistryLocation
@@ -64,6 +65,6 @@ def _create_key(location: RegistryLocation):
     winreg.CloseKey(winreg.CreateKey(location.top_level, location.subkey))
 
 
-def _set_value(location, value_name, type, data):
+def _set_value(location: RegistryLocation, value_name: str, value_type: int, data: str | int):
     with winreg.OpenKey(location.top_level, location.subkey, 0, winreg.KEY_SET_VALUE) as key:
-        winreg.SetValueEx(key, value_name, 0, type, data)
+        winreg.SetValueEx(key, value_name, 0, value_type, data)
