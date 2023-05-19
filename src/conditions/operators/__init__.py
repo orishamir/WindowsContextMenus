@@ -5,3 +5,5 @@ from .greater_than import GreaterThan
 from .greater_than_equal import GreaterThanEqual
 from .less_than import LessThan
 from .less_than_equal import LessThanEqual
+from .contains import Contains
+from .dos_wildcard import DosWildcard
