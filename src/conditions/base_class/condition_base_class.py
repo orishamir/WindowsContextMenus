@@ -1,7 +1,9 @@
 from __future__ import annotations
 
-from src.conditions.base_class.icondition import ICondition
+from abc import abstractmethod
+
 from src.conditions.base_class.condition_meta import ConditionMeta
+from src.conditions.base_class.icondition import ICondition
 
 AQS_OPERATOR_AND = " AND "
 AQS_OPERATOR_OR = " OR "
@@ -30,19 +32,28 @@ class ConditionBase(metaclass=ConditionMeta):
             )
     """
 
-    def __and__(self: ICondition, other: ICondition) -> ICondition:
+    @abstractmethod
+    def to_aqs_string(self) -> str:
+        """
+        Convert the condition to its actual
+        Advanced Query Standard (aqs) representation.
+        """
+
+        raise NotImplementedError("Conditions should implement their own to_aqs_string() method.")
+
+    def __and__(self: ICondition, other: ICondition) -> ConditionBase:
         return And(self, other)
 
-    def __rand__(self: ICondition, other: ICondition) -> ICondition:
+    def __rand__(self: ICondition, other: ICondition) -> ConditionBase:
         return And(other, self)
 
-    def __or__(self: ICondition, other: ICondition) -> ICondition:
+    def __or__(self: ICondition, other: ICondition) -> ConditionBase:
         return Or(self, other)
 
-    def __ror__(self: ICondition, other: ICondition) -> ICondition:
+    def __ror__(self: ICondition, other: ICondition) -> ConditionBase:
         return Or(other, self)
 
-    def __invert__(self: ICondition) -> ICondition:
+    def __invert__(self: ICondition) -> ConditionBase:
         return Not(self)
 
 
