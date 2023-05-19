@@ -1,4 +1,12 @@
-from src.conditions.operators import Equal, NotEqual, LessThan, LessThanEqual, GreaterThan, GreaterThanEqual
+from src.conditions.operators import (
+    Equal,
+    NotEqual,
+    LessThan,
+    LessThanEqual,
+    GreaterThan,
+    GreaterThanEqual,
+    Contains
+)
 from src.conditions.base_class.icondition import ICondition
 
 
@@ -31,3 +39,9 @@ class ConditionMeta(type):
 
     def __ge__(cls, other: str | int | float) -> ICondition:
         return cls(GreaterThanEqual(other))
+
+    def __matmul__(cls, item: str) -> ICondition:
+        return cls(Contains(item))
+
+    def __rmatmul__(cls, item: str) -> ICondition:
+        return cls(Contains(item))
