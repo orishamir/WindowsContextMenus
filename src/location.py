@@ -2,11 +2,17 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Literal
-from winreg import HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_USERS, HKEY_CURRENT_CONFIG, HKEY_LOCAL_MACHINE
-from enum import EnumMeta
+from winreg import (
+    HKEY_CLASSES_ROOT,
+    HKEY_CURRENT_USER,
+    HKEY_USERS,
+    HKEY_CURRENT_CONFIG,
+    HKEY_LOCAL_MACHINE
+)
+from enum import StrEnum
 
 
-class Location(EnumMeta):
+class Location(StrEnum):
     """
     When should the Context Menu be opened? Files? Directories?
     """
