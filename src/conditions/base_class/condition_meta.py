@@ -1,4 +1,4 @@
-from src.conditions.operators import (
+from operators import (
     Equal,
     NotEqual,
     LessThan,

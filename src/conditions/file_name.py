@@ -1,5 +1,5 @@
 from src.conditions.base_class.condition_base_class import ConditionBase
-from src.conditions.operators import IOperator, Equal
+from operators import IOperator, Equal
 
 PROPERTY_NAME = "System.FileName"
 
