@@ -1,6 +1,7 @@
-from src.conditions.base_class.condition_base_class import ConditionBase
-from operators import IOperator, Equal
 from datetime import date as Date
+
+from src.conditions.base_class.condition_base_class import ConditionBase
+from src.operators import IOperator, Equal
 
 PROPERTY_NAME = "System.DateCreated"
 

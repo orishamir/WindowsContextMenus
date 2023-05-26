@@ -1,4 +1,5 @@
-from operators import (
+from src.conditions.base_class.icondition import ICondition
+from src.operators import (
     Equal,
     NotEqual,
     LessThan,
@@ -7,7 +8,6 @@ from operators import (
     GreaterThanEqual,
     Contains
 )
-from src.conditions.base_class.icondition import ICondition
 
 
 class ConditionMeta(type):

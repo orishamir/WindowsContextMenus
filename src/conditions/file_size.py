@@ -1,5 +1,5 @@
 from src.conditions.base_class.condition_base_class import ConditionBase
-from operators import IOperator, Equal
+from src.operators import IOperator, Equal
 
 PROPERTY_NAME = "System.Size"
 

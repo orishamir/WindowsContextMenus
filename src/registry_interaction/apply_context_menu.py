@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import winreg
 from winreg import (
     HKEY_CURRENT_USER,
@@ -9,8 +10,8 @@ from winreg import (
 )
 
 from src.context_menu import ContextMenu
-from src.registry_structs import RegistryKey
 from src.location import Location, RegistryLocation
+from src.registry_structs import RegistryKey
 
 TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {
     "HKEY_CLASSES_ROOT": HKEY_CLASSES_ROOT,

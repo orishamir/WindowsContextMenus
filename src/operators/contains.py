@@ -1,4 +1,4 @@
-from operators.ioperator import IOperator
+from src.operators.ioperator import IOperator
 
 
 class Contains(IOperator):
