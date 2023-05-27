@@ -7,7 +7,7 @@ Sources:
 """
 
 from src.conditions import ICondition
-from src.features import IFeature
+from src.features.ifeature import IFeature
 from src.registry_structs import RegistryKey, RegistryValue, ValueType
 
 CONDITION_VALUE = "AppliesTo"
