@@ -7,3 +7,5 @@ from .ioperator import IOperator
 from .less_than import LessThan
 from .less_than_equal import LessThanEqual
 from .not_equal import NotEqual
+from .starts_with import StartsWith
+from .ends_with import EndsWith
