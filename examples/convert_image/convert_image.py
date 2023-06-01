@@ -1,5 +1,6 @@
 """
-Put this script in your PATH
+This script should be in your PATH because our
+context menu uses the script for converting images
 """
 
 import sys
@@ -27,12 +28,16 @@ def main():
 
     im = get_image_from_path(img_path)
 
+    if convert_to == "jpeg":
+        im = im.convert("RGB")
+
     im.save(img_path.with_suffix(f".{convert_to}"), format=convert_to)
 
 
 def get_image_from_path(path: Path) -> Image.Image:
     if not path.exists():
         raise FileNotFoundError(f"Path does not exist. {path=}")
+
     if not path.is_file():
         raise ValueError(f"Path is not a directory. {path=}")
 
