@@ -21,6 +21,8 @@ TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {
     "HKEY_CURRENT_CONFIG": HKEY_CURRENT_CONFIG
 }
 
+RESERVED = 0
+
 
 def apply_context_menu(
         menu: ContextMenu,
@@ -50,16 +52,18 @@ def _location_to_registry_location(location: Location) -> RegistryLocation:
 
 
 def _apply_registry_key(key: RegistryKey, location: RegistryLocation):
-    _create_key(location / key.name)
+    new_loc = location / key.name
+
+    _create_key(new_loc)
 
     for value in key.values:
-        _set_value(location / key.name, value.name, value.type, value.data)
+        _set_value(new_loc, value.name, value.type, value.data)
 
     if not key.subkeys:
         return
 
     for subkey in key.subkeys:
-        _apply_registry_key(subkey, location / key.name)
+        _apply_registry_key(subkey, new_loc)
 
 
 def _create_key(location: RegistryLocation):
@@ -67,5 +71,5 @@ def _create_key(location: RegistryLocation):
 
 
 def _set_value(location: RegistryLocation, value_name: str, value_type: int, data: str | int):
-    with winreg.OpenKey(location.top_level, location.subkey, 0, winreg.KEY_SET_VALUE) as key:
-        winreg.SetValueEx(key, value_name, 0, value_type, data)
+    with winreg.OpenKey(location.top_level, location.subkey, RESERVED, winreg.KEY_SET_VALUE) as key:
+        winreg.SetValueEx(key, value_name, RESERVED, value_type, data)
