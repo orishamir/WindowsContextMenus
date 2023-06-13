@@ -59,7 +59,16 @@ convert_to_bmp_entry = ContextMenu(
         )
     ]
 )
-
+convert_to_webp_entry = ContextMenu(
+    "ConvertToWebp",
+    [
+        EntryName("Convert to WEBP"),
+        Command(f'{CONVERT_IMAGE_COMMAND} webp'),
+        Condition(
+            ExtensionType != ".webp"
+        )
+    ]
+)
 main: ContextMenu = ContextMenu(
     "ConvertImageType",
     [
@@ -70,14 +79,16 @@ main: ContextMenu = ContextMenu(
             (ExtensionType == ".jpeg") |
             (ExtensionType == ".jpg") |
             (ExtensionType == ".bmp") |
-            (ExtensionType == ".ico")
+            (ExtensionType == ".ico") |
+            (ExtensionType == ".webp")
         )
     ],
     [
         convert_to_png_entry,
+        convert_to_ico_entry,
         convert_to_jpeg_entry,
         convert_to_bmp_entry,
-        convert_to_ico_entry
+        convert_to_webp_entry
     ]
 
 )
