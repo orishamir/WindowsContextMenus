@@ -1,7 +1,7 @@
-from src.operators.ioperator import IOperator
+from src.comparers.icomparer import IComparer
 
 
-class Contains(IOperator):
+class Contains(IComparer):
     def __init__(self, substr: str):
         if not isinstance(substr, str):
             raise TypeError(f"Value must be str. Type is {type(substr)}")

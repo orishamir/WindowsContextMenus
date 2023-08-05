@@ -3,7 +3,7 @@ from .dos_wildcard import DosWildcard
 from .equal import Equal
 from .greater_than import GreaterThan
 from .greater_than_equal import GreaterThanEqual
-from .ioperator import IOperator
+from .icomparer import IComparer
 from .less_than import LessThan
 from .less_than_equal import LessThanEqual
 from .not_equal import NotEqual

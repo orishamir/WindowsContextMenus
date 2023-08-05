@@ -1,5 +1,5 @@
 from src.conditions.base_class.condition_base_class import ConditionBase
-from src.operators import IOperator, Equal
+from src.comparers import IComparer
 
 PROPERTY_NAME = "System.Size"
 
@@ -9,18 +9,11 @@ class FileSize(ConditionBase):
     This condition checks the size of the file.
     """
 
-    def __init__(self, size: str | int | IOperator):
-        if isinstance(size, str | int):
-            size = Equal(size)
+    def __init__(self, operator: IComparer):
+        if not isinstance(operator, IComparer):
+            raise TypeError(f"Operator should be of type IOperator. Not {type(operator)}")
 
-        if not isinstance(size, IOperator):
-            raise TypeError(f"Size should either be a string, int, or an operator. Not {type(size)}")
-
-        self.size = size
+        self.operator = operator
 
     def to_aqs_string(self) -> str:
-        """
-        Convert condition to its AQS representation.
-        """
-
-        return f"({PROPERTY_NAME}{self.size.to_aqs_string()})"
+        return f"({PROPERTY_NAME}{self.operator.to_aqs_string()})"

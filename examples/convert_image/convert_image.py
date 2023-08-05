@@ -34,7 +34,7 @@ IMAGE_TYPES_WITHOUT_ALPHA = [
 
 def main():
     if len(sys.argv) != 3:
-        print(f"Usage: python convert_image.py <path_to_img> <{ ' | '.join(SUPPORTED_IMAGE_TYPES)}>")
+        print(f"Usage: python convert_image.py <path_to_img> <{' | '.join(SUPPORTED_IMAGE_TYPES)}>")
         return
 
     img_path = Path(sys.argv[1])

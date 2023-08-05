@@ -1,15 +1,14 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 from src.registry_structs.registry_key import RegistryKey
 
 
-class IFeature(ABC):
+class IFeature(Protocol):
     """
     This interface represents classes which are "features",
     i.e. something that is added to the context menu
     """
 
-    @abstractmethod
     def apply_to(self, tree: RegistryKey) -> None:
         """
         Change `tree` such that it contains the

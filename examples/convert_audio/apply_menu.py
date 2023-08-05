@@ -70,7 +70,6 @@ main = ContextMenu(
             (ExtensionType == ".wav") |
             (ExtensionType == ".ogg") |
             (ExtensionType == ".flac")
-
         )
     ],
     [

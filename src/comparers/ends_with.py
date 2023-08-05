@@ -1,7 +1,7 @@
-from src.operators.ioperator import IOperator
+from src.comparers.icomparer import IComparer
 
 
-class EndsWith(IOperator):
+class EndsWith(IComparer):
     def __init__(self, ends_with: str):
         if not isinstance(ends_with, str):
             raise TypeError(f"Value must be str. Type is {type(ends_with)}")

@@ -1,7 +1,7 @@
-from src.operators.ioperator import IOperator
+from src.comparers.icomparer import IComparer
 
 
-class DosWildcard(IOperator):
+class DosWildcard(IComparer):
     def __init__(self, string: str):
         if not isinstance(string, str):
             raise TypeError(f"Value must be str. Type is {type(string)}")

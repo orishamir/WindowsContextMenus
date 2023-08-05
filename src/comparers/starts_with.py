@@ -1,7 +1,7 @@
-from src.operators.ioperator import IOperator
+from src.comparers.icomparer import IComparer
 
 
-class StartsWith(IOperator):
+class StartsWith(IComparer):
     def __init__(self, starts_with: str):
         if not isinstance(starts_with, str):
             raise TypeError(f"Value must be str. Type is {type(starts_with)}")

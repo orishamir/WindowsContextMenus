@@ -10,15 +10,14 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 
-class ICondition(ABC):
+class ICondition(Protocol):
     """
     This is the interface that all conditions should implement.
     """
 
-    @abstractmethod
     def to_aqs_string(self) -> str:
         """
         Convert the condition to its actual

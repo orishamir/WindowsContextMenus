@@ -46,9 +46,12 @@ class RegistryLocation:
 
     def __truediv__(self, other: str) -> RegistryLocation:
         if not isinstance(other, str):
-            raise TypeError("Can't do that")
+            raise TypeError(f"other must be a string. {type(other)=}")
 
         return RegistryLocation(
             self.top_level,
-            f"{self.subkey}\\{other}"
+            self.subkey.strip("\\") + f"\\{other}"
         )
+
+    def __str__(self) -> str:
+        return f"{self.top_level}\\{self.subkey}"

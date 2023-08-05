@@ -27,15 +27,19 @@ RESERVED = 0
 def apply_context_menu(
         menu: ContextMenu,
         locations: list[Location],
-) -> None:
+) -> list[str]:
     """
     Apply context menu to the registry at `locations`
     """
     built_menu: RegistryKey = menu.build()
 
+    build_in_locations = [f"{loc}\\{menu.name}" for loc in locations]
+
     locations = map(_location_to_registry_location, locations)
     for location in locations:
         _apply_registry_key(built_menu, location)
+
+    return build_in_locations
 
 
 def _location_to_registry_location(location: Location) -> RegistryLocation:
