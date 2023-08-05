@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from src.exceptions import NotAFileError, BadIconExtensionError
-from src.features import IFeature
+from src.features.ifeature import IFeature
 from src.registry_structs import RegistryKey, RegistryValue, ValueType
 
 ICON_FEATURE_VALUE = "Icon"

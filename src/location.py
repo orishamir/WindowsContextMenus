@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import StrEnum
 from typing import Literal
 from winreg import (
     HKEY_CLASSES_ROOT,
@@ -9,7 +10,6 @@ from winreg import (
     HKEY_CURRENT_CONFIG,
     HKEY_LOCAL_MACHINE
 )
-from enum import StrEnum
 
 
 class Location(StrEnum):
@@ -46,9 +46,12 @@ class RegistryLocation:
 
     def __truediv__(self, other: str) -> RegistryLocation:
         if not isinstance(other, str):
-            raise TypeError("Can't do that")
+            raise TypeError(f"other must be a string. {type(other)=}")
 
         return RegistryLocation(
             self.top_level,
-            f"{self.subkey}\\{other}"
+            self.subkey.strip("\\") + f"\\{other}"
         )
+
+    def __str__(self) -> str:
+        return f"{self.top_level}\\{self.subkey}"

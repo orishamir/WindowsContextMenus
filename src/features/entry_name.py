@@ -1,5 +1,5 @@
-from src.registry_structs.registry_key import RegistryKey
 from src.features.ifeature import IFeature
+from src.registry_structs.registry_key import RegistryKey
 from src.registry_structs.registry_value import RegistryValue, ValueType
 
 DEFAULT_VALUE = ""

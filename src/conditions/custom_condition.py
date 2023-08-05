@@ -14,8 +14,4 @@ class CustomCondition(ConditionBase):
         self.aqs_condition = aqs_condition
 
     def to_aqs_string(self) -> str:
-        """
-        Convert condition to its AQS representation.
-        """
-
         return f"({self.aqs_condition})"

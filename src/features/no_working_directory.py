@@ -3,7 +3,7 @@ Source:
     https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry
 """
 
-from src.features import IFeature
+from src.features.ifeature import IFeature
 from src.registry_structs import RegistryKey, RegistryValue, ValueType
 
 NO_WORKING_DIRECTORY_VALUE = "NoWorkingDirectory"

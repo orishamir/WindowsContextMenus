@@ -1,10 +1,10 @@
 import winreg
 from dataclasses import dataclass
-from enum import EnumMeta
+from enum import IntEnum
 from typing import Any
 
 
-class ValueType(EnumMeta):
+class ValueType(IntEnum):
     """
     Some constant value types as defined in
     https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types
