@@ -6,11 +6,12 @@ from winreg import (
     HKEY_CLASSES_ROOT,
     HKEY_USERS,
     HKEY_CURRENT_CONFIG,
-    HKEY_LOCAL_MACHINE
+    HKEY_LOCAL_MACHINE,
 )
 
 from src.context_menu import ContextMenu
-from src.location import Location, RegistryLocation
+from src.location import RegistryLocation
+from src.context_menu_locations import ContextMenuLocation
 from src.registry_structs import RegistryKey
 
 TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {
@@ -25,24 +26,20 @@ RESERVED = 0
 
 
 def apply_context_menu(
-        menu: ContextMenu,
-        locations: list[Location],
-) -> list[str]:
+    menu: ContextMenu,
+    location: ContextMenuLocation,
+) -> str:
     """
     Apply context menu to the registry at `locations`
     """
     built_menu: RegistryKey = menu.build()
 
-    build_in_locations = [f"{loc}\\{menu.name}" for loc in locations]
+    _apply_registry_key(built_menu, _location_to_registry_location(location))
 
-    locations = map(_location_to_registry_location, locations)
-    for location in locations:
-        _apply_registry_key(built_menu, location)
-
-    return build_in_locations
+    return f"{location}\\{menu.name}"
 
 
-def _location_to_registry_location(location: Location) -> RegistryLocation:
+def _location_to_registry_location(location: ContextMenuLocation) -> RegistryLocation:
     top_level, *subkey = location.split("\\")
     subkey = "\\".join(subkey)
 
