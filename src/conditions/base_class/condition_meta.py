@@ -6,6 +6,10 @@ from src.comparers import (
     LessThanEqual,
     GreaterThan,
     GreaterThanEqual,
+    StartsWith,
+    EndsWith,
+    DosWildcard,
+    Contains,
 )
 
 
@@ -38,3 +42,15 @@ class ConditionMeta(type):
 
     def __ge__(cls, other: str | int | float) -> ICondition:
         return cls(GreaterThanEqual(other))
+    
+    def startswith(cls, value: str) -> ICondition:
+        return cls(StartsWith(value))
+    
+    def endswith(cls, value: str) -> ICondition:
+        return cls(EndsWith(value))
+    
+    def dos_wildcard(cls, wildcard: str) -> ICondition:
+        return cls(DosWildcard(wildcard))
+    
+    def contains(cls, substr: str) -> ICondition:
+        return cls(Contains(substr))
