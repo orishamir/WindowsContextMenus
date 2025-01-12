@@ -13,7 +13,7 @@ main = ContextMenu(
         Icon(r"C:\Users\ori\Pictures\arrow.ico"),
         Condition(
             (ExtensionType == ".mp4")
-        )
+        ),
     ],
     submenus=[speed_menu, resolution_menu]
 )

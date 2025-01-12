@@ -11,7 +11,7 @@ from src.features import (
     Command,
     EntryName,
     Icon,
-    Condition
+    Condition,
 )
 
 CONVERT_IMAGE_COMMAND = 'cmd.exe /c convert_image.py "%V"'
