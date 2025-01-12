@@ -7,9 +7,6 @@ from src.registry_structs import RegistryKey, RegistryValue, ValueType
 ICON_FEATURE_VALUE = "Icon"
 ACCEPTED_ICON_EXTENSIONS = (
     ".ico",
-    ".png",
-    ".jpg",
-    ".jpeg",
     ".exe",
 )
 
