@@ -6,7 +6,10 @@ PROPERTY_NAME = "System.FileName"
 
 class FileName(ConditionBase):
     """
-    This condition checks the name of the file.
+    This condition checks the name of the file, including extension.
+    
+    Reference:
+        https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename
     """
 
     def __init__(self, operator: IComparer):
