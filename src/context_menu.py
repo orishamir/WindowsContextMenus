@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from src.context_menu_locations import ContextMenuLocation
 from src.features import IFeature, EntryName
 from src.features.mui_verb import MUIVerb
 from src.features.sub_commands import SubCommands
@@ -51,6 +52,25 @@ class ContextMenu:
             )
 
         return cm
+
+    def export_reg(self, location: ContextMenuLocation) -> list[str]:
+        r"""
+        Syntax of .reg file:
+        https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23
+        Example:
+            Windows Registry Editor Version 5.00
+
+            [HKEY_LOCAL_MACHINE\Software\Classes\*\shell\ConvertVideo]
+            "MUIVerb"="Convert mp4..."
+        Returns:
+            A list of lines of the file.
+        """
+        built_menu: RegistryKey = self.build()
+        
+        return [
+            "Windows Registry Editor Version 5.00",
+            "",
+        ] + list(built_menu.export_reg(location))
 
     def _modify_because_submenus(self) -> None:
         """
