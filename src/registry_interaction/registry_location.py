@@ -23,7 +23,7 @@ TOP_LEVEL_STR_TO_HKEY: dict[str, TopLevelKey] = {
 
 
 @dataclass
-class RegistryLocation:
+class _RegistryLocation:
     """
     A convenient way of handling registry locations with `winreg`
     """
@@ -31,13 +31,13 @@ class RegistryLocation:
     top_level: TopLevelKey
     subkey: str
 
-    def __truediv__(self, other: str) -> RegistryLocation:
+    def __truediv__(self, other: str) -> _RegistryLocation:
         if not isinstance(other, str):
             raise TypeError(f"other must be a string. {type(other)=}")
 
-        return RegistryLocation(
+        return _RegistryLocation(
             self.top_level,
-            self.subkey.strip("\\") + f"\\{other}"
+            self.subkey.strip("\\") + f"\\{other}",
         )
 
     def __str__(self) -> str:
@@ -51,7 +51,7 @@ class RegistryLocation:
         return f"{self.top_level.name}\\{self.subkey}"
 
     @classmethod
-    def from_string(cls, location: str) -> RegistryLocation:
+    def from_string(cls, location: str) -> _RegistryLocation:
         r"""
         Construct RegistryLocation object from a human-readable location string.
         Example:
@@ -64,13 +64,12 @@ class RegistryLocation:
             #     subkey="SOFTWARE\Classes\*\shell\ConvertVideo\shell",
             # )
         """
-        top_level, *subkey = location.split("\\")
-        subkey = "\\".join(subkey)
+        top_level, subkey = location.split("\\", maxsplit=1)
 
         if top_level not in TOP_LEVEL_STR_TO_HKEY:
-            raise ValueError(f'Invalid location top-key "{top_level}"')
+            raise ValueError(f"invalid top level key: {top_level}")
 
-        return RegistryLocation(
+        return _RegistryLocation(
             TOP_LEVEL_STR_TO_HKEY[top_level],
             subkey,
         )

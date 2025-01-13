@@ -2,7 +2,7 @@ import winreg
 
 from src.context_menu import ContextMenu
 from src.context_menu_locations import ContextMenuLocation
-from src.registry_location import RegistryLocation
+from src.registry_interaction.registry_location import _RegistryLocation
 from src.registry_structs import RegistryKey
 
 RESERVED = 0
@@ -17,12 +17,12 @@ def apply_context_menu(
     """
     built_menu: RegistryKey = menu.build()
 
-    _apply_registry_key(built_menu, RegistryLocation.from_string(location))
+    _apply_registry_key(built_menu, _RegistryLocation.from_string(location))
 
     return f"{location}\\{menu.name}"
 
 
-def _apply_registry_key(key: RegistryKey, location: RegistryLocation):
+def _apply_registry_key(key: RegistryKey, location: _RegistryLocation):
     new_loc = location / key.name
 
     _create_key(new_loc)
@@ -37,10 +37,10 @@ def _apply_registry_key(key: RegistryKey, location: RegistryLocation):
         _apply_registry_key(subkey, new_loc)
 
 
-def _create_key(location: RegistryLocation):
+def _create_key(location: _RegistryLocation):
     winreg.CloseKey(winreg.CreateKey(location.top_level, location.subkey))
 
 
-def _set_value(location: RegistryLocation, value_name: str, value_type: int, data: str | int):
+def _set_value(location: _RegistryLocation, value_name: str, value_type: int, data: str | int):
     with winreg.OpenKey(location.top_level, location.subkey, RESERVED, winreg.KEY_SET_VALUE) as key:
         winreg.SetValueEx(key, value_name, RESERVED, value_type, data)
