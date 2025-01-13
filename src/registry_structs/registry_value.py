@@ -35,13 +35,12 @@ class RegistryValue:
             "MUIVerb"="Convert mp4..."
         """
         assert self.type in (DataType.REG_SZ, DataType.REG_DWORD)
-        
+
         if self.type is DataType.REG_SZ:
             data_str = json.dumps(self.data)  # escapes "\" and '"'
         elif self.type is DataType.REG_DWORD:
             data_str = f"dword:{self.data}"
-        
+
         if self.name == "":
             return f"@={data_str}"
         return f'"{self.name}"={data_str}'
-

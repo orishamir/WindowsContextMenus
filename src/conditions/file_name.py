@@ -1,5 +1,5 @@
-from src.conditions.base_class.condition_base_class import ConditionBase
 from src.comparers import IComparer
+from src.conditions.base_class.condition_base_class import ConditionBase
 
 PROPERTY_NAME = "System.FileName"
 

@@ -10,6 +10,7 @@ class DosWildcard(IComparer):
         "Mic?osoft W*d" - Finds files where the file name starts with "Mic", followed by some character,
                           followed by "osoft w", followed by any characters ending with d.
     """
+
     def __init__(self, string: str):
         if not isinstance(string, str):
             raise TypeError(f"Value must be str. Type is {type(string)}")

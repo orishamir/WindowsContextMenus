@@ -1,4 +1,3 @@
-from src.conditions.base_class.icondition import ICondition
 from src.comparers import (
     Equal,
     NotEqual,
@@ -11,6 +10,7 @@ from src.comparers import (
     DosWildcard,
     Contains,
 )
+from src.conditions.base_class.icondition import ICondition
 
 
 class ConditionMeta(type):
@@ -42,15 +42,15 @@ class ConditionMeta(type):
 
     def __ge__(cls, other: str | int | float) -> ICondition:
         return cls(GreaterThanEqual(other))
-    
+
     def startswith(cls, value: str) -> ICondition:
         return cls(StartsWith(value))
-    
+
     def endswith(cls, value: str) -> ICondition:
         return cls(EndsWith(value))
-    
+
     def dos_wildcard(cls, wildcard: str) -> ICondition:
         return cls(DosWildcard(wildcard))
-    
+
     def contains(cls, substr: str) -> ICondition:
         return cls(Contains(substr))

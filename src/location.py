@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from enum import StrEnum
 from typing import Literal
 from winreg import (
     HKEY_CLASSES_ROOT,
     HKEY_CURRENT_USER,
     HKEY_USERS,
     HKEY_CURRENT_CONFIG,
-    HKEY_LOCAL_MACHINE
+    HKEY_LOCAL_MACHINE,
 )
 
 

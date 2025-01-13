@@ -28,7 +28,7 @@ class RegistryKey:
         yield f"[{location}\\{self.name}]"
         for value in self.values:
             yield value.export_reg()
-        
+
         yield ""
         for subkey in self.subkeys:
             yield from subkey.export_reg(f"{location}\\{self.name}")

@@ -10,8 +10,8 @@ from winreg import (
 )
 
 from src.context_menu import ContextMenu
-from src.location import RegistryLocation
 from src.context_menu_locations import ContextMenuLocation
+from src.location import RegistryLocation
 from src.registry_structs import RegistryKey
 
 TOP_LEVEL_STR_TO_HKEY: dict[str, int] = {

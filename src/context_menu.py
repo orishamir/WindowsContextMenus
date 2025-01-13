@@ -14,10 +14,10 @@ class ContextMenu:
     """
 
     def __init__(
-            self,
-            name: str,
-            features: list[IFeature],
-            submenus: list[ContextMenu] = None
+        self,
+        name: str,
+        features: list[IFeature],
+        submenus: list[ContextMenu] = None
     ):
         if submenus is None:
             submenus = []
@@ -34,9 +34,7 @@ class ContextMenu:
         :return: The registry-key representation of the context menu.
         """
 
-        cm = RegistryKey(
-            self.name,
-        )
+        cm = RegistryKey(self.name)
 
         if self.submenus:
             self._modify_because_submenus()
@@ -66,7 +64,7 @@ class ContextMenu:
             A list of lines of the file.
         """
         built_menu: RegistryKey = self.build()
-        
+
         return [
             "Windows Registry Editor Version 5.00",
             "",

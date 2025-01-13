@@ -1,5 +1,6 @@
 from .contains import Contains
 from .dos_wildcard import DosWildcard
+from .ends_with import EndsWith
 from .equal import Equal
 from .greater_than import GreaterThan
 from .greater_than_equal import GreaterThanEqual
@@ -8,4 +9,3 @@ from .less_than import LessThan
 from .less_than_equal import LessThanEqual
 from .not_equal import NotEqual
 from .starts_with import StartsWith
-from .ends_with import EndsWith

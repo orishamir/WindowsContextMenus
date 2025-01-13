@@ -3,7 +3,7 @@ from .base_class import (
     ConditionBase,
     And,
     Or,
-    Not
+    Not,
 )
 from .custom_condition import CustomCondition
 from .extension_type import ExtensionType
