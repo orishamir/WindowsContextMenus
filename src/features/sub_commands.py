@@ -1,5 +1,5 @@
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 
 class SubCommands(IFeature):
@@ -11,5 +11,5 @@ class SubCommands(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue("SubCommands", ValueType.REG_SZ, "")
+            RegistryValue("SubCommands", DataType.REG_SZ, "")
         )

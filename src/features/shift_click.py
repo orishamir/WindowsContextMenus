@@ -1,5 +1,5 @@
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 SHIFT_CLICK_VALUE = "Extended"
 
@@ -11,5 +11,5 @@ class ShiftClick(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(SHIFT_CLICK_VALUE, ValueType.REG_SZ, "")
+            RegistryValue(SHIFT_CLICK_VALUE, DataType.REG_SZ, "")
         )

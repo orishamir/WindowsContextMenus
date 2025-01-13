@@ -4,7 +4,7 @@ Source:
 """
 
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 NO_WORKING_DIRECTORY_VALUE = "NoWorkingDirectory"
 
@@ -17,5 +17,5 @@ class NoWorkingDirectory(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(NO_WORKING_DIRECTORY_VALUE, ValueType.REG_SZ, "")
+            RegistryValue(NO_WORKING_DIRECTORY_VALUE, DataType.REG_SZ, "")
         )

@@ -4,7 +4,7 @@ from enum import IntEnum
 from typing import Any
 
 
-class ValueType(IntEnum):
+class DataType(IntEnum):
     """
     Some constant value types as defined in
     https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types
@@ -23,5 +23,5 @@ class RegistryValue:
     """
 
     name: str
-    type: ValueType
+    type: DataType
     data: Any

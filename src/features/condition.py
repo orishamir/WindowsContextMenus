@@ -8,7 +8,7 @@ Sources:
 
 from src.conditions import ICondition
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 CONDITION_VALUE = "AppliesTo"
 
@@ -19,5 +19,5 @@ class Condition(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(CONDITION_VALUE, ValueType.REG_SZ, self.condition.to_aqs_string())
+            RegistryValue(CONDITION_VALUE, DataType.REG_SZ, self.condition.to_aqs_string())
         )

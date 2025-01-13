@@ -1,5 +1,5 @@
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 DISABLE_VALUE = "LegacyDisable"
 
@@ -11,5 +11,5 @@ class Disable(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(DISABLE_VALUE, ValueType.REG_SZ, "")
+            RegistryValue(DISABLE_VALUE, DataType.REG_SZ, "")
         )

@@ -1,5 +1,5 @@
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 NEVER_DEFAULT_VALUE = "NeverDefault"
 
@@ -12,5 +12,5 @@ class NeverDefault(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(NEVER_DEFAULT_VALUE, ValueType.REG_SZ, "")
+            RegistryValue(NEVER_DEFAULT_VALUE, DataType.REG_SZ, "")
         )

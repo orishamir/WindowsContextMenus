@@ -2,7 +2,7 @@ from pathlib import Path
 
 from src.exceptions import NotAFileError, BadIconExtensionError
 from src.features.ifeature import IFeature
-from src.registry_structs import RegistryKey, RegistryValue, ValueType
+from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 ICON_FEATURE_VALUE = "Icon"
 ACCEPTED_ICON_EXTENSIONS = (
@@ -39,5 +39,5 @@ class Icon(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(ICON_FEATURE_VALUE, ValueType.REG_SZ, str(self.path_to_icon))
+            RegistryValue(ICON_FEATURE_VALUE, DataType.REG_SZ, str(self.path_to_icon))
         )
