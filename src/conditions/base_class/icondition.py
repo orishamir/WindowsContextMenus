@@ -8,8 +8,6 @@ Learn about it here:
 Some available conditions:
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from __future__ import annotations
-
 from typing import Protocol
 
 

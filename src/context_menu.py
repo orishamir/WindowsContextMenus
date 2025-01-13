@@ -46,7 +46,7 @@ class ContextMenu:
             subkeys: list[RegistryKey] = [submenu.build() for submenu in self.submenus]
 
             cm.subkeys.append(
-                RegistryKey("shell", subkeys=subkeys)
+                RegistryKey("shell", subkeys=subkeys),
             )
 
         return cm
