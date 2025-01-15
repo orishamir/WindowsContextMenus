@@ -6,7 +6,7 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 from src.conditions import FileName, ExtensionType, FileSize
 from src.context_menu import ContextMenu
 from src.context_menu_locations import ContextMenuLocation
-from src.features import Command, Condition
+from src.features import Command, ConditionFeature
 from src.features.mui_verb import MUIVerb
 from src.registry_interaction import apply_context_menu
 
@@ -17,7 +17,7 @@ some_menu = ContextMenu(
     "whatever",
     [
         MUIVerb("name of the thing"),
-        Condition(  # file is .mp4, does not start with "P"
+        ConditionFeature(  # file is .mp4, does not start with "P"
             (ExtensionType == ".mp4") &
             ~FileName.startswith("P") &
             (FileSize < "30MB")

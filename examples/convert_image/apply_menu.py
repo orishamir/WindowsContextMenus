@@ -11,7 +11,7 @@ from src.features import (
     Command,
     EntryName,
     Icon,
-    Condition,
+    ConditionFeature,
 )
 
 CONVERT_IMAGE_COMMAND = 'cmd.exe /c convert_image.py "%V"'
@@ -21,7 +21,7 @@ convert_to_png_entry = ContextMenu(
     [
         EntryName("Convert to PNG"),
         Command(f'{CONVERT_IMAGE_COMMAND} png'),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".png"
         )
     ]
@@ -32,7 +32,7 @@ convert_to_jpeg_entry = ContextMenu(
     [
         EntryName("Convert to JPEG"),
         Command(f'{CONVERT_IMAGE_COMMAND} jpeg'),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".jpeg"
         )
     ]
@@ -43,7 +43,7 @@ convert_to_ico_entry = ContextMenu(
     [
         EntryName("Convert to ICO"),
         Command(f'{CONVERT_IMAGE_COMMAND} ico'),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".ico"
         )
     ]
@@ -54,7 +54,7 @@ convert_to_bmp_entry = ContextMenu(
     [
         EntryName("Convert to BMP"),
         Command(f'{CONVERT_IMAGE_COMMAND} bmp'),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".bmp"
         )
     ]
@@ -64,7 +64,7 @@ convert_to_webp_entry = ContextMenu(
     [
         EntryName("Convert to WEBP"),
         Command(f'{CONVERT_IMAGE_COMMAND} webp'),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".webp"
         )
     ]
@@ -74,7 +74,7 @@ main: ContextMenu = ContextMenu(
     [
         EntryName("Convert to..."),
         Icon(r"D:\Pictures\Convert_arrow.ico"),
-        Condition(
+        ConditionFeature(
             (ExtensionType == ".png") |
             (ExtensionType == ".jpeg") |
             (ExtensionType == ".jpg") |

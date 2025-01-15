@@ -11,7 +11,7 @@ from src.features import (
     Command,
     EntryName,
     Icon,
-    Condition
+    ConditionFeature
 )
 
 CONVERT_AUDIO_COMMAND = 'cmd.exe /c ffmpeg -i "%V" {}'
@@ -21,7 +21,7 @@ ConvertToWAV = ContextMenu(
     [
         EntryName("Convert to WAV"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".wav')),
-        Condition(
+        ConditionFeature(
             ExtensionType != "wav"
         )
     ]
@@ -32,7 +32,7 @@ ConvertToMP3 = ContextMenu(
     [
         EntryName("Convert to MP3"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".mp3')),
-        Condition(
+        ConditionFeature(
             ExtensionType != "mp3"
         )
     ]
@@ -43,7 +43,7 @@ ConvertToOGG = ContextMenu(
     [
         EntryName("Convert to OGG"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".ogg')),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".ogg"
         )
     ]
@@ -54,7 +54,7 @@ ConvertToFLAC = ContextMenu(
     [
         EntryName("Convert to FLAC"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".flac')),
-        Condition(
+        ConditionFeature(
             ExtensionType != ".flac"
         )
     ]
@@ -65,7 +65,7 @@ main = ContextMenu(
     [
         EntryName("Convert to..."),
         Icon(r"D:\Pictures\Convert_arrow.ico"),
-        Condition(
+        ConditionFeature(
             (ExtensionType == ".mp3") |
             (ExtensionType == ".wav") |
             (ExtensionType == ".ogg") |

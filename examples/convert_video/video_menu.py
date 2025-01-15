@@ -3,7 +3,7 @@ from examples.convert_video.speed_menu import speed_menu
 from src.conditions import ExtensionType
 from src.context_menu import ContextMenu
 from src.context_menu_locations import ContextMenuLocation
-from src.features import EntryName, Icon, Condition
+from src.features import EntryName, Icon, ConditionFeature
 from src.registry_interaction import apply_context_menu
 
 main = ContextMenu(
@@ -11,7 +11,7 @@ main = ContextMenu(
     [
         EntryName("Convert mp4..."),
         Icon(r"C:\Users\ori\Pictures\arrow.ico"),
-        Condition(
+        ConditionFeature(
             (ExtensionType == ".mp4")
         ),
     ],
@@ -25,3 +25,8 @@ if __name__ == '__main__':
             ContextMenuLocation.ALL_FILES_ADMIN,
         )
     )
+    # print(
+    #     "\n".join(
+    #         main.export_reg(ContextMenuLocation.ALL_FILES_ADMIN),
+    #     ),
+    # )
