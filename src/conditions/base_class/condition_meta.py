@@ -26,31 +26,31 @@ class ConditionMeta(type):
     """
 
     def __eq__(cls, other: str | int | float) -> ICondition:
-        return cls(Equal(to=other))
+        return cls(Equal(other))
 
     def __ne__(cls, other: str | int | float) -> ICondition:
-        return cls(NotEqual(to=other))
+        return cls(NotEqual(other))
 
     def __lt__(cls, other: str | int | float) -> ICondition:
-        return cls(LessThan(than=other))
+        return cls(LessThan(other))
 
     def __le__(cls, other: str | int | float) -> ICondition:
-        return cls(LessThanEqual(than=other))
+        return cls(LessThanEqual(other))
 
     def __gt__(cls, other: str | int | float) -> ICondition:
-        return cls(GreaterThan(than=other))
+        return cls(GreaterThan(other))
 
     def __ge__(cls, other: str | int | float) -> ICondition:
-        return cls(GreaterThanEqual(than=other))
+        return cls(GreaterThanEqual(other))
 
     def startswith(cls, value: str) -> ICondition:
-        return cls(StartsWith(starts_with=value))
+        return cls(StartsWith(value))
 
     def endswith(cls, value: str) -> ICondition:
-        return cls(EndsWith(ends_with=value))
+        return cls(EndsWith(value))
 
     def dos_wildcard(cls, wildcard: str) -> ICondition:
-        return cls(DosWildcard(string=wildcard))
+        return cls(DosWildcard(wildcard))
 
     def contains(cls, substr: str) -> ICondition:
-        return cls(Contains(substr=substr))
+        return cls(Contains(substr))

@@ -72,13 +72,13 @@ class ContextMenu:
         """
 
         self.features = [
-            MUIVerb(name=feature.name) if isinstance(feature, EntryName) else feature
+            MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
             for feature in self.features
         ]
         self.features.append(SubCommands())
 
         for submenu in self.submenus:
             submenu.features = [
-                MUIVerb(name=feature.name) if isinstance(feature, EntryName) else feature
+                MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
                 for feature in submenu.features
             ]
