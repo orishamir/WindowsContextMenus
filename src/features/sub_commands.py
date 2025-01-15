@@ -1,7 +1,10 @@
+from dataclasses import dataclass
+
 from src.features.ifeature import IFeature
 from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 
+@dataclass
 class SubCommands(IFeature):
     """
     A ContextMenu with submenus needs to have
@@ -11,5 +14,5 @@ class SubCommands(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue("SubCommands", DataType.REG_SZ, "")
+            RegistryValue(name="SubCommands", type=DataType.REG_SZ, data="")
         )

@@ -1,12 +1,11 @@
+from dataclasses import dataclass
+
 from src.comparers.icomparer import IComparer
 
 
+@dataclass
 class StartsWith(IComparer):
-    def __init__(self, starts_with: str):
-        if not isinstance(starts_with, str):
-            raise TypeError(f"Value must be str. Type is {type(starts_with)}")
-
-        self.starts_with = starts_with
+    starts_with: str
 
     def to_aqs_string(self) -> str:
         return f":~<{self.starts_with}"

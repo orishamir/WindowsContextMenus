@@ -1,8 +1,9 @@
 import json
 import winreg
-from dataclasses import dataclass
 from enum import IntEnum
 from typing import Any
+
+from pydantic import BaseModel
 
 
 class DataType(IntEnum):
@@ -16,8 +17,7 @@ class DataType(IntEnum):
     REG_SZ = winreg.REG_SZ
 
 
-@dataclass
-class RegistryValue:
+class RegistryValue(BaseModel):
     """
     Represents a registry value as defined in
     https://learn.microsoft.com/en-us/windows/win32/sysinfo/structure-of-the-registry

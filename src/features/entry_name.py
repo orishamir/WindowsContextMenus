@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 from src.features.ifeature import IFeature
 from src.registry_structs.registry_key import RegistryKey
 from src.registry_structs.registry_value import RegistryValue, DataType
@@ -5,6 +7,7 @@ from src.registry_structs.registry_value import RegistryValue, DataType
 DEFAULT_VALUE = ""
 
 
+@dataclass
 class EntryName(IFeature):
     """
     This feature defines what text shows up
@@ -12,10 +15,9 @@ class EntryName(IFeature):
     text that appears after right-click
     """
 
-    def __init__(self, name: str):
-        self.name = name
+    name: str
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(DEFAULT_VALUE, DataType.REG_SZ, self.name)
+            RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.name)
         )

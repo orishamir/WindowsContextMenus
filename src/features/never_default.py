@@ -1,9 +1,12 @@
+from dataclasses import dataclass
+
 from src.features.ifeature import IFeature
 from src.registry_structs import RegistryKey, RegistryValue, DataType
 
 NEVER_DEFAULT_VALUE = "NeverDefault"
 
 
+@dataclass
 class NeverDefault(IFeature):
     """
     Tells windows NOT to use this context-menu item in cases where
@@ -12,5 +15,5 @@ class NeverDefault(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(NEVER_DEFAULT_VALUE, DataType.REG_SZ, "")
+            RegistryValue(name=NEVER_DEFAULT_VALUE, type=DataType.REG_SZ, data="")
         )

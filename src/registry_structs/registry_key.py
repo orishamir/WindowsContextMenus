@@ -1,20 +1,20 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from typing import Generator
+
+from pydantic import BaseModel
 
 from src.registry_structs.registry_value import RegistryValue
 
 
-@dataclass
-class RegistryKey:
+class RegistryKey(BaseModel):
     """
     This dataclass represents a registry key as defined in https://learn.microsoft.com/en-us/windows/win32/sysinfo/structure-of-the-registry
     """
 
     name: str
-    values: list[RegistryValue] = field(default_factory=list)
-    subkeys: list[RegistryKey] = field(default_factory=list)
+    values: list[RegistryValue] = []
+    subkeys: list[RegistryKey] = []
 
     def export_reg(self, location: str) -> Generator[str, None, None]:
         r"""
