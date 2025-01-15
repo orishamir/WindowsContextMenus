@@ -1,0 +1,19 @@
+name: My Context Menu
+icon: path/to/icon.ico
+on_shift_click: true
+disabled: false
+exec: C:\Path\To\Script.bat
+conditions:
+  extension: .mp4
+  file_size:
+    lt: 30MB
+  file_name:
+    startswith: he
+    endswith: .mp4
+  file_type:
+    ne: directory
+  $or:
+    - file_name:
+        contains: error
+    - file_name:
+        endswith: .log

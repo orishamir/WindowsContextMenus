@@ -1,0 +1,25 @@
+{
+  "name": "My Context Menu",
+  "icon": "path/to/icon.ico",
+  "on_shift_click": true,
+  "disabled": false,
+  "exec": "C:\\Path\\To\\Script.bat",
+  "conditions": {
+    "file_name": {
+      "startswith": "he",
+      "endswith": ".mp4"
+    },
+    "filesize": {
+      "lt": "30MB"
+    },
+    "extension": ".mp4",
+    "$or": [
+      {
+        "file_name": {"contains": "error"}
+      },
+      {
+        "file_name": {"endswith": ".log"}
+      }
+    ]
+  }
+}
