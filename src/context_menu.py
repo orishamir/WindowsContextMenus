@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from src.context_menu_locations import ContextMenuLocation
 from src.features import IFeature, EntryName
 from src.features.mui_verb import MUIVerb
@@ -7,24 +9,16 @@ from src.features.sub_commands import SubCommands
 from src.registry_structs import RegistryKey
 
 
+@dataclass
 class ContextMenu:
     """
     Represents a context menu,
     that has a name, features, and submenus.
     """
 
-    def __init__(
-        self,
-        name: str,
-        features: list[IFeature],
-        submenus: list[ContextMenu] = None
-    ):
-        if submenus is None:
-            submenus = []
-
-        self.name = name
-        self.features = features
-        self.submenus = submenus
+    name: str
+    features: list[IFeature]
+    submenus: list[ContextMenu] = None
 
     def build(self) -> RegistryKey:
         """
@@ -34,7 +28,7 @@ class ContextMenu:
         :return: The registry-key representation of the context menu.
         """
 
-        cm = RegistryKey(self.name)
+        cm = RegistryKey(name=self.name)
 
         if self.submenus:
             self._modify_because_submenus()
@@ -46,7 +40,7 @@ class ContextMenu:
             subkeys: list[RegistryKey] = [submenu.build() for submenu in self.submenus]
 
             cm.subkeys.append(
-                RegistryKey("shell", subkeys=subkeys),
+                RegistryKey(name="shell", subkeys=subkeys),
             )
 
         return cm
@@ -78,13 +72,13 @@ class ContextMenu:
         """
 
         self.features = [
-            MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
+            MUIVerb(name=feature.name) if isinstance(feature, EntryName) else feature
             for feature in self.features
         ]
         self.features.append(SubCommands())
 
         for submenu in self.submenus:
             submenu.features = [
-                MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
+                MUIVerb(name=feature.name) if isinstance(feature, EntryName) else feature
                 for feature in submenu.features
             ]

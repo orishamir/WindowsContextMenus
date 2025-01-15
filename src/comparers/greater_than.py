@@ -1,12 +1,11 @@
+from dataclasses import dataclass
+
 from src.comparers.icomparer import IComparer
 
 
+@dataclass
 class GreaterThan(IComparer):
-    def __init__(self, than: str | int | float):
-        if not isinstance(than, str | int | float):
-            raise TypeError(f"Value must be str/int/float. Type is {type(than)}")
-
-        self.than = than
+    than: str | int | float
 
     def to_aqs_string(self) -> str:
         return f":>{self.than}"

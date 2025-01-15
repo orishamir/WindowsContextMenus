@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import winreg
-from dataclasses import dataclass
 from enum import IntEnum
+
+from pydantic import BaseModel
 
 
 class TopLevelKey(IntEnum):
@@ -22,8 +23,7 @@ TOP_LEVEL_STR_TO_HKEY: dict[str, TopLevelKey] = {
 }
 
 
-@dataclass
-class _RegistryLocation:
+class _RegistryLocation(BaseModel):
     """
     A convenient way of handling registry locations with `winreg`
     """
@@ -36,8 +36,8 @@ class _RegistryLocation:
             raise TypeError(f"other must be a string. {type(other)=}")
 
         return _RegistryLocation(
-            self.top_level,
-            self.subkey.strip("\\") + f"\\{other}",
+            top_level=self.top_level,
+            subkey=self.subkey.strip("\\") + f"\\{other}",
         )
 
     def __str__(self) -> str:
@@ -70,6 +70,6 @@ class _RegistryLocation:
             raise ValueError(f"invalid top level key: {top_level}")
 
         return _RegistryLocation(
-            TOP_LEVEL_STR_TO_HKEY[top_level],
-            subkey,
+            top_level=TOP_LEVEL_STR_TO_HKEY[top_level],
+            subkey=subkey,
         )

@@ -1,5 +1,5 @@
 from .command import Command
-from .condition import Condition
+from .conditionfeature import ConditionFeature
 from .entry_name import EntryName
 from .icon_feature import Icon
 from .ifeature import IFeature

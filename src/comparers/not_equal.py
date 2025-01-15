@@ -1,12 +1,11 @@
+from dataclasses import dataclass
+
 from src.comparers.icomparer import IComparer
 
 
+@dataclass
 class NotEqual(IComparer):
-    def __init__(self, to: str | int | float):
-        if not isinstance(to, str | int | float):
-            raise TypeError(f"Value must be str/int/float. Type is {type(to)}")
-
-        self.to = to
+    to: str | int | float
 
     def to_aqs_string(self) -> str:
         # Looks like :<>{val}
