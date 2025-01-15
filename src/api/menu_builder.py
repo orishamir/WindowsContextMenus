@@ -64,10 +64,10 @@ def _build_features_from_config(config: ContextMenuConfig) -> Generator[IFeature
     if config.icon is not None:
         yield Icon(path_to_icon=config.icon)
 
-    if config.disabled is True:
+    if config.disabled:
         yield Disabled()
 
-    if config.on_shift_click is True:
+    if config.on_shift_click:
         yield ShiftClick()
 
     if config.conditions:
