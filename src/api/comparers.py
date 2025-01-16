@@ -95,4 +95,14 @@ class FileSizeComparerConfig(
     GreaterThanEqualsComparerConfig[ByteSize],
     NotEqualsComparerConfig[ByteSize],
 ):
-    pass
+    @model_validator(mode="after")
+    def _validate_non_conflicting_values(self) -> FileSizeComparerConfig:
+        if self.lt and self.gt:
+            if self.lt > self.gt:
+                raise ValueError("conflicting values for less-than and greater-than")
+
+        if self.lte and self.gte:
+            if self.lt >= self.gt:
+                raise ValueError("conflicting values for less-than and greater-than")
+
+        return self
