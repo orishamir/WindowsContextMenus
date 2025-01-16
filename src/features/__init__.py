@@ -6,3 +6,4 @@ from .ifeature import IFeature
 from .never_default import NeverDefault
 from .no_working_directory import NoWorkingDirectory
 from .shift_click import ShiftClick
+from src.features.disabled import Disabled
