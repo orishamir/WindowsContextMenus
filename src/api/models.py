@@ -10,7 +10,7 @@ from src.api.comparers import FileNameComparerConfig, FileSizeComparerConfig, Ex
 
 class ContextMenuConfig(BaseModel):
     display_name: str
-    exec: str
+    exec: Optional[str] = None
     icon: Optional[Path] = None
     disabled: Optional[bool] = None
     on_shift_click: Optional[bool] = None
@@ -24,5 +24,4 @@ class ConditionsConfig(BaseModel):
     extension: Optional[str | ExtensionComparerConfig] = None
 
     or_: Optional[list[ConditionsConfig]] = Field(None, alias="$or")
-    and_: Optional[list[ConditionsConfig]] = Field(None, alias="$and")
     not_: Optional[ConditionsConfig] = Field(None, alias="$not")

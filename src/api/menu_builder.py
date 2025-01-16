@@ -1,5 +1,7 @@
 from typing import Generator
 
+from pydantic import ByteSize
+
 from src.api.models import ContextMenuConfig, ConditionsConfig
 from src.api.comparers import (
     StartswithComparerConfig,
@@ -47,7 +49,7 @@ from src.features import (
 
 def build_menu_from_config(config: ContextMenuConfig) -> ContextMenu:
     return ContextMenu(
-        name="whatever for now",
+        name=config.display_name,
         features=list(_build_features_from_config(config)),
         submenus=[
             build_menu_from_config(submenu)
@@ -59,7 +61,8 @@ def build_menu_from_config(config: ContextMenuConfig) -> ContextMenu:
 def _build_features_from_config(config: ContextMenuConfig) -> Generator[IFeature, None, None]:
     yield EntryName(name=config.display_name)
 
-    yield Command(command=config.exec)
+    if config.exec is not None:
+        yield Command(command=config.exec)
 
     if config.icon is not None:
         yield Icon(path_to_icon=config.icon)
@@ -95,22 +98,12 @@ def _build_conditions(conditions_config: ConditionsConfig) -> ICondition:
             for comparer in _build_comparers(conditions_config.extension)
         )
 
-    if conditions_config.and_:
-        conditions.append(
-            And(
-                [
-                    _build_conditions(subcondition_request)
-                    for subcondition_request in conditions_config.and_
-                ]
-            )
-        )
-
     if conditions_config.or_:
         conditions.append(
             Or(
                 [
-                    _build_conditions(subcondition_request)
-                    for subcondition_request in conditions_config.or_
+                    _build_conditions(subcondition_config)
+                    for subcondition_config in conditions_config.or_
                 ]
             )
         )
@@ -127,46 +120,49 @@ def _build_conditions(conditions_config: ConditionsConfig) -> ICondition:
 
 
 def _build_comparers(
-    condition: str | int
-               | StartswithComparerConfig
-               | EndswithComparerConfig
-               | ContainsComparerConfig
-               | EqualsComparerConfig
-               | NotEqualsComparerConfig
-               | LessThanComparerConfig
-               | GreaterThanComparerConfig
-               | LessThanEqualsComparerConfig
-               | GreaterThanEqualsComparerConfig
+    comparer_config: str | int | ByteSize
+                     | StartswithComparerConfig
+                     | EndswithComparerConfig
+                     | ContainsComparerConfig
+                     | EqualsComparerConfig
+                     | NotEqualsComparerConfig
+                     | LessThanComparerConfig
+                     | GreaterThanComparerConfig
+                     | LessThanEqualsComparerConfig
+                     | GreaterThanEqualsComparerConfig
 ) -> Generator[IComparer, None, None]:
     """
-    Given a condition's config, returns
+    Given a comparer's config, returns all IComparers.
+    One ComparerConfig can have multiple IComparers since the config specifies multiple Comparers in the same config.
     """
-    if isinstance(condition, str | int):
-        yield Equal(to=condition)
+    if isinstance(comparer_config, ByteSize):
+        yield Equal(to=comparer_config.human_readable(decimal=True))
+    elif isinstance(comparer_config, str | int):
+        yield Equal(to=comparer_config)
 
-    if isinstance(condition, StartswithComparerConfig) and condition.startswith:
-        yield StartsWith(starts_with=condition.startswith)
+    if isinstance(comparer_config, StartswithComparerConfig) and comparer_config.startswith:
+        yield StartsWith(starts_with=comparer_config.startswith)
 
-    if isinstance(condition, EndswithComparerConfig) and condition.endswith:
-        yield EndsWith(ends_with=condition.endswith)
+    if isinstance(comparer_config, EndswithComparerConfig) and comparer_config.endswith:
+        yield EndsWith(ends_with=comparer_config.endswith)
 
-    if isinstance(condition, ContainsComparerConfig) and condition.contains:
-        yield Contains(substr=condition.contains)
+    if isinstance(comparer_config, ContainsComparerConfig) and comparer_config.contains:
+        yield Contains(substr=comparer_config.contains)
 
-    if isinstance(condition, EqualsComparerConfig) and condition.eq:
-        yield Equal(to=condition.eq)
+    if isinstance(comparer_config, EqualsComparerConfig) and comparer_config.eq:
+        yield Equal(to=comparer_config.eq)
 
-    if isinstance(condition, NotEqualsComparerConfig) and condition.ne:
-        yield NotEqual(to=condition.ne)
+    if isinstance(comparer_config, NotEqualsComparerConfig) and comparer_config.ne:
+        yield NotEqual(to=comparer_config.ne)
 
-    if isinstance(condition, LessThanComparerConfig) and condition.lt:
-        yield LessThan(than=condition.lt)
+    if isinstance(comparer_config, LessThanComparerConfig) and comparer_config.lt:
+        yield LessThan(than=comparer_config.lt)
 
-    if isinstance(condition, GreaterThanComparerConfig) and condition.gt:
-        yield GreaterThan(than=condition.gt)
+    if isinstance(comparer_config, GreaterThanComparerConfig) and comparer_config.gt:
+        yield GreaterThan(than=comparer_config.gt)
 
-    if isinstance(condition, LessThanEqualsComparerConfig) and condition.lte:
-        yield LessThanEqual(than=condition.lte)
+    if isinstance(comparer_config, LessThanEqualsComparerConfig) and comparer_config.lte:
+        yield LessThanEqual(than=comparer_config.lte)
 
-    if isinstance(condition, GreaterThanEqualsComparerConfig) and condition.gte:
-        yield GreaterThanEqual(than=condition.gte)
+    if isinstance(comparer_config, GreaterThanEqualsComparerConfig) and comparer_config.gte:
+        yield GreaterThanEqual(than=comparer_config.gte)
