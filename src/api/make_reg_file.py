@@ -5,7 +5,12 @@ from src.api.menu_builder import build_menu_from_config
 from src.api.models import ContextMenuConfig
 from src.context_menu_locations import ContextMenuLocation
 
-app = FastAPI()
+app = FastAPI(
+    swagger_ui_parameters={
+        "syntaxHighlight.theme": "nord",
+        "displayRequestDuration": True,
+    }
+)
 
 
 @app.post("/make-reg-file")
