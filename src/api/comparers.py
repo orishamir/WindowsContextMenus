@@ -86,14 +86,19 @@ class FileNameComparerConfig(
     pass
 
 
+class StrByteSize(ByteSize):
+    def __str__(self) -> str:
+        return self.human_readable(decimal=True)
+
+
 class FileSizeComparerConfig(
     _ValidateOneOf,
-    EqualsComparerConfig[ByteSize],
-    LessThanComparerConfig[ByteSize],
-    GreaterThanComparerConfig[ByteSize],
-    LessThanEqualsComparerConfig[ByteSize],
-    GreaterThanEqualsComparerConfig[ByteSize],
-    NotEqualsComparerConfig[ByteSize],
+    EqualsComparerConfig[StrByteSize],
+    LessThanComparerConfig[StrByteSize],
+    GreaterThanComparerConfig[StrByteSize],
+    LessThanEqualsComparerConfig[StrByteSize],
+    GreaterThanEqualsComparerConfig[StrByteSize],
+    NotEqualsComparerConfig[StrByteSize],
 ):
     @model_validator(mode="after")
     def _validate_non_conflicting_values(self) -> FileSizeComparerConfig:

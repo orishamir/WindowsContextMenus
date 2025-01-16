@@ -135,9 +135,7 @@ def _build_comparers(
     Given a comparer's config, returns all IComparers.
     One ComparerConfig can have multiple IComparers since the config specifies multiple Comparers in the same config.
     """
-    if isinstance(comparer_config, ByteSize):
-        yield Equal(to=comparer_config.human_readable(decimal=True))
-    elif isinstance(comparer_config, str | int):
+    if isinstance(comparer_config, str | int):
         yield Equal(to=comparer_config)
 
     if isinstance(comparer_config, StartswithComparerConfig) and comparer_config.startswith:
