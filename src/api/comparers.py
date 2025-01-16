@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field, ByteSize, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+from src.api.custom_types import StrByteSize
 
 
 class StartswithComparerConfig[T](BaseModel):
@@ -84,11 +86,6 @@ class FileNameComparerConfig(
     NotEqualsComparerConfig[str],
 ):
     pass
-
-
-class StrByteSize(ByteSize):
-    def __str__(self) -> str:
-        return self.human_readable(decimal=True)
 
 
 class FileSizeComparerConfig(

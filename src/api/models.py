@@ -3,9 +3,10 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Optional
 
-from pydantic import BaseModel, Field, ByteSize
+from pydantic import BaseModel, Field
 
 from src.api.comparers import FileNameComparerConfig, FileSizeComparerConfig, ExtensionComparerConfig
+from src.api.custom_types import StrByteSize
 
 
 class ContextMenuConfig(BaseModel):
@@ -20,7 +21,7 @@ class ContextMenuConfig(BaseModel):
 
 class ConditionsConfig(BaseModel):
     file_name: Optional[str | FileNameComparerConfig] = None
-    file_size: Optional[ByteSize | FileSizeComparerConfig] = None
+    file_size: Optional[StrByteSize | FileSizeComparerConfig] = None
     extension: Optional[str | ExtensionComparerConfig] = None
 
     or_: Optional[list[ConditionsConfig]] = Field(None, alias="$or")
