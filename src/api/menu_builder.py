@@ -49,7 +49,7 @@ from src.features import (
 
 def build_menu_from_config(config: ContextMenuConfig) -> ContextMenu:
     return ContextMenu(
-        name=config.display_name,
+        name=config.name,
         features=list(_build_features_from_config(config)),
         submenus=[
             build_menu_from_config(submenu)
@@ -59,7 +59,7 @@ def build_menu_from_config(config: ContextMenuConfig) -> ContextMenu:
 
 
 def _build_features_from_config(config: ContextMenuConfig) -> Generator[IFeature, None, None]:
-    yield EntryName(name=config.display_name)
+    yield EntryName(name=config.name)
 
     if config.exec is not None:
         yield Command(command=config.exec)

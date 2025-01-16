@@ -9,7 +9,7 @@ from src.api.comparers import FileNameComparerConfig, FileSizeComparerConfig, Ex
 
 
 class ContextMenuConfig(BaseModel):
-    display_name: str
+    name: str
     exec: Optional[str] = None
     icon: Optional[Path] = None
     disabled: Optional[bool] = None
