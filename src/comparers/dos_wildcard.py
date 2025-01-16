@@ -16,4 +16,4 @@ class DosWildcard(IComparer):
     string: str
 
     def to_aqs_string(self) -> str:
-        return f"~{self.string}"
+        return f":~{self.string}"
