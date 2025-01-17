@@ -4,7 +4,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from src.api.custom_types import StrByteSize
+from src.configuration.custom_types import StrByteSize
 
 
 class StartswithComparerConfig[T](BaseModel):

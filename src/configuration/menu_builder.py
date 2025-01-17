@@ -2,8 +2,8 @@ from typing import Generator
 
 from pydantic import ByteSize
 
-from src.api.models import ContextMenuConfig, ConditionsConfig
-from src.api.comparers import (
+from src.configuration.models import ContextMenuConfig, ConditionsConfig
+from src.configuration.comparers import (
     StartswithComparerConfig,
     EndswithComparerConfig,
     ContainsComparerConfig,

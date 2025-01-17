@@ -5,8 +5,8 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from src.api.comparers import FileNameComparerConfig, FileSizeComparerConfig, ExtensionComparerConfig
-from src.api.custom_types import StrByteSize
+from src.configuration.comparers import FileNameComparerConfig, FileSizeComparerConfig, ExtensionComparerConfig
+from src.configuration.custom_types import StrByteSize
 
 
 class ContextMenuConfig(BaseModel):
