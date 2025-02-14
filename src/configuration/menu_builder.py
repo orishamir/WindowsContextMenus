@@ -1,7 +1,5 @@
 from typing import Generator
 
-from pydantic import ByteSize
-
 from src.configuration.models import ContextMenuConfig, ConditionsConfig
 from src.configuration.comparers import (
     StartswithComparerConfig,
@@ -13,6 +11,7 @@ from src.configuration.comparers import (
     GreaterThanComparerConfig,
     LessThanEqualsComparerConfig,
     GreaterThanEqualsComparerConfig,
+    WildcardComparerConfig,
 )
 from src.comparers import (
     IComparer,
@@ -25,6 +24,7 @@ from src.comparers import (
     LessThanEqual,
     GreaterThanEqual,
     EndsWith,
+    DosWildcard,
 )
 from src.conditions import (
     FileName,
@@ -120,7 +120,7 @@ def _build_conditions(conditions_config: ConditionsConfig) -> ICondition:
 
 
 def _build_comparers(
-    comparer_config: str | int | ByteSize
+    comparer_config: str | int
                      | StartswithComparerConfig
                      | EndswithComparerConfig
                      | ContainsComparerConfig
@@ -130,6 +130,7 @@ def _build_comparers(
                      | GreaterThanComparerConfig
                      | LessThanEqualsComparerConfig
                      | GreaterThanEqualsComparerConfig
+                     | WildcardComparerConfig
 ) -> Generator[IComparer, None, None]:
     """
     Given a comparer's config, returns all IComparers.
@@ -164,3 +165,6 @@ def _build_comparers(
 
     if isinstance(comparer_config, GreaterThanEqualsComparerConfig) and comparer_config.gte:
         yield GreaterThanEqual(than=comparer_config.gte)
+
+    if isinstance(comparer_config, WildcardComparerConfig) and comparer_config.wildcard:
+        yield DosWildcard(string=comparer_config.wildcard)

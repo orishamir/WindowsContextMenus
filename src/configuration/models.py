@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Optional
 
 from pydantic import BaseModel, Field
@@ -12,7 +11,7 @@ from src.configuration.custom_types import StrByteSize
 class ContextMenuConfig(BaseModel):
     name: str
     exec: Optional[str] = None
-    icon: Optional[Path] = None
+    icon: Optional[str] = None
     disabled: Optional[bool] = None
     on_shift_click: Optional[bool] = None
     conditions: Optional[ConditionsConfig] = None

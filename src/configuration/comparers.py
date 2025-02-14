@@ -43,7 +43,11 @@ class GreaterThanEqualsComparerConfig[T](BaseModel):
     gte: Optional[T] = Field(None, alias="$gte")
 
 
-class _ValidateOneOf(BaseModel, extra="forbid"):
+class WildcardComparerConfig[T](BaseModel):
+    wildcard: Optional[T] = Field(None, alias="$wildcard")
+
+
+class _ValidateOneOf(BaseModel, extra="forbid", populate_by_name=True):
     """
     A model for making sure at least one of the fields are set.
     For example, FileSize respects int, le, ge, etc.
@@ -65,6 +69,7 @@ class ExtensionComparerConfig(
     ContainsComparerConfig[str],
     EqualsComparerConfig[str],
     NotEqualsComparerConfig[str],
+    WildcardComparerConfig[str],
 ):
     @field_validator("eq", "ne", "startswith")
     def _validate_extension_comma(cls, value: Optional[str]) -> Optional[str]:
@@ -84,6 +89,7 @@ class FileNameComparerConfig(
     ContainsComparerConfig[str],
     EqualsComparerConfig[str],
     NotEqualsComparerConfig[str],
+    WildcardComparerConfig[str],
 ):
     pass
 
