@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 def _file_size_ui(key) -> Any | None:
     l, r = st.columns([0.6, 0.4])
     val = l.number_input("count", min_value=0, step=50, label_visibility="hidden", key=f"{key}-count")
-    units = r.selectbox("size_units", ["Bytes", "KB", "MB", "GB"], label_visibility="hidden", key=f"{key}-units", index=None)
+    units = r.selectbox("size_units", ["B", "KB", "MB", "GB"], label_visibility="hidden", key=f"{key}-units", index=None)
     if units is None:
         return None
 
@@ -34,6 +34,12 @@ CONDITION_TYPE_TO_UI: dict[ConditionType, Callable[[int], Any | None]] = {
 
 
 def get_condition(key) -> ConditionForm:
+    """
+    Condition is the combination of
+    "Condition type" - (file name, extension, etc.)
+    "Comparer type" - (gt, lte, etc.)
+    "Value" - the value itself
+    """
     with st.container(border=True):
         condition_type = st.selectbox("Condition Type", list(ConditionType), label_visibility="hidden", index=None, key=f"{key}-condition_type")
         if condition_type is None:
@@ -47,16 +53,11 @@ def get_condition(key) -> ConditionForm:
             key=f"{key}-comparer_type"
         )
         if comparer_type is None:
-            return ConditionForm(
-                type=condition_type,
-            )
+            return ConditionForm(type=condition_type)
 
         value = CONDITION_TYPE_TO_UI[condition_type](key)
         if value is None:
-            return ConditionForm(
-                type=condition_type,
-                comparer=comparer_type,
-            )
+            return ConditionForm(type=condition_type, comparer=comparer_type)
 
         return ConditionForm(
             type=condition_type,
@@ -119,5 +120,5 @@ config = form_to_configuration(context_menu)
 
 r = requests.post("http://127.0.0.1:8000/make-reg-file", json=config.model_dump())
 st.code(r.text)
-st.download_button("Download .reg", data=r.text, file_name=f"{name}.reg")
+st.download_button("Download .reg", data=r.text, file_name=f"{context_menu.name}.reg")
 print(config)
