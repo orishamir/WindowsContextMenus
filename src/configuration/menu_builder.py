@@ -98,7 +98,7 @@ def _build_conditions(conditions_config: ConditionsConfig) -> ICondition:
             for comparer in _build_comparers(conditions_config.extension)
         )
 
-    if conditions_config.or_:
+    if conditions_config.or_ is not None:
         conditions.append(
             Or(
                 [
@@ -108,7 +108,7 @@ def _build_conditions(conditions_config: ConditionsConfig) -> ICondition:
             )
         )
 
-    if conditions_config.not_:
+    if conditions_config.not_ is not None:
         conditions.append(
             Not(_build_conditions(conditions_config.not_))
         )
@@ -139,32 +139,32 @@ def _build_comparers(
     if isinstance(comparer_config, str | int):
         yield Equal(to=comparer_config)
 
-    if isinstance(comparer_config, StartswithComparerConfig) and comparer_config.startswith:
+    if isinstance(comparer_config, StartswithComparerConfig) and comparer_config.startswith is not None:
         yield StartsWith(starts_with=comparer_config.startswith)
 
-    if isinstance(comparer_config, EndswithComparerConfig) and comparer_config.endswith:
+    if isinstance(comparer_config, EndswithComparerConfig) and comparer_config.endswith is not None:
         yield EndsWith(ends_with=comparer_config.endswith)
 
-    if isinstance(comparer_config, ContainsComparerConfig) and comparer_config.contains:
+    if isinstance(comparer_config, ContainsComparerConfig) and comparer_config.contains is not None:
         yield Contains(substr=comparer_config.contains)
 
-    if isinstance(comparer_config, EqualsComparerConfig) and comparer_config.eq:
+    if isinstance(comparer_config, EqualsComparerConfig) and comparer_config.eq is not None:
         yield Equal(to=comparer_config.eq)
 
-    if isinstance(comparer_config, NotEqualsComparerConfig) and comparer_config.ne:
+    if isinstance(comparer_config, NotEqualsComparerConfig) and comparer_config.ne is not None:
         yield NotEqual(to=comparer_config.ne)
 
-    if isinstance(comparer_config, LessThanComparerConfig) and comparer_config.lt:
+    if isinstance(comparer_config, LessThanComparerConfig) and comparer_config.lt is not None:
         yield LessThan(than=comparer_config.lt)
 
-    if isinstance(comparer_config, GreaterThanComparerConfig) and comparer_config.gt:
+    if isinstance(comparer_config, GreaterThanComparerConfig) and comparer_config.gt is not None:
         yield GreaterThan(than=comparer_config.gt)
 
-    if isinstance(comparer_config, LessThanEqualsComparerConfig) and comparer_config.lte:
+    if isinstance(comparer_config, LessThanEqualsComparerConfig) and comparer_config.lte is not None:
         yield LessThanEqual(than=comparer_config.lte)
 
-    if isinstance(comparer_config, GreaterThanEqualsComparerConfig) and comparer_config.gte:
+    if isinstance(comparer_config, GreaterThanEqualsComparerConfig) and comparer_config.gte is not None:
         yield GreaterThanEqual(than=comparer_config.gte)
 
-    if isinstance(comparer_config, WildcardComparerConfig) and comparer_config.wildcard:
+    if isinstance(comparer_config, WildcardComparerConfig) and comparer_config.wildcard is not None:
         yield DosWildcard(string=comparer_config.wildcard)
