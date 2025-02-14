@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "context_menu_sdk"
+name = "context_menu_toolkit"
 version = "0.0.1"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },

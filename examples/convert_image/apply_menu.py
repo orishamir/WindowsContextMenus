@@ -3,11 +3,11 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from context_menu_sdk.conditions import ExtensionType
-from context_menu_sdk.context_menu_locations import ContextMenuLocation
-from context_menu_sdk.registry_interaction import apply_context_menu
-from context_menu_sdk.context_menu import ContextMenu
-from context_menu_sdk.features import (
+from context_menu_toolkit.conditions import ExtensionType
+from context_menu_toolkit.context_menu_locations import ContextMenuLocation
+from context_menu_toolkit.registry_interaction import apply_context_menu
+from context_menu_toolkit.context_menu import ContextMenu
+from context_menu_toolkit.features import (
     Command,
     EntryName,
     Icon,
