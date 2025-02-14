@@ -11,8 +11,6 @@ from context_menu_toolkit.conditions import ICondition
 from context_menu_toolkit.features.ifeature import IFeature
 from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue, DataType
 
-CONDITION_VALUE = "AppliesTo"
-
 
 @dataclass
 class ConditionFeature(IFeature):
@@ -20,5 +18,5 @@ class ConditionFeature(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(name=CONDITION_VALUE, type=DataType.REG_SZ, data=self.condition.to_aqs_string())
+            RegistryValue(name="AppliesTo", type=DataType.REG_SZ, data=self.condition.to_aqs_string())
         )

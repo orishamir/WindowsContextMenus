@@ -7,8 +7,6 @@ from dataclasses import dataclass
 from context_menu_toolkit.features.ifeature import IFeature
 from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue, DataType
 
-NO_WORKING_DIRECTORY_VALUE = "NoWorkingDirectory"
-
 
 @dataclass
 class NoWorkingDirectory(IFeature):
@@ -19,5 +17,5 @@ class NoWorkingDirectory(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(name=NO_WORKING_DIRECTORY_VALUE, type=DataType.REG_SZ, data="")
+            RegistryValue(name="NoWorkingDirectory", type=DataType.REG_SZ, data="")
         )
