@@ -3,12 +3,12 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from src.conditions import FileName, ExtensionType, FileSize
-from src.context_menu import ContextMenu
-from src.context_menu_locations import ContextMenuLocation
-from src.features import Command, ConditionFeature
-from src.features.mui_verb import MUIVerb
-from src.registry_interaction import apply_context_menu
+from context_menu_sdk.conditions import FileName, ExtensionType, FileSize
+from context_menu_sdk.context_menu import ContextMenu
+from context_menu_sdk.context_menu_locations import ContextMenuLocation
+from context_menu_sdk.features import Command, ConditionFeature
+from context_menu_sdk.features.mui_verb import MUIVerb
+from context_menu_sdk.registry_interaction import apply_context_menu
 
 
 BASE_COMMAND = 'cmd.exe /c start chrome google.com'

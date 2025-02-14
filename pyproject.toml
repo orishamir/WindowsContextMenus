@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "context_menu_sdk"
+version = "0.0.1"
+authors = [
+  { name="Ori Shamir", email="orishamir04@gmail.com" },
+]
+description = "Create windows context menus Pythonically"
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/orishamir/WindowsContextMenus"

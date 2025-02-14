@@ -3,10 +3,10 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from src.context_menu import ContextMenu
-from src.context_menu_locations import ContextMenuLocation
-from src.features import EntryName, Command
-from src.registry_interaction import apply_context_menu
+from context_menu_sdk.context_menu import ContextMenu
+from context_menu_sdk.context_menu_locations import ContextMenuLocation
+from context_menu_sdk.features import EntryName, Command
+from context_menu_sdk.registry_interaction import apply_context_menu
 
 ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%V"-1.5x.mp4'
 FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%V"-1.25x.mp4'
