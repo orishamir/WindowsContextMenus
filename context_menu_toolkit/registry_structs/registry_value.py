@@ -35,6 +35,7 @@ class RegistryValue(BaseModel):
 
         Example:
             "MUIVerb"="Convert mp4..."
+
         Returns:
             The .reg file line representing the registry value.
         """
