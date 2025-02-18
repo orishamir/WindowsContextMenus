@@ -11,7 +11,7 @@ class ExtensionType(ConditionBase):
     """
     This condition checks the value of the extension of the file.
     Should include the leading period.
-    
+
     Reference:
         https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension
     """

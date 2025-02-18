@@ -10,11 +10,11 @@ PROPERTY_NAME = "System.Size"
 class FileSize(ConditionBase):
     """
     This condition checks the size of the file.
-    
+
     Example:
         System.Size:<30MB      - Size less than 30 megabytes
         System.Size:<30000000  - Size less than 30 megabytes
-    
+
     Reference:
         https://learn.microsoft.com/en-us/windows/win32/properties/props-system-size
     """

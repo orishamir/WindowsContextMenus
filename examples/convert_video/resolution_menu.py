@@ -15,7 +15,7 @@ class Resolution(StrEnum):
     HD = "720p"
     FHD = "1080p"
     QHD = "1440p"
-    
+
 
 class Encoding(StrEnum):
     AVC = "libx264"
@@ -52,7 +52,6 @@ resolution_menu = ContextMenu(
     resolution_submenus,
 )
 if __name__ == '__main__':
-    
     print(
         apply_context_menu(
             resolution_menu,

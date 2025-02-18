@@ -27,7 +27,6 @@ some_menu = ContextMenu(
     [],
 )
 if __name__ == '__main__':
-    
     print(
         apply_context_menu(
             some_menu,
