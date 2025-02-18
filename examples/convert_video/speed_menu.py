@@ -17,14 +17,14 @@ QUARTER_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/0.25" -
 
 speed_submenus = [
     ContextMenu(
-        f"SpeedBy1.5x",
+        "SpeedBy1.5x",
         [
             EntryName("Speed up by 1.5x"),
             Command(ONE_AND_HALF_SPEED_COMMAND),
         ],
     ),
     ContextMenu(
-        f"SpeedBy1.25x",
+        "SpeedBy1.25x",
         [
             EntryName("Speed up by 1.25x"),
             Command(FIVE_QUARTERS_SPEED_COMMAND),
@@ -32,21 +32,21 @@ speed_submenus = [
         ],
     ),
     ContextMenu(
-        f"SpeedBy0.75x",
+        "SpeedBy0.75x",
         [
             EntryName("Slow down by 0.75x"),
             Command(THREE_QUARTERS_SPEED_COMMAND),
         ],
     ),
     ContextMenu(
-        f"SpeedBy0.5x",
+        "SpeedBy0.5x",
         [
             EntryName("Slow down by 0.5x"),
             Command(HALF_SPEED_COMMAND),
         ],
     ),
     ContextMenu(
-        f"SpeedBy0.25x",
+        "SpeedBy0.25x",
         [
             EntryName("Slow down by 0.25x"),
             Command(QUARTER_SPEED_COMMAND),
