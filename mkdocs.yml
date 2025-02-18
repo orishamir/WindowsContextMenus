@@ -1,0 +1,17 @@
+site_name: Context Menu Python Toolkit
+nav:
+  - Home: index.md
+  - About: about.md
+  - Registry Structs: registry_structs.md
+
+watch:
+  - context_menu_toolkit
+  - docs
+  - mkdocs.yml
+
+theme:
+  name: 'material'
+
+plugins:
+- mkdocstrings:
+    default_handler: python
