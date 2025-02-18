@@ -1,0 +1,39 @@
+name: "Build"
+description: "Builds package and uploads to github artifact"
+inputs:
+  python-version:
+    description: "Python version"
+    required: true
+    default: "3.13"
+  artifact-name:
+    description: "Name of GitHub artifact that contain built package (Wheel & SDist)"
+    required: true
+    default: "dist"
+outputs:
+  artifact-name:
+    value: ${{ inputs.artifact-name }}
+    description: "The name of the created GitHub artifact that contains both Wheel & SDist"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - run: pip install hatch
+      shell: sh
+
+    - name: Build Package
+      run: hatch build
+      shell: sh
+
+    - name: Upload Built Artifacts (Wheel & SDist)
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: dist/*

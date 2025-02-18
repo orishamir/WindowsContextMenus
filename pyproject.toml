@@ -4,12 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "context_menu_toolkit"
-version = "0.0.1"
+version = "0.0.5"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
 description = "Create windows context menus Pythonically"
-readme = "README.md"
 requires-python = ">=3.13"
 classifiers = [
     "Programming Language :: Python :: 3.13",
@@ -17,6 +16,24 @@ classifiers = [
     "Operating System :: Microsoft :: Windows :: Windows 11",
 ]
 license = "MIT"
+
+dependencies = [
+    "pydantic==2.*",
+    "fastapi",
+    "uvicorn",
+]
+
+[dependency-groups]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "griffe_pydantic",
+]
+test = [
+    "pytest",
+    "parameterized",
+]
 
 [project.urls]
 Homepage = "https://github.com/orishamir/WindowsContextMenus"

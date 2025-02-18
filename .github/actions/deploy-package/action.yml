@@ -1,0 +1,27 @@
+# unused
+name: "Deploy package"
+description: "Tests code"
+inputs:
+  dist-artifact-name:
+    description: "Name of GitHub artifact containing built Wheel & SDist"
+    required: true
+    default: "dist"
+  repository-url:
+    description: The repository URL to use
+    required: true
+    default: "https://test.pypi.org/legacy/"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.dist-artifact-name }}
+        path: dist/
+
+    - name: Publish distribution
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: ${{ inputs.repository-url }}
+        verbose: 'true'

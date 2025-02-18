@@ -1,0 +1,93 @@
+# ran when new version should be created and deployed
+name: Create new version (Test, Build, Deploy)
+
+on:
+  workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Test
+        uses: ./.github/actions/test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build
+        uses: ./.github/actions/build-package
+
+  deploy:
+    name: Deploy package
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write  # mandatory for Trusted Publishing
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish distribution
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: "https://test.pypi.org/legacy/"
+          verbose: 'true'
+
+  release:
+    name: Create tag & release
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - name: Download artifacts (Wheel & SDist)
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - run: pip install pytoml
+
+      - name: Get package version
+        run: |
+          TAG=$(python -c 'print(__import__("pytoml").load(open("pyproject.toml"))["project"]["version"])')
+          echo "Using tag: $TAG"
+          echo "TAG=v$TAG" >> $GITHUB_ENV
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create $TAG \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} $TAG" \
+              --generate-notes
+
+      - name: Upload dists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload $TAG dist/*

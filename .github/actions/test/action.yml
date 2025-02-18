@@ -1,0 +1,29 @@
+name: "Tests"
+description: "Tests code"
+inputs:
+  python-version:
+    description: "Python version"
+    required: true
+    default: "3.13"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - uses: astral-sh/setup-uv@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install test dependencies
+      run: uv sync --group test
+      shell: sh
+
+    - run: pytest
+      shell: sh
