@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Test
         uses: ./.github/actions/test
@@ -20,36 +20,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build
         uses: ./.github/actions/build-package
-
-  build_docs:
-    name: Build Documentation
-    runs-on: ubuntu-latest
-    if: github.ref_name == 'feature/docs'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.13"
-
-      - uses: astral-sh/setup-uv@v5
-        with:
-          python-version: 3.13
-
-      - name: Install dependencies
-        run: uv sync --group docs
-
-      - run: mkdocs build-package
-
-      - name: Upload Documentation Files
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'site-files'
-          path: site
