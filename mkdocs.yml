@@ -13,7 +13,7 @@ nav:
 
 watch:
   - context_menu_toolkit
-  - docs
+  - docs/
   - mkdocs.yml
 
 theme:
