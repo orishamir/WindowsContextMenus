@@ -8,6 +8,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,6 +31,7 @@ jobs:
     name: Deploy package
     runs-on: ubuntu-latest
     needs: build
+
     permissions:
       id-token: write  # mandatory for Trusted Publishing
 
@@ -75,21 +77,21 @@ jobs:
       - name: Get package version
         run: |
           pip install toml-cli
-          TAG=$(toml get --toml-path pyproject.toml project.version)
-          echo "Using tag: $TAG"
-          echo "TAG=v$TAG" >> $GITHUB_ENV
+          VERSION=$(toml get --toml-path pyproject.toml project.version)
+          echo "::notice::Package Version: $VERSION"
+          echo "VERSION=v$VERSION" >> $GITHUB_ENV
 
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create $TAG \
+          gh release create $VERSION \
               --repo="$GITHUB_REPOSITORY" \
-              --title="${GITHUB_REPOSITORY#*/} $TAG" \
+              --title="${GITHUB_REPOSITORY#*/} $VERSION" \
               --generate-notes
 
       - name: Upload dists to release assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload $TAG dist/*
+          gh release upload $VERSION dist/*
