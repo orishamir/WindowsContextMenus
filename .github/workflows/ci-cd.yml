@@ -24,3 +24,22 @@ jobs:
 
       - name: Build
         uses: ./.github/actions/build-package
+
+  for-testing:
+    name: Temp
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "setup docker"
+        uses: docker/setup-docker-action@v4
+
+      - run: docker build -t tmp:latest .
+
+      - run: docker save tmp:latest | gzip > tmp.tar.gz
+
+      - uses: actions/upload-artifact@v4
+        with:
+          path: tmp.tar.gz
+          name: "docker built.tar.gz"
