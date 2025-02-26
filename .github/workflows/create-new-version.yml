@@ -1,8 +1,13 @@
-# ran when new version should be created and deployed
-name: Create new version (Test, Build, Deploy)
+# This workflow creates a new version of the package. Can be used for both dev and prod.
+# Package version is determined from pyproject.toml.
+# Triggered on pushes/merges to master and can be triggered automatically
+name: Create new package version
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
 
 jobs:
   test:
@@ -17,7 +22,7 @@ jobs:
         uses: ./.github/actions/test
 
   build:
-    name: Build
+    name: Build package
     runs-on: ubuntu-latest
 
     steps:
