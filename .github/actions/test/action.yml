@@ -1,5 +1,5 @@
 name: "Tests"
-description: "Tests code"
+description: "Runs tests of a project using pytest. Requires that a `test` dependency group exist and contains pytest."
 inputs:
   python-version:
     description: "Python version"

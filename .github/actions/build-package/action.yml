@@ -1,5 +1,5 @@
 name: "Build"
-description: "Builds package and uploads to github artifact"
+description: "Builds package using Hatch and uploads to github artifact"
 inputs:
   python-version:
     description: "Python version"

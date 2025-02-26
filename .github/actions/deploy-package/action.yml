@@ -1,9 +1,10 @@
-# unused
+# Pretty much should remain unused.
+# We want create-new-version workflow to be the only method of creating new versions.
 name: "Deploy package"
-description: "Tests code"
+description: "Deploys package to PyPi repository given an artifact containing distribution files."
 inputs:
   dist-artifact-name:
-    description: "Name of GitHub artifact containing built Wheel & SDist"
+    description: "Name of GitHub artifact containing built distribution files (Wheel & SDist)"
     required: true
     default: "dist"
   repository-url:
