@@ -30,7 +30,6 @@ docs = [
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
-    "griffe_pydantic",
 ]
 test = [
     "pytest",
@@ -39,3 +38,12 @@ test = [
 
 [project.urls]
 Homepage = "https://github.com/orishamir/WindowsContextMenus"
+
+[tool.hatch.build]
+exclude = [
+  "/.*",
+  "/docs",
+  "/tests",
+  "/design",
+  "/examples",
+]
