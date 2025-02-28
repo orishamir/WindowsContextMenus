@@ -30,6 +30,7 @@ class RegistryKey(BaseModel):
             "MUIVerb"="Convert mp4..."
             "SubCommands"=""
             ```
+
         Yields:
             Lines of the .reg file.
         """
