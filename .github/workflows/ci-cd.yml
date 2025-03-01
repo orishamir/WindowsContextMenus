@@ -11,17 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version-file: "pyproject.toml"
-
-      - uses: astral-sh/setup-uv@v5
-
-      - name: Install lint dependencies
-        run: uv sync --group lint
-
-      - run: uv run ruff check
+      - name: Lint
+        uses: ./.github/actions/lint
 
   test:
     name: Test
