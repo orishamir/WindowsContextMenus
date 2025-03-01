@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 
 from context_menu_toolkit.features.ifeature import IFeature
-from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue, DataType
+from context_menu_toolkit.registry_structs import DataType, RegistryKey, RegistryValue
 
 
 @dataclass
@@ -17,6 +17,9 @@ class Separator(IFeature):
     Only works with submenus.
     """
     class Location(IntEnum):
+        """
+        Where the separator should be, relative to the containing context menu.
+        """
         Before = 0x20  # ECF_SEPARATORBEFORE
         After = 0x40  # ECF_SEPARATORAFTER
 
@@ -24,5 +27,5 @@ class Separator(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location)
+            RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location),
         )

@@ -1,0 +1,19 @@
+name: "Linting"
+description: "Lints project using Ruff."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+    - uses: astral-sh/setup-uv@v5
+
+    - name: Install lint dependencies
+      run: uv sync --group lint
+      shell: sh
+
+    - run: uv run ruff check
+      shell: sh

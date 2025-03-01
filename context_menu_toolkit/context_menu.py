@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from context_menu_toolkit.context_menu_locations import ContextMenuLocation
-from context_menu_toolkit.features import IFeature, EntryName
+from context_menu_toolkit.features import EntryName, IFeature
 from context_menu_toolkit.features.mui_verb import MUIVerb
 from context_menu_toolkit.features.sub_commands import SubCommands
 from context_menu_toolkit.registry_structs import RegistryKey
@@ -27,7 +27,6 @@ class ContextMenu:
 
         :return: The registry-key representation of the context menu.
         """
-
         cm = RegistryKey(name=self.name)
 
         if self.submenus:
@@ -70,7 +69,6 @@ class ContextMenu:
         a way to tell the label, we need to set MUIVerb to the label.
         Also, we need to add an empty SubCommands value.
         """
-
         self.features = [
             MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
             for feature in self.features

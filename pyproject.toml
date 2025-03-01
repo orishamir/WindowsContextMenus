@@ -35,6 +35,9 @@ test = [
     "pytest",
     "parameterized",
 ]
+lint = [
+    "ruff",
+]
 
 [project.urls]
 Homepage = "https://github.com/orishamir/WindowsContextMenus"
@@ -45,3 +48,41 @@ exclude = [
   "/design",
   "/examples",
 ]
+
+[tool.ruff]
+extend-exclude = ["examples"]
+indent-width = 4
+line-length = 140
+output-format = "grouped"
+
+[tool.ruff.lint]
+select = [
+    "F",    # pyflakes
+    "N",    # pep8-naming
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "B",    # flake8-bugbear
+    "ANN",  # flake8-annotations
+    "COM",  # flake8-commas
+    "C4",   # flake8-comprehensions
+    "ISC",  # flake8-implicit-str-concat
+    "PT",   # flake8-pytest-style
+    "Q",    # flake8-quotes
+    "ARG",  # flake8-unused-arguments
+    "I",    # isort
+    "E",    # pycodestyle-error
+    "W",    # pycodestyle-warning
+    "D",    # pydocstyle
+    "PL",   # pylint (all)
+    "UP",   # pyupgrade
+]
+ignore = [
+    "D100", "D102", "D104", "D200", "D205", "D212", "D415", "D105",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"!tests/**" = ["PT"]  # disable PT everywhere except tests
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
