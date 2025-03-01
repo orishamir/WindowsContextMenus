@@ -1,9 +1,0 @@
-[flake8]
-ignore = E501
-exclude = .venv, .git, __pycache__, dist
-indent-size = 4
-show_source = True
-statistics = True
-per-file-ignores =
-    __init__.py: F401
-    # imported but unused
