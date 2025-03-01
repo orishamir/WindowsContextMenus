@@ -1,10 +1,6 @@
 name: "Build"
 description: "Builds package using Hatch and uploads to github artifact"
 inputs:
-  python-version:
-    description: "Python version"
-    required: true
-    default: "3.13"
   dist-artifact-name:
     description: "Name of GitHub artifact that contains the built package after building (Wheel & SDist)"
     required: true

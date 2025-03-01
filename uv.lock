@@ -87,7 +87,7 @@ wheels = [
 
 [[package]]
 name = "context-menu-toolkit"
-version = "0.0.7"
+version = "0.0.10b1"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
@@ -97,7 +97,6 @@ dependencies = [
 
 [package.dev-dependencies]
 docs = [
-    { name = "griffe-pydantic" },
     { name = "mkdocs" },
     { name = "mkdocs-material" },
     { name = "mkdocstrings", extra = ["python"] },
@@ -116,7 +115,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 docs = [
-    { name = "griffe-pydantic" },
     { name = "mkdocs" },
     { name = "mkdocs-material" },
     { name = "mkdocstrings", extras = ["python"] },
@@ -162,18 +160,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/59/80/13b6456bfbf8bc854875e58d3a3bad297ee19ebdd693ce62a10fab007e7a/griffe-1.5.7.tar.gz", hash = "sha256:465238c86deaf1137761f700fb343edd8ffc846d72f6de43c3c345ccdfbebe92", size = 391503 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/67/b43330ed76f96be098c165338d47ccb952964ed77ba1d075247fbdf05c04/griffe-1.5.7-py3-none-any.whl", hash = "sha256:4af8ec834b64de954d447c7b6672426bb145e71605c74a4e22d510cc79fe7d8b", size = 128294 },
-]
-
-[[package]]
-name = "griffe-pydantic"
-version = "1.1.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "griffe" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/ca/9e/5242baf6e06adf7e9db6a0ef74728c34885325a461502695acba892a9a2f/griffe_pydantic-1.1.2.tar.gz", hash = "sha256:381eacd8854a85811522b4f6dc9a1ef0fb5931825081379d70ff3a425b0d4ea1", size = 38858 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/69/bb/2f4889c062f91ed809dbd14a2628365fa7f75b7fc3f8ce17d98b726563b0/griffe_pydantic-1.1.2-py3-none-any.whl", hash = "sha256:8ad53218ca6e9c24ccec83588eb435f562b30355f641fe336e81b1e00ea05f3c", size = 10450 },
 ]
 
 [[package]]

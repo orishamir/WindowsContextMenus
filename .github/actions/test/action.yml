@@ -15,5 +15,5 @@ runs:
       run: uv sync --group test
       shell: sh
 
-    - run: pytest
+    - run: uvx pytest
       shell: sh
