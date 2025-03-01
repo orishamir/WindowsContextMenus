@@ -1,10 +1,5 @@
 name: "Tests"
 description: "Runs tests of a project using pytest. Requires that a `test` dependency group exist and contains pytest."
-inputs:
-  python-version:
-    description: "Python version"
-    required: true
-    default: "3.13"
 
 runs:
   using: "composite"
@@ -12,11 +7,9 @@ runs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ inputs.python-version }}
+        python-version-file: "pyproject.toml"
 
     - uses: astral-sh/setup-uv@v5
-      with:
-        pyproject-file: "pyproject.toml"
 
     - name: Install test dependencies
       run: uv sync --group test
