@@ -3,6 +3,28 @@ name: CI/CD Pipeline
 on: push
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install lint dependencies
+        run: uv sync --group lint
+
+      - run: flake8
+
   test:
     name: Test
     runs-on: ubuntu-latest

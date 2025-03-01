@@ -35,6 +35,9 @@ test = [
     "pytest",
     "parameterized",
 ]
+lint = [
+    "flake8",
+]
 
 [project.urls]
 Homepage = "https://github.com/orishamir/WindowsContextMenus"
