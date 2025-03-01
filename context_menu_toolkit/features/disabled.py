@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from context_menu_toolkit.features.ifeature import IFeature
-from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue, DataType
+from context_menu_toolkit.registry_structs import DataType, RegistryKey, RegistryValue
 
 
 @dataclass
@@ -12,5 +12,5 @@ class Disabled(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(name="LegacyDisable", type=DataType.REG_SZ, data="")
+            RegistryValue(name="LegacyDisable", type=DataType.REG_SZ, data=""),
         )

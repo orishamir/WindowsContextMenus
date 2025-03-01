@@ -14,5 +14,4 @@ class IFeature(Protocol):
         Change `tree` such that it contains the
         feature should it be applied to the registry.
         """
-
         raise NotImplementedError("Classes that realize IFeature must implement apply_to")

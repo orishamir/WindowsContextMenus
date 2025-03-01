@@ -39,7 +39,6 @@ class ConditionBase(metaclass=ConditionMeta):
         Convert the condition to its actual
         Advanced Query Standard (aqs) representation.
         """
-
         raise NotImplementedError("Conditions should implement their own to_aqs_string() method.")
 
     def __and__(self: ICondition, other: ICondition) -> ConditionBase:

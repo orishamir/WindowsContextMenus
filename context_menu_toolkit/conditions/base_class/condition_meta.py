@@ -1,14 +1,14 @@
 from context_menu_toolkit.comparers import (
+    Contains,
+    DosWildcard,
+    EndsWith,
     Equal,
-    NotEqual,
-    LessThan,
-    LessThanEqual,
     GreaterThan,
     GreaterThanEqual,
+    LessThan,
+    LessThanEqual,
+    NotEqual,
     StartsWith,
-    EndsWith,
-    DosWildcard,
-    Contains,
 )
 from context_menu_toolkit.conditions.base_class.icondition import ICondition
 

@@ -1,10 +1,10 @@
-from .base_class.icondition import ICondition
 from .base_class import (
-    ConditionBase,
     And,
-    Or,
+    ConditionBase,
     Not,
+    Or,
 )
+from .base_class.icondition import ICondition
 from .custom_condition import CustomCondition
 from .extension_type import ExtensionType
 from .file_name import FileName

@@ -17,8 +17,6 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - uses: astral-sh/setup-uv@v5
-        with:
-          python-version: "3.13"
 
       - name: Install lint dependencies
         run: uv sync --group lint

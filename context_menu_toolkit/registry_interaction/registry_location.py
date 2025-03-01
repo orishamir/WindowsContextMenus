@@ -54,6 +54,7 @@ class _RegistryLocation(BaseModel):
     def from_string(cls, location: str) -> _RegistryLocation:
         r"""
         Construct RegistryLocation object from a human-readable location string.
+
         Example:
             > print(repr(RegistryLocation.from_string(
             >     "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell",

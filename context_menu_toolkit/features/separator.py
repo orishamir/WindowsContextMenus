@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 
 from context_menu_toolkit.features.ifeature import IFeature
-from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue, DataType
+from context_menu_toolkit.registry_structs import DataType, RegistryKey, RegistryValue
 
 
 @dataclass
@@ -24,5 +24,5 @@ class Separator(IFeature):
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
-            RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location)
+            RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location),
         )

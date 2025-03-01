@@ -13,5 +13,4 @@ class IComparer(Protocol):
         """
         Convert this comparer to the equivalent Advanced Query Standard (aqs) string
         """
-
         raise NotImplementedError("Comparers should implement their own to_aqs_string() method")
