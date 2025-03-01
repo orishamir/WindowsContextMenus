@@ -17,6 +17,9 @@ class Separator(IFeature):
     Only works with submenus.
     """
     class Location(IntEnum):
+        """
+        Where the separator should be, relative to the containing context menu.
+        """
         Before = 0x20  # ECF_SEPARATORBEFORE
         After = 0x40  # ECF_SEPARATORAFTER
 

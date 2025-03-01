@@ -6,7 +6,7 @@ from enum import IntEnum
 from pydantic import BaseModel
 
 
-class TopLevelKey(IntEnum):
+class _TopLevelKey(IntEnum):
     HKEY_CLASSES_ROOT = winreg.HKEY_CLASSES_ROOT
     HKEY_CURRENT_USER = winreg.HKEY_CURRENT_USER
     HKEY_LOCAL_MACHINE = winreg.HKEY_LOCAL_MACHINE
@@ -14,12 +14,12 @@ class TopLevelKey(IntEnum):
     HKEY_CURRENT_CONFIG = winreg.HKEY_CURRENT_CONFIG
 
 
-TOP_LEVEL_STR_TO_HKEY: dict[str, TopLevelKey] = {
-    "HKEY_CLASSES_ROOT": TopLevelKey.HKEY_CLASSES_ROOT,
-    "HKEY_CURRENT_USER": TopLevelKey.HKEY_CURRENT_USER,
-    "HKEY_LOCAL_MACHINE": TopLevelKey.HKEY_LOCAL_MACHINE,
-    "HKEY_USERS": TopLevelKey.HKEY_USERS,
-    "HKEY_CURRENT_CONFIG": TopLevelKey.HKEY_CURRENT_CONFIG,
+_TOP_LEVEL_STR_TO_HKEY: dict[str, _TopLevelKey] = {
+    "HKEY_CLASSES_ROOT": _TopLevelKey.HKEY_CLASSES_ROOT,
+    "HKEY_CURRENT_USER": _TopLevelKey.HKEY_CURRENT_USER,
+    "HKEY_LOCAL_MACHINE": _TopLevelKey.HKEY_LOCAL_MACHINE,
+    "HKEY_USERS": _TopLevelKey.HKEY_USERS,
+    "HKEY_CURRENT_CONFIG": _TopLevelKey.HKEY_CURRENT_CONFIG,
 }
 
 
@@ -28,7 +28,7 @@ class _RegistryLocation(BaseModel):
     A convenient way of handling registry locations with `winreg`
     """
 
-    top_level: TopLevelKey
+    top_level: _TopLevelKey
     subkey: str
 
     def __truediv__(self, other: str) -> _RegistryLocation:
@@ -67,10 +67,10 @@ class _RegistryLocation(BaseModel):
         """
         top_level, subkey = location.split("\\", maxsplit=1)
 
-        if top_level not in TOP_LEVEL_STR_TO_HKEY:
+        if top_level not in _TOP_LEVEL_STR_TO_HKEY:
             raise ValueError(f"invalid top level key: {top_level}")
 
         return _RegistryLocation(
-            top_level=TOP_LEVEL_STR_TO_HKEY[top_level],
+            top_level=_TOP_LEVEL_STR_TO_HKEY[top_level],
             subkey=subkey,
         )

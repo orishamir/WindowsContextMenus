@@ -18,19 +18,18 @@ class ConditionBase(metaclass=ConditionMeta):
     It also makes that every class that inherits from it
     is automatically implementing ==, !=, etc. as a way to initialize it.
 
-    For example:
-        if ExtensionType inherits from ConditionBase,
-        then that means:
-            (ExtensionType != ".exe.")
+    Example:
+        if ExtensionType inherits from ConditionBase, then that means:
+            >>> (ExtensionType != ".exe.")
             is equivalent to
-            ExtensionType(NotEqual(".exe"))
+            >>> ExtensionType(NotEqual(".exe"))
         and that
-            ExtensionType(NotEqual(".exe")) & ExtensionType(NotEqual(".dll"))
+            >>> ExtensionType(NotEqual(".exe")) & ExtensionType(NotEqual(".dll"))
             is equivalent to
-            And(
-                ExtensionType(NotEqual(".exe")),
-                ExtensionType(NotEqual(".dll"))
-            )
+            >>> And(
+            >>>     ExtensionType(NotEqual(".exe")),
+            >>>     ExtensionType(NotEqual(".dll")),
+            >>> )
     """
 
     @abstractmethod
@@ -59,6 +58,20 @@ class ConditionBase(metaclass=ConditionMeta):
 
 @dataclass
 class And(ConditionBase):
+    """
+    The And operator between conditions.
+
+    Example:
+        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
+        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
+        >>>
+        >>> And(
+        >>>     conditions=[
+        >>>         FileSize(GreaterThan("20MB")),
+        >>>         ExtensionType(Equal(".pdf")),
+        >>>     ],
+        >>> )
+    """
     conditions: list[ICondition]
 
     def to_aqs_string(self) -> str:
@@ -69,6 +82,21 @@ class And(ConditionBase):
 
 @dataclass
 class Or(ConditionBase):
+    """
+    The Or operator between conditions.
+
+    Example:
+        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
+        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
+        >>>
+        >>> Or(
+        >>>     conditions=[
+        >>>         ExtensionType(Equal(".png")),
+        >>>         ExtensionType(Equal(".jpeg")),
+        >>>         ExtensionType(Equal(".jpg")),
+        >>>     ],
+        >>> )
+    """
     conditions: list[ICondition]
 
     def to_aqs_string(self) -> str:
@@ -79,6 +107,17 @@ class Or(ConditionBase):
 
 @dataclass
 class Not(ConditionBase):
+    """
+    The Not operator of a condition.
+
+    Example:
+        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
+        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
+        >>>
+        >>> Not(
+        >>>     condition=ExtensionType(Equal(".png"))
+        >>> )
+    """
     condition: ICondition
 
     def to_aqs_string(self) -> str:

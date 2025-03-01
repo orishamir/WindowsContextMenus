@@ -4,8 +4,10 @@ from typing import Protocol, runtime_checkable
 @runtime_checkable
 class IComparer(Protocol):
     """
-    This interface represents an operator for example ==, !=, etc.
-    See more:
+    This interface represents a comparer for.
+    For examples look at `context_menu_toolkit.comparers`
+
+    References:
         https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators
     """
 

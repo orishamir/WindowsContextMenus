@@ -14,6 +14,24 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class ConditionFeature(IFeature):
+    """
+    Add a condition for the context menu to appear.
+
+    See context_menu_toolkit.conditions for available conditions.
+
+    Args:
+        condition: The underlying condition.
+
+    Example:
+        >>> from context_menu_toolkit.comparers import GreaterThan
+        >>> from context_menu_toolkit.conditions import FileSize
+        >>>
+        >>> ConditionFeature(
+        >>>     condition=FileSize(
+        >>>         comparer=GreaterThan("20MB"),
+        >>>     ),
+        >>> )
+    """
     condition: ICondition
 
     def apply_to(self, tree: RegistryKey) -> None:

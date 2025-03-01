@@ -1,2 +1,5 @@
 def test_nothing() -> None:
-    pass
+    """
+    Tests nothing.
+    placeholder for when tests are added
+    """
