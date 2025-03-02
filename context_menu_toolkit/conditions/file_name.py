@@ -12,7 +12,7 @@ class FileName(ConditionBase):
     This condition checks the name of the file, including extension.
 
     Reference:
-        https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename
+        [MSDN - System.FileName](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename)
     """
     comparer: IComparer
 

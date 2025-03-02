@@ -12,24 +12,25 @@ AQS_OPERATOR_NOT = "NOT"
 
 
 class ConditionBase(metaclass=ConditionMeta):
-    """
-    This base class extends the ICondition interface by adding
-    definition for &, |, etc.
+    r"""
+    This base class extends the ICondition interface by adding syntactic sugar definitions for &, |, and ~.
     It also makes that every class that inherits from it
     is automatically implementing ==, !=, etc. as a way to initialize it.
 
     Example:
-        if ExtensionType inherits from ConditionBase, then that means:
-            >>> (ExtensionType != ".exe.")
-            is equivalent to
-            >>> ExtensionType(NotEqual(".exe"))
-        and that
-            >>> ExtensionType(NotEqual(".exe")) & ExtensionType(NotEqual(".dll"))
-            is equivalent to
-            >>> And(
-            >>>     ExtensionType(NotEqual(".exe")),
-            >>>     ExtensionType(NotEqual(".dll")),
-            >>> )
+        ```python
+        ExtensionType != ".exe"
+        # is equivalent to
+        ExtensionType(NotEqual(".exe")
+
+        ExtensionType(NotEqual(".exe")) & ExtensionType(NotEqual(".dll"))
+        # is equivalent to
+        And(
+            ExtensionType(NotEqual(".exe")),
+            ExtensionType(NotEqual(".dll")),
+        )
+        ```
+        Should both be True, given that ExtensionType inherits from ConditionBase
     """
 
     @abstractmethod
@@ -62,15 +63,17 @@ class And(ConditionBase):
     The And operator between conditions.
 
     Example:
-        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
-        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
-        >>>
-        >>> And(
-        >>>     conditions=[
-        >>>         FileSize(GreaterThan("20MB")),
-        >>>         ExtensionType(Equal(".pdf")),
-        >>>     ],
-        >>> )
+        ```python
+        from context_menu_toolkit.comparers import GreaterThan, Equal
+        from context_menu_toolkit.conditions import FileSize, ExtensionType
+
+        And(
+            conditions=[
+                FileSize(GreaterThan("20MB")),
+                ExtensionType(Equal(".pdf")),
+            ],
+        )
+        ```
     """
     conditions: list[ICondition]
 
@@ -86,16 +89,18 @@ class Or(ConditionBase):
     The Or operator between conditions.
 
     Example:
-        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
-        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
-        >>>
-        >>> Or(
-        >>>     conditions=[
-        >>>         ExtensionType(Equal(".png")),
-        >>>         ExtensionType(Equal(".jpeg")),
-        >>>         ExtensionType(Equal(".jpg")),
-        >>>     ],
-        >>> )
+        ```python
+        from context_menu_toolkit.comparers import GreaterThan, Equal
+        from context_menu_toolkit.conditions import FileSize, ExtensionType
+
+        Or(
+            conditions=[
+                ExtensionType(Equal(".png")),
+                ExtensionType(Equal(".jpeg")),
+                ExtensionType(Equal(".jpg")),
+            ],
+        )
+        ```
     """
     conditions: list[ICondition]
 
@@ -111,12 +116,13 @@ class Not(ConditionBase):
     The Not operator of a condition.
 
     Example:
-        >>> from context_menu_toolkit.comparers import GreaterThan, Equal
-        >>> from context_menu_toolkit.conditions import FileSize, ExtensionType
-        >>>
-        >>> Not(
-        >>>     condition=ExtensionType(Equal(".png"))
-        >>> )
+        ```python
+        from context_menu_toolkit.comparers import GreaterThan, Equal
+        from context_menu_toolkit.conditions import FileSize, ExtensionType
+                Not(
+            condition=ExtensionType(Equal(".png"))
+        )
+        ```
     """
     condition: ICondition
 

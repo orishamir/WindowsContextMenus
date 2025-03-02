@@ -9,7 +9,7 @@ from pydantic import BaseModel
 class DataType(IntEnum):
     """
     Some constant value types as defined in
-    https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types
+    <a herf="https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types" target="_blank">MSDN | Registry value types</a>
     """
 
     REG_BINARY = winreg.REG_BINARY
@@ -19,8 +19,7 @@ class DataType(IntEnum):
 
 class RegistryValue(BaseModel):
     """
-    Represents a registry value as defined in
-    https://learn.microsoft.com/en-us/windows/win32/sysinfo/structure-of-the-registry
+    Represents a registry value
     """
 
     name: str
@@ -30,11 +29,15 @@ class RegistryValue(BaseModel):
     def export_reg(self) -> str:
         """
         Syntax of .reg file:
-        https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23
+        <a href="https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23" target="_blank">
+        MSDN topic | How to add, modify, or delete registry subkeys and values by using a .reg file
+        </a>
+
         Example:
             "MUIVerb"="Convert mp4..."
+
         Returns:
-            A list of lines of the file.
+            The .reg file line representing the registry value.
         """
         assert self.type in (DataType.REG_SZ, DataType.REG_DWORD)
 
