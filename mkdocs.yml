@@ -1,0 +1,86 @@
+site_name: Context Menu Python Toolkit
+nav:
+  - Home: index.md
+  - API Documentation:
+    - Features:
+      - features/disabled.md
+      - features/ifeature.md
+      - features/icon.md
+      - all_features.md
+      - all_conditions.md
+    - Registry Structs:
+      - registry_key.md
+      - registry_value.md
+
+watch:
+  - context_menu_toolkit
+  - docs/
+  - mkdocs.yml
+
+theme:
+  name: 'material'
+  features:
+    - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+    - toc:
+        permalink: true
+  palette:
+    # Palette toggle for light mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+    # Palette toggle for dark mode
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+markdown_extensions:
+- pymdownx.superfences  # ```python {linenums="1"}
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.details  # allows ??? note, warn, success
+
+plugins:
+- search
+- autorefs
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        options:
+#          show_root_toc_entry: false
+#          docstring_options:
+#            ignore_init_summary: false
+#          merge_init_into_class: true
+#          show_if_no_docstring: true
+#          show_source: true
+#          members: true
+#          filters: ["!^_"]  # Hide private members
+#          extensions:
+#            - griffe_pydantic
+#            - dataclasses
+          members_order: source
+          separate_signature: true
+          filters: [ "!^_" ]
+#          docstring_options:
+#            ignore_init_summary: true
+#          merge_init_into_class: false
+          show_signature_annotations: true
+          signature_crossrefs: true
+
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
