@@ -3,11 +3,10 @@ nav:
   - Home: index.md
   - API Documentation:
     - Features:
-      - features/disabled.md
+      - features/index.md
       - features/ifeature.md
+      - features/disabled.md
       - features/icon.md
-      - all_features.md
-      - all_conditions.md
     - Registry Structs:
       - registry_key.md
       - registry_value.md
@@ -23,8 +22,8 @@ theme:
     - navigation.path
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
     - content.code.copy
+    - navigation.indexes
     - content.code.annotate
     - toc:
         permalink: true
@@ -42,10 +41,10 @@ theme:
         name: Switch to dark mode
 
 markdown_extensions:
-- pymdownx.superfences  # ```python {linenums="1"}
-- pymdownx.arithmatex:
-    generic: true
-- pymdownx.details  # allows ??? note, warn, success
+  - pymdownx.superfences  # ```python {linenums="1"}
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details  # allows ??? note, warn, success
 
 plugins:
 - search
