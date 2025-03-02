@@ -25,7 +25,8 @@ class ContextMenu:
         Convert the context menu to RegistryKey which can then
         be added to the registry in the correct location.
 
-        :return: The registry-key representation of the context menu.
+        Returns:
+            The registry-key representation of the context menu.
         """
         cm = RegistryKey(name=self.name)
 
@@ -53,6 +54,9 @@ class ContextMenu:
 
             [HKEY_LOCAL_MACHINE\Software\Classes\*\shell\ConvertVideo]
             "MUIVerb"="Convert mp4..."
+
+        Arguments:
+            location (ContextMenuLocation): nig?
         Returns:
             A list of lines of the file.
         """

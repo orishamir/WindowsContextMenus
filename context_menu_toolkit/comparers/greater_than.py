@@ -9,7 +9,7 @@ class GreaterThan(IComparer):
     Compares greater than.
 
     References:
-        https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators
+        [MSDN](https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators)
     """
     than: str | int | float
 

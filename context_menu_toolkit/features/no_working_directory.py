@@ -1,7 +1,3 @@
-"""
-Source:
-    https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry
-"""
 from dataclasses import dataclass
 
 from context_menu_toolkit.features.ifeature import IFeature
@@ -13,6 +9,9 @@ class NoWorkingDirectory(IFeature):
     """
     Don't copy the current working directory path when
     opening the context menu item.
+
+    References:
+        [Superuser - What's the meaning of "NoWorkingDirectory" string value in Windows Registry?](https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry)
     """
 
     def apply_to(self, tree: RegistryKey) -> None:

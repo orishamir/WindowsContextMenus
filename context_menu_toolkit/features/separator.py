@@ -1,7 +1,3 @@
-"""
-Source:
-    https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry
-"""
 from dataclasses import dataclass
 from enum import IntEnum
 
@@ -15,6 +11,9 @@ class Separator(IFeature):
     Adds a line separator before or after the context menu.
     For looks.
     Only works with submenus.
+
+    References:
+        [MSDN - Creating Cascading Menus with the ExtendedSubCommandsKey Registry Entry](https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry)
     """
     class Location(IntEnum):
         """

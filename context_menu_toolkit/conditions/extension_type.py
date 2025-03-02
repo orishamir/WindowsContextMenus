@@ -13,7 +13,7 @@ class ExtensionType(ConditionBase):
     Should include the leading period.
 
     Reference:
-        https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension
+        [MSDN - System.FileExtension](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension)
     """
     comparer: IComparer
 

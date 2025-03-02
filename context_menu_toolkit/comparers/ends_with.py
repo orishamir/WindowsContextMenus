@@ -9,7 +9,7 @@ class EndsWith(IComparer):
     Compares using endswith operator for strings.
 
     References:
-        https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators
+        [MSDN](https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators)
     """
     ends_with: str
 
