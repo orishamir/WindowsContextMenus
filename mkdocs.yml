@@ -59,6 +59,10 @@ plugins:
           filters: [ "!^_" ]
           show_signature_annotations: true
           signature_crossrefs: true
+          parameter_headings: true
+          extensions:
+            - griffe_fieldz:
+                include_inherited: true
 
 extra_javascript:
   - javascripts/katex.js

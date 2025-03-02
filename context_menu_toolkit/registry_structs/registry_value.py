@@ -3,7 +3,7 @@ import winreg
 from enum import IntEnum
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class DataType(IntEnum):
@@ -20,6 +20,9 @@ class DataType(IntEnum):
 class RegistryValue(BaseModel):
     """
     Represents a registry value
+
+    Args:
+        name: aa
     """
 
     name: str

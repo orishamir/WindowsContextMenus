@@ -30,6 +30,7 @@ docs = [
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
+    "griffe-fieldz",
 ]
 test = [
     "pytest",
