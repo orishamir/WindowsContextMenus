@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "0.0.10b1"
+version = "0.0.11"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
@@ -30,6 +30,7 @@ docs = [
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
+    "griffe_pydantic",
 ]
 test = [
     "pytest",
@@ -78,6 +79,7 @@ select = [
 ]
 ignore = [
     "D100", "D102", "D104", "D200", "D205", "D212", "D415", "D105",
+    "E501",
 ]
 
 [tool.ruff.lint.per-file-ignores]
