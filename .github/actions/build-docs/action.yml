@@ -1,0 +1,25 @@
+name: "Build Docs"
+description: "Build docs using mkdocs"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+    - uses: astral-sh/setup-uv@v5
+
+    - name: Install dependencies
+      run: uv sync --group docs
+      shell: sh
+
+    - run: uv run mkdocs build
+      shell: sh
+
+    - name: Upload Documentation Files
+      uses: actions/upload-artifact@v4
+      with:
+        name: 'site-files'
+        path: site
