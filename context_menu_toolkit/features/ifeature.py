@@ -5,7 +5,7 @@ from context_menu_toolkit.registry_structs.registry_key import RegistryKey
 
 class IFeature(Protocol):
     """This interface represents classes which are "features",
-    i.e. something that is added to the context menu
+    i.e. something that is added to the context menu.
     """
 
     def apply_to(self, tree: RegistryKey) -> None:

@@ -15,7 +15,7 @@ class Icon(IFeature):
     """Add an icon that will be displayed for the context menu.
 
     Args:
-        path_to_icon (str): nigus
+        path_to_icon (str): TODO
     """
     path_to_icon: str
 

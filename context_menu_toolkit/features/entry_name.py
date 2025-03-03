@@ -11,7 +11,7 @@ DEFAULT_VALUE = ""
 class EntryName(IFeature):
     """This feature defines what text shows up
     in the actual context menu, i.e. the
-    text that appears after right-click
+    text that appears after right-click.
     """
 
     name: str

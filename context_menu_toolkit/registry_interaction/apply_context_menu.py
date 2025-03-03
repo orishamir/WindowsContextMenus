@@ -12,8 +12,7 @@ def apply_context_menu(
     menu: ContextMenu,
     location: ContextMenuLocation,
 ) -> str:
-    """Apply context menu to the registry at `location`.
-    """
+    """Apply context menu to the registry at `location`."""
     built_menu: RegistryKey = menu.build()
 
     _apply_registry_key(built_menu, _RegistryLocation.from_string(location))

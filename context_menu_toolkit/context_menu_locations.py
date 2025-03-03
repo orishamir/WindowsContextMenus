@@ -2,8 +2,7 @@ from enum import StrEnum
 
 
 class ContextMenuLocation(StrEnum):
-    """When should the Context Menu be opened? Files? Directories?
-    """
+    """When should the Context Menu be opened? Files? Directories?"""
     # All Files
     ALL_FILES_ADMIN = r"HKEY_LOCAL_MACHINE\Software\Classes\*\shell"
     ALL_FILES_USER = r"HKEY_CURRENT_USER\Software\Classes\*\shell"

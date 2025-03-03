@@ -3,7 +3,7 @@ from typing import Protocol
 
 class ICondition(Protocol):
     """This is the interface that all conditions should implement.
-    Conditions' syntax is "Advanced Query Syntax" (AQS)
+    Conditions' syntax is "Advanced Query Syntax" (AQS).
 
     References:
         [MSDN - Advanced Query Syntax](https://learn.microsoft.com/en-us/windows/win32/lwef/-search-2x-wds-aqsreference)

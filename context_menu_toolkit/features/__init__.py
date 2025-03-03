@@ -1,5 +1,4 @@
-"""Features are used for customizing the context menu.
-"""
+"""Features are used for customizing the context menu."""
 from .command import Command
 from .conditionfeature import ConditionFeature
 from .disabled import Disabled

@@ -24,8 +24,7 @@ _TOP_LEVEL_STR_TO_HKEY: dict[str, _TopLevelKey] = {
 
 
 class _RegistryLocation(BaseModel):
-    """A convenient way of handling registry locations with `winreg`
-    """
+    """A convenient way of handling registry locations with `winreg`."""
 
     top_level: _TopLevelKey
     subkey: str

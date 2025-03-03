@@ -6,8 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class Disabled(IFeature):
-    """Make the context menu disabled.
-    """
+    """Make the context menu disabled."""
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
