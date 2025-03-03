@@ -3,12 +3,11 @@ import winreg
 from enum import IntEnum
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class DataType(IntEnum):
-    """
-    Some constant value types as defined in
+    """Some constant value types as defined in
     <a herf="https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types" target="_blank">MSDN | Registry value types</a>
     """
 
@@ -18,8 +17,7 @@ class DataType(IntEnum):
 
 
 class RegistryValue(BaseModel):
-    """
-    Represents a registry value
+    """Represents a registry value
 
     Args:
         name: aa
@@ -30,8 +28,7 @@ class RegistryValue(BaseModel):
     data: Any
 
     def export_reg(self) -> str:
-        """
-        Syntax of .reg file:
+        """Syntax of .reg file:
         <a href="https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23" target="_blank">
         MSDN topic | How to add, modify, or delete registry subkeys and values by using a .reg file
         </a>

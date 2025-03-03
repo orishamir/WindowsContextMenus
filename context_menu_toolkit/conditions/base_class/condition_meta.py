@@ -14,8 +14,7 @@ from context_menu_toolkit.conditions.base_class.icondition import ICondition
 
 
 class ConditionMeta(type):
-    """
-    This is the metaclass for conditions, that's for the
+    """This is the metaclass for conditions, that's for the
     `==` or `!=` or `<=` functionality to work.
 
     For example:

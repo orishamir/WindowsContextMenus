@@ -10,8 +10,7 @@ DEFAULT_VALUE = ""
 
 @dataclass
 class Command(IFeature):
-    """
-    This feature determines which command gets
+    """This feature determines which command gets
     executed on-click of the context menu item.
     """
     command: str

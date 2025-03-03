@@ -6,8 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class MUIVerb(IFeature):
-    """
-    Same as EntryName, but this should be used when
+    """Same as EntryName, but this should be used when
     using sub-menus as well.
     EntryName features inside a ContextMenu will
     automatically be converted to MUIVerb.

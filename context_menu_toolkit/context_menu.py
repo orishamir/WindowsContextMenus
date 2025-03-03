@@ -11,8 +11,7 @@ from context_menu_toolkit.registry_structs import RegistryKey
 
 @dataclass
 class ContextMenu:
-    """
-    Represents a context menu,
+    """Represents a context menu,
     that has a name, features, and submenus.
     """
 
@@ -21,8 +20,7 @@ class ContextMenu:
     submenus: list[ContextMenu] = None
 
     def build(self) -> RegistryKey:
-        """
-        Convert the context menu to RegistryKey which can then
+        """Convert the context menu to RegistryKey which can then
         be added to the registry in the correct location.
 
         Returns:
@@ -46,8 +44,7 @@ class ContextMenu:
         return cm
 
     def export_reg(self, location: ContextMenuLocation) -> list[str]:
-        r"""
-        Syntax of .reg file:
+        r"""Syntax of .reg file:
         https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23
         Example:
             Windows Registry Editor Version 5.00
@@ -68,8 +65,7 @@ class ContextMenu:
         ] + list(built_menu.export_reg(location))
 
     def _modify_because_submenus(self) -> None:
-        """
-        If we have submenus, then for whatever reason instead of using (Default) as
+        """If we have submenus, then for whatever reason instead of using (Default) as
         a way to tell the label, we need to set MUIVerb to the label.
         Also, we need to add an empty SubCommands value.
         """

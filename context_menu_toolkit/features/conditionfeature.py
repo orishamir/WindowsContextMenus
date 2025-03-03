@@ -7,8 +7,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class ConditionFeature(IFeature):
-    """
-    Add a condition for the context menu to display.
+    """Add a condition for the context menu to display.
 
     See context_menu_toolkit.conditions for available conditions.
 

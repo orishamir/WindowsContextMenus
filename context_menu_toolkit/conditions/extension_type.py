@@ -8,8 +8,7 @@ PROPERTY_NAME = "System.FileExtension"
 
 @dataclass
 class ExtensionType(ConditionBase):
-    """
-    This condition checks the value of the extension of the file.
+    """This condition checks the value of the extension of the file.
     Should include the leading period.
 
     Reference:

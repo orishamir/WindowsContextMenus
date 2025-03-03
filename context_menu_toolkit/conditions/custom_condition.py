@@ -5,8 +5,7 @@ from context_menu_toolkit.conditions.base_class.condition_base_class import Cond
 
 @dataclass
 class CustomCondition(ConditionBase):
-    """
-    This condition does not check anything, rather gives the user to
+    """This condition does not check anything, rather gives the user to
     choose a custom Condition if the built-it Conditions aren't sufficient.
     """
     aqs_condition: str

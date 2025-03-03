@@ -6,8 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class NeverDefault(IFeature):
-    """
-    Tells windows NOT to use this context-menu item in cases where
+    """Tells windows NOT to use this context-menu item in cases where
     there is no known application to open the file extension with.
     """
 

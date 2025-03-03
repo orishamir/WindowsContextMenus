@@ -6,8 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class NoWorkingDirectory(IFeature):
-    """
-    Don't copy the current working directory path when
+    """Don't copy the current working directory path when
     opening the context menu item.
 
     References:

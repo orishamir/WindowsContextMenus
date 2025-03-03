@@ -8,8 +8,7 @@ PROPERTY_NAME = "System.FileName"
 
 @dataclass
 class FileName(ConditionBase):
-    """
-    This condition checks the name of the file, including extension.
+    """This condition checks the name of the file, including extension.
 
     Reference:
         [MSDN - System.FileName](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename)

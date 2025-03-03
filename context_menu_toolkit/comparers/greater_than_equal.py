@@ -5,8 +5,7 @@ from context_menu_toolkit.comparers.icomparer import IComparer
 
 @dataclass
 class GreaterThanEqual(IComparer):
-    """
-    Compares using greater than equals.
+    """Compares using greater than equals.
 
     References:
         [MSDN](https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax#query-operators)

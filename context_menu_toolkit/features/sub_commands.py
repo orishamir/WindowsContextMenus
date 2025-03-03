@@ -6,8 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class SubCommands(IFeature):
-    """
-    A ContextMenu with submenus needs to have
+    """A ContextMenu with submenus needs to have
     this feature, and will automatically be added
     if the ContextMenu instance has submenus.
     """
