@@ -30,6 +30,7 @@ docs = [
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
+    "griffe-fieldz",
 ]
 test = [
     "pytest",
@@ -76,8 +77,9 @@ select = [
     "PL",   # pylint (all)
     "UP",   # pyupgrade
 ]
+
 ignore = [
-    "D100", "D102", "D104", "D200", "D205", "D212", "D415", "D105",
+    "D100", "D102", "D104", "D105",
     "E501",
 ]
 

@@ -14,15 +14,15 @@ from context_menu_toolkit.conditions.base_class.icondition import ICondition
 
 
 class ConditionMeta(type):
-    """
-    This is the metaclass for conditions, that's for the
-    `==` or `!=` or `<=` functionality to work.
+    """Adds functionality for ==, !=, etc. for instantiating Conditions.
 
-    For example:
-    if ExtensionType's metaclass is ConditionBase, then that means:
-        (ExtensionType != ".exe.")
-    works and is equivalent to
+    Example:
+        ```python
+        (ExtensionType != ".exe")
+        # is equivalent to
         ExtensionType(NotEqual(".exe"))
+        ```
+        Should be true, given that ExtensionType's metaclass is ConditionBase.
     """
 
     def __eq__(cls, other: str | int | float) -> ICondition:

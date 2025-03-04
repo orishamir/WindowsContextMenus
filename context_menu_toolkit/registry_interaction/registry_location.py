@@ -24,8 +24,11 @@ _TOP_LEVEL_STR_TO_HKEY: dict[str, _TopLevelKey] = {
 
 
 class _RegistryLocation(BaseModel):
-    """
-    A convenient way of handling registry locations with `winreg`
+    """Represents a registry location in Windows.
+
+    Providing a convenient interface for interacting
+    with the Windows Registry.
+    This class mimics the API of `pathlib.Path`, allowing intuitive manipulation of registry paths.
     """
 
     top_level: _TopLevelKey
@@ -41,7 +44,8 @@ class _RegistryLocation(BaseModel):
         )
 
     def __str__(self) -> str:
-        r"""
+        r"""Representation of a registry location as a string.
+
         Example:
             > RegistryLocation.from_string(
             >     "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell",
@@ -52,8 +56,7 @@ class _RegistryLocation(BaseModel):
 
     @classmethod
     def from_string(cls, location: str) -> _RegistryLocation:
-        r"""
-        Construct RegistryLocation object from a human-readable location string.
+        r"""Construct RegistryLocation object from a human-readable location string.
 
         Example:
             > print(repr(RegistryLocation.from_string(

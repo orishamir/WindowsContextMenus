@@ -10,9 +10,10 @@ DEFAULT_VALUE = ""
 
 @dataclass
 class Command(IFeature):
-    """
-    This feature determines which command gets
-    executed on-click of the context menu item.
+    """Add a command that gets executed when clicking the context menu.
+
+    TODO: Improve API here, allowing for easy path parameters.
+          for example, there exists both %V and %1.
     """
     command: str
 

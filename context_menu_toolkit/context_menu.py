@@ -11,18 +11,16 @@ from context_menu_toolkit.registry_structs import RegistryKey
 
 @dataclass
 class ContextMenu:
-    """
-    Represents a context menu,
-    that has a name, features, and submenus.
-    """
+    """Represents a context menu."""
 
     name: str
     features: list[IFeature]
-    submenus: list[ContextMenu] = None
+    submenus: list[ContextMenu] | None = None
 
     def build(self) -> RegistryKey:
-        """
-        Convert the context menu to RegistryKey which can then
+        """Build context menu as registry.
+
+        Builds the context menu to RegistryKey which can then
         be added to the registry in the correct location.
 
         Returns:
@@ -46,9 +44,11 @@ class ContextMenu:
         return cm
 
     def export_reg(self, location: ContextMenuLocation) -> list[str]:
-        r"""
+        r"""Export the Context Menu as a .reg file format.
+
         Syntax of .reg file:
         https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23
+
         Example:
             Windows Registry Editor Version 5.00
 
@@ -56,9 +56,10 @@ class ContextMenu:
             "MUIVerb"="Convert mp4..."
 
         Arguments:
-            location (ContextMenuLocation): nig?
+            location (ContextMenuLocation): TODO
+
         Returns:
-            A list of lines of the file.
+            A list of lines of the .reg file.
         """
         built_menu: RegistryKey = self.build()
 
@@ -68,7 +69,8 @@ class ContextMenu:
         ] + list(built_menu.export_reg(location))
 
     def _modify_because_submenus(self) -> None:
-        """
+        """Modify context menu to allow for submenus.
+
         If we have submenus, then for whatever reason instead of using (Default) as
         a way to tell the label, we need to set MUIVerb to the label.
         Also, we need to add an empty SubCommands value.

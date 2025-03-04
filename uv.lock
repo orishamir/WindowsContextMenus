@@ -87,7 +87,7 @@ wheels = [
 
 [[package]]
 name = "context-menu-toolkit"
-version = "0.0.10b1"
+version = "0.0.11"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },

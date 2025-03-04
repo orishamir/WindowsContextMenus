@@ -8,8 +8,7 @@ PROPERTY_NAME = "System.Size"
 
 @dataclass
 class FileSize(ConditionBase):
-    """
-    This condition checks the size of the file.
+    """This condition checks the size of the file.
 
     Example:
         ```

@@ -6,9 +6,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class ShiftClick(IFeature):
-    """
-    Open context menu only when shift is pressed alongside right click.
-    """
+    """Open context menu only when shift is pressed alongside right click."""
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(

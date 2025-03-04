@@ -6,10 +6,10 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class SubCommands(IFeature):
-    """
-    A ContextMenu with submenus needs to have
-    this feature, and will automatically be added
-    if the ContextMenu instance has submenus.
+    """Feature that enables a ContextMenu to have subcommands.
+
+    A ContextMenu with submenus needs to have this feature, and will automatically
+    be added when instantiating a ContextMenu with subcommands.
     """
 
     def apply_to(self, tree: RegistryKey) -> None:

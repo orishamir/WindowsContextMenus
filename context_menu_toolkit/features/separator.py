@@ -7,18 +7,15 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class Separator(IFeature):
-    """
-    Adds a line separator before or after the context menu.
-    For looks.
+    """Adds a line separator before or after the context menu.
+
     Only works with submenus.
 
     References:
         [MSDN - Creating Cascading Menus with the ExtendedSubCommandsKey Registry Entry](https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry)
     """
     class Location(IntEnum):
-        """
-        Where the separator should be, relative to the containing context menu.
-        """
+        """Where the separator should be, relative to the containing context menu."""
         Before = 0x20  # ECF_SEPARATORBEFORE
         After = 0x40  # ECF_SEPARATORAFTER
 
