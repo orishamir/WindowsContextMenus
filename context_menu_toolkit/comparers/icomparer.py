@@ -3,7 +3,8 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class IComparer(Protocol):
-    """This interface represents a comparer for.
+    """This interface represents a comparer type, such as ==, !=, <=, etc.
+
     For examples look at `context_menu_toolkit.comparers`.
 
     References:

@@ -7,8 +7,10 @@ from pydantic import BaseModel
 
 
 class DataType(IntEnum):
-    """Some constant value types as defined in
-    <a herf="https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types" target="_blank">MSDN | Registry value types</a>.
+    """Some constant data types.
+
+    References:
+        [MSDN | Registry value types](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types)
     """
 
     REG_BINARY = winreg.REG_BINARY

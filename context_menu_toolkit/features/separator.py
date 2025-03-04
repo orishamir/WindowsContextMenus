@@ -8,7 +8,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 @dataclass
 class Separator(IFeature):
     """Adds a line separator before or after the context menu.
-    For looks.
+
     Only works with submenus.
 
     References:

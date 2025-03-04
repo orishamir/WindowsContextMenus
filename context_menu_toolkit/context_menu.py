@@ -11,9 +11,7 @@ from context_menu_toolkit.registry_structs import RegistryKey
 
 @dataclass
 class ContextMenu:
-    """Represents a context menu,
-    that has a name, features, and submenus.
-    """
+    """Represents a context menu."""
 
     name: str
     features: list[IFeature]

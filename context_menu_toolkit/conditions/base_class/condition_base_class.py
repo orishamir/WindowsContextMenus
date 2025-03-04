@@ -12,9 +12,9 @@ AQS_OPERATOR_NOT = "NOT"
 
 
 class ConditionBase(metaclass=ConditionMeta):
-    r"""This base class extends the ICondition interface by adding syntactic sugar definitions for &, |, and ~.
-    It also makes that every class that inherits from it
-    is automatically implementing ==, !=, etc. as a way to initialize it.
+    r"""Extends the ICondition interface by adding syntactic sugar definitions for instantiating Conditions.
+
+    Also adds functionality for ==, !=, etc. for instantiating Conditions.
 
     Example:
         ```python
@@ -34,9 +34,7 @@ class ConditionBase(metaclass=ConditionMeta):
 
     @abstractmethod
     def to_aqs_string(self) -> str:
-        """Convert the condition to its actual
-        Advanced Query Standard (aqs) representation.
-        """
+        """Convert the condition to its actual Advanced Query Standard (aqs) representation."""
         raise NotImplementedError("Conditions should implement their own to_aqs_string() method.")
 
     def __and__(self: ICondition, other: ICondition) -> ConditionBase:

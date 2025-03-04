@@ -9,10 +9,7 @@ DEFAULT_VALUE = ""
 
 @dataclass
 class EntryName(IFeature):
-    """This feature defines what text shows up
-    in the actual context menu, i.e. the
-    text that appears after right-click.
-    """
+    """Defines the displayed text of the context menu, i.e. the text that appears on right click."""
 
     name: str
 

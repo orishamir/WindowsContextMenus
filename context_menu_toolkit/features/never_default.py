@@ -6,8 +6,9 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class NeverDefault(IFeature):
-    """Tells windows NOT to use this context-menu item in cases where
-    there is no known application to open the file extension with.
+    """Prevents Windows from using this context-menu item when no default app is set for the file extension.
+
+    TODO: More research is needed to be done here.
     """
 
     def apply_to(self, tree: RegistryKey) -> None:
