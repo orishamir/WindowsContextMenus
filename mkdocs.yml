@@ -41,13 +41,19 @@ theme:
         name: Switch to dark mode
 
 markdown_extensions:
-  - pymdownx.superfences  # ```python {linenums="1"}
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details  # allows ??? note, warn, success
-
+  - pymdownx.superfences: # ```python {linenums="1"}
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 plugins:
 - search
+- panzoom:
+    always_show_hint: true
+    full_screen: true
 - autorefs
 - mkdocstrings:
     default_handler: python
