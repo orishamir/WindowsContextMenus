@@ -43,6 +43,7 @@ theme:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.snippets  # allows --8<--
   - pymdownx.details  # allows ??? note, warn, success
   - pymdownx.superfences: # ```python {linenums="1"}
       custom_fences:

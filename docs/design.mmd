@@ -1,0 +1,144 @@
+---
+title: Architecture
+---
+classDiagram
+
+
+ContextMenu "0..*" o-- "1" IFeature
+class ContextMenu{
+    name: str
+    features: list[IFeature]
+    submenus: list[ContextMenu] | None = None
+    build() -> RegistryKey
+    export_reg(location: ContextMenuLocation) -> list[str]
+}
+%% link IFeature "https://www.github.com" "Browse code"
+
+Command ..|> IFeature
+Disabled ..|> IFeature
+Icon ..|> IFeature
+ShiftClick ..|> IFeature
+Separator ..|> IFeature
+EntryName ..|> IFeature
+ConditionFeature ..|> IFeature
+namespace Features {
+    class IFeature:::featuresIfaceStyle {
+        <<interface>>
+        apply_to(tree: RegistryKey) -> None
+    }
+    class Command:::featuresStyle {
+        executable: str
+        arguments: list[ShellCommandPlaceholder | str] = []
+        apply_to(tree: RegistryKey) -> None
+    }
+    class Disabled:::featuresStyle {
+        apply_to(tree: RegistryKey) -> None
+    }
+    class Icon:::featuresStyle {
+        path: str
+        apply_to(tree: RegistryKey) -> None
+    }
+    class ShiftClick:::featuresStyle {
+        apply_to(tree: RegistryKey) -> None
+    }
+    class Separator:::featuresStyle {
+        location: Separator.Location
+        apply_to(tree: RegistryKey) -> None
+    }
+    class EntryName:::featuresStyle {
+        name: str
+        apply_to(tree: RegistryKey) -> None
+    }
+    class ConditionFeature:::featuresStyle {
+        condition: ICondition
+        apply_to(tree: RegistryKey) -> None
+    }
+}
+classDef featuresStyle fill:#7bf04130,stroke:#48d104,stroke-width:1px;
+classDef featuresIfaceStyle fill:#7bf04150,stroke:#48d104,stroke-width:1px,stroke-dasharray: 5 5;
+
+ExtensionType ..|> ICondition
+FileName ..|> ICondition
+FileSize ..|> ICondition
+And ..|> ICondition
+Or ..|> ICondition
+Not ..|> ICondition
+%%CustomCondition --|> ICondition
+namespace Conditions {
+    class ICondition:::conditionsIfaceStyle {
+        <<interface>>
+        to_aqs_string(self) -> str:
+    }
+    class ExtensionType:::conditionsStyle {
+        extension: str
+        comparison: ComparisonType
+        to_aqs_string() -> str
+    }
+    class FileName:::conditionsStyle {
+        name : str
+        comparison: ComparisonType
+        to_aqs_string() -> str
+    }
+    class FileSize:::conditionsStyle {
+        size: ByteSize
+        comparison: ComparisonType
+        to_aqs_string() -> str
+    }
+    class And:::conditionsStyle {
+        conditions: list[ICondition]
+        to_aqs_string() -> str
+    }
+    class Or:::conditionsStyle {
+        conditions: list[ICondition]
+        to_aqs_string() -> str
+    }
+    class Not:::conditionsStyle {
+        condition: ICondition
+        to_aqs_string() -> str
+    }
+    class ComparisonType:::conditionsStyle {
+        <<enumeration>>
+        CONTAINS = "~="
+        DOS_WILDCARD = "~"
+        ENDS_WITH = "~>"
+        EQUALS = "="
+        GREATER_THAN = ">"
+        GREATER_THAN_EQUAL = ">="
+        LESS_THAN = "<"
+        LESS_THAN_EQUAL = "<="
+        NOT_EQUAL = "<>"
+        STARTS_WITH = "~<"
+    }
+%%    class CustomCondition:::conditionsStyle {
+%%        aqs_condition: str
+%%        to_aqs_string() -> str
+%%    }
+}
+classDef conditionsStyle fill:#ffbf0030,stroke:#fdda0d,stroke-width:1px;
+classDef conditionsIfaceStyle fill:#ad961080,stroke:#fdda0d,stroke-width:1px,stroke-dasharray: 5 5;
+
+RegistryKey "0..*" o-- "1"  RegistryValue
+RegistryValue *-- DataType
+namespace RegistryStructs {
+    class RegistryKey:::registryStructsStyle {
+        <<dataclass>>
+        name: str
+        values: list[RegistryValue]
+        subkeys: list[RegistryKey]
+        export_reg(location: str) -> Generator[str]
+    }
+    class RegistryValue:::registryStructsStyle {
+        <<dataclass>>
+        name: str
+        type: DataType
+        data: Any
+        export_reg() -> str
+    }
+    class DataType:::registryStructsStyle {
+        <<enumeration>>
+        REG_BINARY = winreg.REG_BINARY
+        REG_DWORD = winreg.REG_DWORD
+        REG_SZ = winreg.REG_SZ
+    }
+}
+classDef registryStructsStyle fill:#07eafa40,stroke:#1b97b3,stroke-width:1px;
