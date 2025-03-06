@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "0.0.11"
+version = "0.1.0"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
@@ -58,24 +58,26 @@ output-format = "grouped"
 
 [tool.ruff.lint]
 select = [
-    "F",    # pyflakes
-    "N",    # pep8-naming
-    "RET",  # flake8-return
-    "SIM",  # flake8-simplify
-    "B",    # flake8-bugbear
-    "ANN",  # flake8-annotations
-    "COM",  # flake8-commas
-    "C4",   # flake8-comprehensions
-    "ISC",  # flake8-implicit-str-concat
-    "PT",   # flake8-pytest-style
-    "Q",    # flake8-quotes
-    "ARG",  # flake8-unused-arguments
-    "I",    # isort
-    "E",    # pycodestyle-error
-    "W",    # pycodestyle-warning
-    "D",    # pydocstyle
-    "PL",   # pylint (all)
-    "UP",   # pyupgrade
+    "F",     # pyflakes
+    "N",     # pep8-naming
+    "RET",   # flake8-return
+    "SIM",   # flake8-simplify
+    "B",     # flake8-bugbear
+    "ANN",   # flake8-annotations
+    "COM",   # flake8-commas
+    "C4",    # flake8-comprehensions
+    "ISC",   # flake8-implicit-str-concat
+    "PT",    # flake8-pytest-style
+    "Q",     # flake8-quotes
+    "ARG",   # flake8-unused-arguments
+    "I",     # isort
+    "E",     # pycodestyle-error
+    "W",     # pycodestyle-warning
+    "D",     # pydocstyle
+    "PL",    # pylint (all)
+    "UP",    # pyupgrade
+    "FURB",  # refurb
+    "RUF",   # ruff-specific-rules
 ]
 
 ignore = [
@@ -89,3 +91,7 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+files = "context_menu_toolkit"
