@@ -3,7 +3,6 @@ from __future__ import annotations
 from abc import abstractmethod
 from dataclasses import dataclass
 
-from context_menu_toolkit.conditions.base_class.condition_meta import ConditionMeta
 from context_menu_toolkit.conditions.base_class.icondition import ICondition
 
 AQS_OPERATOR_AND = " AND "
@@ -11,7 +10,7 @@ AQS_OPERATOR_OR = " OR "
 AQS_OPERATOR_NOT = "NOT"
 
 
-class ConditionBase(metaclass=ConditionMeta):
+class ConditionBase:
     r"""Extends the ICondition interface by adding syntactic sugar definitions for instantiating Conditions.
 
     Also adds functionality for ==, !=, etc. for instantiating Conditions.
