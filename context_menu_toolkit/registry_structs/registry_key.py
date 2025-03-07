@@ -4,6 +4,7 @@ from collections.abc import Generator
 
 from pydantic import BaseModel
 
+from context_menu_toolkit.registry_structs.registry_path import RegistryPath
 from context_menu_toolkit.registry_structs.registry_value import RegistryValue
 
 
@@ -18,7 +19,7 @@ class RegistryKey(BaseModel):
     values: list[RegistryValue] = []
     subkeys: list[RegistryKey] = []
 
-    def export_reg(self, location: str) -> Generator[str]:
+    def export_reg(self, location: RegistryPath) -> Generator[str]:
         r"""Export the Context Menu as a .reg file format.
 
         Syntax of .reg file:
@@ -36,10 +37,10 @@ class RegistryKey(BaseModel):
         Yields:
             Lines of the .reg file.
         """
-        yield f"[{location}\\{self.name}]"
+        yield f"[{location / self.name}]"
         for value in self.values:
             yield value.export_reg()
 
         yield ""
         for subkey in self.subkeys:
-            yield from subkey.export_reg(f"{location}\\{self.name}")
+            yield from subkey.export_reg(location / self.name)
