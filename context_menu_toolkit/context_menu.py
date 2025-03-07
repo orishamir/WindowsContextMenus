@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from context_menu_toolkit.context_menu_locations import ContextMenuLocation
+from context_menu_toolkit.context_menu_locations import ContextMenuBinding
 from context_menu_toolkit.features import EntryName, IFeature
 from context_menu_toolkit.features.mui_verb import MUIVerb
 from context_menu_toolkit.features.sub_commands import SubCommands
@@ -43,7 +43,7 @@ class ContextMenu:
 
         return cm
 
-    def export_reg(self, location: ContextMenuLocation) -> list[str]:
+    def export_reg(self, bindings: list[ContextMenuBinding]) -> list[str]:
         r"""Export the Context Menu as a .reg file format.
 
         Syntax of .reg file:
@@ -55,19 +55,26 @@ class ContextMenu:
             [HKEY_LOCAL_MACHINE\Software\Classes\*\shell\ConvertVideo]
             "MUIVerb"="Convert mp4..."
 
-        Arguments:
-            location (ContextMenuLocation): TODO
-
         Returns:
             A list of lines of the .reg file.
         """
         built_menu: RegistryKey = self.build()
 
-        return [
+        lines = [
             "Windows Registry Editor Version 5.00",
             "",
-            *list(built_menu.export_reg(location)),
         ]
+
+        for i, binding in enumerate(bindings):
+            lines.append(f";;; menu for binding #{i+1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
+            lines.extend(
+                built_menu.export_reg(
+                    binding.construct_registry_path(),
+                ),
+            )
+            lines.append(f";;; end of menu for binding #{i+1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
+
+        return lines
 
     def _modify_because_submenus(self) -> None:
         """Modify context menu to allow for submenus.
