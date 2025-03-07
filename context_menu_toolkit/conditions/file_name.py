@@ -13,8 +13,8 @@ class FileName(ConditionBase):
     Reference:
         [MSDN - System.FileName](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename)
     """
-    name: str
     comparison: ComparisonType
+    name: str
 
     def to_aqs_string(self) -> str:
-        return f"({PROPERTY_NAME}:{self.comparison}{self.name})"
+        return f'({PROPERTY_NAME}:{self.comparison}"{self.name}")'

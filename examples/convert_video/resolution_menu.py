@@ -6,7 +6,7 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 from enum import StrEnum
 
 from context_menu_toolkit.context_menu import ContextMenu
-from context_menu_toolkit.context_menu_locations import ContextMenuLocation
+from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
 from context_menu_toolkit.features import EntryName, Command, Icon
 from context_menu_toolkit.registry_interaction import apply_context_menu
 
@@ -51,10 +51,11 @@ resolution_menu = ContextMenu(
     ],
     resolution_submenus,
 )
+
 if __name__ == '__main__':
-    print(
-        apply_context_menu(
-            resolution_menu,
-            ContextMenuLocation.ALL_FILES_ADMIN,
-        )
+    apply_context_menu(
+        resolution_menu,
+        bindings=[
+            ContextMenuBinding(MenuAccessScope.ALL_USERS, MenuItemType.ALL_FILES),
+        ]
     )

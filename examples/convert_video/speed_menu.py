@@ -4,7 +4,7 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
 from context_menu_toolkit.context_menu import ContextMenu
-from context_menu_toolkit.context_menu_locations import ContextMenuLocation
+from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
 from context_menu_toolkit.features import EntryName, Command
 from context_menu_toolkit.features.separator import Separator
 from context_menu_toolkit.registry_interaction import apply_context_menu
@@ -65,9 +65,9 @@ speed_menu = ContextMenu(
 )
 
 if __name__ == '__main__':
-    print(
-        apply_context_menu(
-            speed_menu,
-            ContextMenuLocation.ALL_FILES_ADMIN,
-        )
+    apply_context_menu(
+        speed_menu,
+        bindings=[
+            ContextMenuBinding(MenuAccessScope.ALL_USERS, MenuItemType.ALL_FILES),
+        ]
     )

@@ -1,7 +1,7 @@
 import winreg
 
 from context_menu_toolkit.context_menu import ContextMenu
-from context_menu_toolkit.context_menu_locations import ContextMenuLocation
+from context_menu_toolkit.context_menu_bindings import ContextMenuBinding
 from context_menu_toolkit.registry_structs import RegistryKey
 from context_menu_toolkit.registry_structs.registry_path import RegistryPath, TopLevelKey
 
@@ -18,17 +18,17 @@ _TOP_LEVEL_KEY_TO_VALUE: dict[TopLevelKey, int] = {
 
 def apply_context_menu(
     menu: ContextMenu,
-    location: ContextMenuLocation,
-) -> str:
-    """Apply context menu to the registry at `location`."""
+    bindings: list[ContextMenuBinding],
+) -> None:
+    """Apply context menu to the registry for specified bindings."""
     built_menu: RegistryKey = menu.build()
 
-    _apply_registry_key(built_menu, RegistryPath(location))
-
-    return f"{location}\\{menu.name}"
+    for binding in bindings:
+        _apply_registry_key(built_menu, binding.construct_registry_path())
 
 
 def _apply_registry_key(key: RegistryKey, location: RegistryPath) -> None:
+    """Apply RegistryKey at `location`."""
     new_loc = location / key.name
 
     _create_key(new_loc)

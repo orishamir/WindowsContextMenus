@@ -13,8 +13,12 @@ class ExtensionType(ConditionBase):
     Reference:
         [MSDN - System.FileExtension](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension)
     """
-    extension: str
     comparison: ComparisonType
+    extension: str
+
+    def __post_init__(self) -> None:
+        """Make sure extension contains leading period."""
+        self.extension = "." + self.extension.removeprefix(".")
 
     def to_aqs_string(self) -> str:
-        return f"({PROPERTY_NAME}:{self.comparison}{self.extension})"
+        return f'({PROPERTY_NAME}:{self.comparison}"{self.extension}")'

@@ -9,6 +9,6 @@ hide:
 ```
 
 ## nah
-::: context_menu_toolkit.context_menu_locations
+::: context_menu_toolkit.context_menu_bindings
     options:
         show_if_no_docstring: true
