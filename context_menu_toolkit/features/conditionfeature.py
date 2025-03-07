@@ -11,9 +11,6 @@ class ConditionFeature(IFeature):
 
     See context_menu_toolkit.conditions for available conditions.
 
-    Args:
-        condition: The underlying condition.
-
     References:
         [MSDN - Getting Dynamic Behavior for Static Verbs by Using Advanced Query Syntax](https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#getting-dynamic-behavior-for-static-verbs-by-using-advanced-query-syntax)
 
