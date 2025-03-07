@@ -66,7 +66,8 @@ class ContextMenu:
         return [
             "Windows Registry Editor Version 5.00",
             "",
-        ] + list(built_menu.export_reg(location))
+            *list(built_menu.export_reg(location)),
+        ]
 
     def _modify_because_submenus(self) -> None:
         """Modify context menu to allow for submenus.

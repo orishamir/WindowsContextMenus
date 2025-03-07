@@ -12,11 +12,7 @@ _ACCEPTED_ICON_EXTENSIONS = (
 
 @dataclass
 class Icon(IFeature):
-    """Add an icon that will be displayed for the context menu.
-
-    Args:
-        path_to_icon (str): TODO
-    """
+    """Add an icon that will be displayed for the context menu."""
     path_to_icon: str
 
     def apply_to(self, tree: RegistryKey) -> None:
