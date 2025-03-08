@@ -1,13 +1,17 @@
-# Welcome to MkDocs
+---
+hide:
+  - toc
+  - navigation
+---
+# Context Menu Toolkit
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+::: context_menu_toolkit.features.command
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+```mermaid
+--8<-- "docs/design.mmd"
+```
 
 ## nah
-::: context_menu_toolkit.context_menu_locations
+::: context_menu_toolkit.context_menu_bindings
+    options:
+        show_if_no_docstring: true

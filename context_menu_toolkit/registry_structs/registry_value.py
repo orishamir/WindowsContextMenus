@@ -19,11 +19,7 @@ class DataType(IntEnum):
 
 
 class RegistryValue(BaseModel):
-    """Represents a registry value.
-
-    Args:
-        name: aa
-    """
+    """Represents a registry value."""
 
     name: str
     type: DataType
