@@ -4,6 +4,9 @@ hide:
   - navigation
 ---
 # Context Menu Toolkit
+
+::: context_menu_toolkit.features.command
+
 ```mermaid
 --8<-- "docs/design.mmd"
 ```
