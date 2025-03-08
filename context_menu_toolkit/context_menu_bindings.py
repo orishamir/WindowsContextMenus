@@ -131,4 +131,9 @@ class MenuItemType(StrEnum):
     """Affect right-clicking the desktop background."""
 
     SHORTCUTS = "lnkfile"
-    """Affect right-clicking a shortcut (.lnk)."""
+    """Affect right-clicking a shortcut (.lnk).
+
+    ??? warning
+        If both SHORTCUTS and ALL_FILES (or SPECIFIC_FILE_TYPE with .lnk) handler exists, this may cause unexpected
+        behavior. See `CommandPlaceholder`s documentation for more details.
+    """
