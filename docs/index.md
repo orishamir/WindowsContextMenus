@@ -1,17 +1,16 @@
----
-hide:
-  - toc
-  - navigation
----
+[//]: # (---)
+
+[//]: # (hide:)
+
+[//]: # (  - toc)
+
+[//]: # (  - navigation)
+
+[//]: # (---)
 # Context Menu Toolkit
 
-::: context_menu_toolkit.features.command
+## Architecture
 
 ```mermaid
 --8<-- "docs/design.mmd"
 ```
-
-## nah
-::: context_menu_toolkit.context_menu_bindings
-    options:
-        show_if_no_docstring: true

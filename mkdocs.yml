@@ -1,15 +1,26 @@
 site_name: Context Menu Python Toolkit
 nav:
-  - Home: index.md
-  - API Documentation:
-    - Features:
-      - features/index.md
-      - features/ifeature.md
-      - features/disabled.md
-      - features/icon.md
-    - Registry Structs:
-      - registry_key.md
-      - registry_value.md
+  - Home:
+    - index.md
+  - Context Menu:
+    - context_menu/context_menu.md
+  - Context Menu Bindings:
+    - context_menu_bindings/bindings.md
+    - context_menu_bindings/access_scope.md
+    - context_menu_bindings/menu_item_type.md
+  - Features:
+    - features/index.md
+    - features/ifeature.md
+    - features/mui_verb.md
+    - features/disabled.md
+    - features/icon.md
+    - features/command.md
+    - features/position.md
+    - features/selection_model.md
+  - Registry Structs:
+    - registry_structures/registry_path.md
+    - registry_structures/registry_key.md
+    - registry_structures/registry_value.md
 
 watch:
   - context_menu_toolkit
@@ -25,6 +36,7 @@ theme:
     - content.code.copy
     - navigation.indexes
     - content.code.annotate
+    - content.footnote.tooltips
     - toc:
         permalink: true
   palette:
@@ -62,16 +74,18 @@ plugins:
     default_handler: python
     handlers:
       python:
+        inventories:
+          - url: https://docs.python.org/3/objects.inv
+            domains: [ py, std ]
         options:
           members_order: source
           separate_signature: true
           filters: [ "!^_" ]
+          docstring_options:
+            ignore_init_summary: true
+          merge_init_into_class: true
           show_signature_annotations: true
           signature_crossrefs: true
-          parameter_headings: true
-          extensions:
-            - griffe_fieldz:
-                include_inherited: true
 
 extra_javascript:
   - javascripts/katex.js
@@ -80,4 +94,3 @@ extra_javascript:
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
-

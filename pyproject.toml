@@ -21,8 +21,7 @@ license = "MIT"
 
 dependencies = [
     "pydantic==2.*",
-    "fastapi",
-    "uvicorn",
+    "dataclasses",
 ]
 
 [dependency-groups]
@@ -31,7 +30,6 @@ docs = [
     "mkdocs-material",
     "mkdocstrings[python]",
     "mkdocs-panzoom-plugin",
-    "griffe-fieldz",
 ]
 test = [
     "pytest",
