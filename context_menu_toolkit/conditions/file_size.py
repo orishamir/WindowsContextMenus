@@ -10,6 +10,10 @@ PROPERTY_NAME = "System.Size"
 class FileSize(ConditionBase):
     """This condition checks the size of the file.
 
+    Attributes:
+        comparison: The comparing method, such as >, <=, etc.
+        size: The size to compare against. In the format "30MB".
+
     Example:
         ```
         System.Size:<30MB      - Size less than 30 megabytes

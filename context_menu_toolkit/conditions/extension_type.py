@@ -10,6 +10,10 @@ PROPERTY_NAME = "System.FileExtension"
 class ExtensionType(ConditionBase):
     """Checks the extension of the file. Should include the leading period.
 
+    Attributes:
+        comparison: The comparing method, such as ==, startswith, contains, etc.
+        extension: The extension to compare against.
+
     Reference:
         [MSDN - System.FileExtension](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension)
     """

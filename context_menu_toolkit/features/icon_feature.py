@@ -12,7 +12,11 @@ _ACCEPTED_ICON_EXTENSIONS = (
 
 @dataclass
 class Icon(IFeature):
-    """Add an icon that will be displayed for the context menu."""
+    """Add an icon that will be displayed for the context menu.
+
+    Attributes:
+        path_to_icon: Path on the local machine for the icon.
+    """
     path_to_icon: str
 
     def apply_to(self, tree: RegistryKey) -> None:

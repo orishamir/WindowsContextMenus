@@ -18,38 +18,43 @@ class ContextMenuBinding:
     Tip:
         For more advanced control of conditions see `Condition` feature, `ICondition`, and `conditions`.
 
-    Example:
-        ```python
-        ContextMenuBinding(
-            MenuAccessScope.ALL_USERS,
-            MenuItemType.ALL_FILES,
-        ).construct_registry_path()
-        # HKEY_LOCAL_MACHINE\Software\Classes\*\shell
-
-        ContextMenuBinding(
-            MenuAccessScope.ALL_USERS,
-            MenuItemType.DESKTOP_BACKGROUND,
-        ).construct_registry_path()
-        # HKEY_LOCAL_MACHINE\Software\Classes\DesktopBackground\shell
-
-        ContextMenuBinding(
-            MenuAccessScope.ALL_USERS,
-            MenuItemType.SPECIFIC_FILE_TYPE.format(file_type="image"),
-        ).construct_registry_path()
-        # HKEY_LOCAL_MACHINE\Software\Classes\DesktopBackground\shell
-        ```
+    Attributes:
+        access_scope: Bind to current user or all users
+        menu_item_type: Determines which object type the context menu is relevant for.
+                        For example files/folders/drives/etc.
+                        Should be a string. See MenuItemType for options and descriptions.
     """
     access_scope: MenuAccessScope
-    """Bind to current user or all users"""
-
     menu_item_type: str | MenuItemType
-    """Determines which object type the context menu is relevant for.
-    For example files/folders/drives/etc..
-    Should be a string. See MenuItemType for options and descriptions.
-    """
 
     def construct_registry_path(self) -> RegistryPath:
-        """Compose the registry path that match the binding."""
+        r"""Compose the registry path that match the binding.
+
+        Example:
+            ```python
+            ContextMenuBinding(
+                MenuAccessScope.ALL_USERS,
+                MenuItemType.ALL_FILES,
+            ).construct_registry_path()
+            # HKEY_LOCAL_MACHINE\Software\Classes\*\shell
+            ```
+
+            ```python
+            ContextMenuBinding(
+                MenuAccessScope.ALL_USERS,
+                MenuItemType.DESKTOP_BACKGROUND,
+            ).construct_registry_path()
+            # HKEY_LOCAL_MACHINE\Software\Classes\DesktopBackground\shell
+            ```
+
+            ```python
+            ContextMenuBinding(
+                MenuAccessScope.ALL_USERS,
+                MenuItemType.SPECIFIC_FILE_TYPE.format(file_type="image"),
+            ).construct_registry_path()
+            # HKEY_LOCAL_MACHINE\Software\Classes\DesktopBackground\shell
+            ```
+        """
         self._validate_parameters_provided()
 
         return RegistryPath(self.access_scope) / self.menu_item_type / "shell"
@@ -112,6 +117,7 @@ class MenuItemType(StrEnum):
         # HKEY_LOCAL_MACHINE\Software\Classes\SystemFileAssociations\image\shell
         ```
     """
+
     EXTENDED_FOLDERS = "Folder"
     """Affect right-clicking all folders, including special shell folders (e.g., Libraries, This PC, Control Panel)."""
 
@@ -133,7 +139,7 @@ class MenuItemType(StrEnum):
     SHORTCUTS = "lnkfile"
     """Affect right-clicking a shortcut (.lnk).
 
-    ??? warning
+    Warning:
         If both SHORTCUTS and ALL_FILES (or SPECIFIC_FILE_TYPE with .lnk) handler exists, this may cause unexpected
         behavior. See `CommandPlaceholder`s documentation for more details.
     """

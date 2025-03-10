@@ -27,8 +27,7 @@ namespace Features {
         apply_to(tree: RegistryKey) -> None
     }
     class Command:::featuresStyle {
-        executable: str
-        arguments: list[ShellCommandPlaceholder | str] = []
+        command: str
         apply_to(tree: RegistryKey) -> None
     }
     class Disabled:::featuresStyle {

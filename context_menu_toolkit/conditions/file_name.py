@@ -10,6 +10,10 @@ PROPERTY_NAME = "System.FileName"
 class FileName(ConditionBase):
     """This condition checks the name of the file, including extension.
 
+    Attributes:
+        comparison: The comparing method, such as ==, startswith, contains, etc.
+        name: The name to compare against.
+
     Reference:
         [MSDN - System.FileName](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename)
     """

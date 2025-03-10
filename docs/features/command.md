@@ -1,3 +1,5 @@
-::: context_menu_toolkit.features.command
+::: context_menu_toolkit.features.command.Command
+
+::: context_menu_toolkit.features.command.CommandPlaceholder
     options:
-        heading_level: 2
+        show_labels: false
