@@ -16,8 +16,7 @@ class TopLevelKey(StrEnum):
 class RegistryPath:
     """Represents a registry location in Windows.
 
-    Providing a convenient interface for interacting
-    with the Windows Registry.
+    Provides a convenient interface for interacting with Windows Registry paths.
     This class mimics the API of `pathlib.Path`, allowing intuitive manipulation of registry paths.
     """
 
@@ -32,11 +31,27 @@ class RegistryPath:
 
     @property
     def top_level_key(self) -> TopLevelKey:
+        r"""The top level key of the path.
+
+        Example:
+            ```python
+            RegistryPath("HKEY_CURRENT_USER\Software\classes\*").top_level_key
+            # TopLevelKey.HKEY_CURRENT_USER
+            ```
+        """
         top_level_str, _ = self._path.split("\\", maxsplit=1)
         return TopLevelKey(top_level_str)
 
     @property
     def subkeys(self) -> str:
+        r"""The path without the top level key, i.e. the sub keys.
+
+        Example:
+            ```python
+            RegistryPath("HKEY_CURRENT_USER\Software\classes\*").subkeys
+            # Software\classes\*
+            ```
+        """
         _, subkeys = self._path.split("\\", maxsplit=1)
         return subkeys
 
@@ -45,13 +60,14 @@ class RegistryPath:
 
         Example:
             ```
-            hkey_local_user\Software/classes\\.mp4/
+            hkey_current_user\Software/classes\\.mp4/
             ->
-            HKEY_LOCAL_USER\Software\classes\.mp4
+            HKEY_CURRENT_USER\Software\classes\.mp4
             ```
         """
         raw_path = raw_path.replace("/", "\\")
-        raw_path = re.sub(r"\\+", r"\\", raw_path).strip("\\")
+        raw_path = re.sub(r"\\+", r"\\", raw_path)
+        raw_path = raw_path.strip("\\")
 
         top_level, subkeys = raw_path.split("\\", maxsplit=1)
         top_level = top_level.upper()

@@ -2,7 +2,7 @@ import winreg
 
 from context_menu_toolkit.context_menu import ContextMenu
 from context_menu_toolkit.context_menu_bindings import ContextMenuBinding
-from context_menu_toolkit.registry_structs import RegistryKey
+from context_menu_toolkit.registry_structs import RegistryKey, RegistryValue
 from context_menu_toolkit.registry_structs.registry_path import RegistryPath, TopLevelKey
 
 RESERVED_FLAG = 0
@@ -34,10 +34,7 @@ def _apply_registry_key(key: RegistryKey, location: RegistryPath) -> None:
     _create_key(new_loc)
 
     for value in key.values:
-        _set_value(new_loc, value.name, value.type, value.data)
-
-    if not key.subkeys:
-        return
+        _set_value(new_loc, value)
 
     for subkey in key.subkeys:
         _apply_registry_key(subkey, new_loc)
@@ -52,11 +49,11 @@ def _create_key(location: RegistryPath) -> None:
     )
 
 
-def _set_value(location: RegistryPath, value_name: str, value_type: int, data: str | int) -> None:
+def _set_value(location: RegistryPath, value: RegistryValue) -> None:
     with winreg.OpenKey(
         _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
         location.subkeys,
         RESERVED_FLAG,
         winreg.KEY_SET_VALUE,
     ) as key:
-        winreg.SetValueEx(key, value_name, RESERVED_FLAG, value_type, data)
+        winreg.SetValueEx(key, value.name, RESERVED_FLAG, value.type, value.data)
