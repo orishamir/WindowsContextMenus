@@ -76,7 +76,6 @@ select = [
     "PL",   # pylint (all)
     "UP",   # pyupgrade
 ]
-
 ignore = [
     "D100", "D102", "D104", "D105",
     "E501",

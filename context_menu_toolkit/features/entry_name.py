@@ -12,7 +12,7 @@ class _EntryName(IFeature):
     """Defines the displayed text of the context menu, i.e. the text that appears on right click.
 
     Critical:
-        Do not use. Use MUIVerb instead.
+        Do not use. Use DisplayText instead.
 
     Attributes:
         name: The text that should be displayed for the context menu on right-click.
