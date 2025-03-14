@@ -6,10 +6,12 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class MUIVerb(IFeature):
-    """Same as EntryName, with small difference.
+    """Defines the displayed text of the context menu, i.e. the text that appears on right click.
 
-    This should be used when using sub-menus, instead of EntryName.
-    EntryName features inside a ContextMenu will automatically be converted to MUIVerb.
+    Attributes:
+        name: The text that should be displayed for the context menu on right-click.
+              You can also use string localization, which tells Windows to look up a string resource from a DLL (or EXE) file.
+              For example `MUIVerb=@shell32.dll,-8518` -> `"Send To"`
     """
     name: str
 
