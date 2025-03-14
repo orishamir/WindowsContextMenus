@@ -10,7 +10,7 @@ from context_menu_toolkit.registry_interaction import apply_context_menu
 from context_menu_toolkit.context_menu import ContextMenu
 from context_menu_toolkit.features import (
     Command,
-    EntryName,
+    DisplayText,
     Icon,
     ConditionFeature,
 )
@@ -20,7 +20,7 @@ CONVERT_IMAGE_COMMAND = 'cmd.exe /c convert_image.py "%V"'
 convert_to_png_entry = ContextMenu(
     "ConvertToPng",
     [
-        EntryName("Convert to PNG"),
+        DisplayText("Convert to PNG"),
         Command(f'{CONVERT_IMAGE_COMMAND} png'),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".png")
@@ -31,7 +31,7 @@ convert_to_png_entry = ContextMenu(
 convert_to_jpeg_entry = ContextMenu(
     "ConvertToJPEG",
     [
-        EntryName("Convert to JPEG"),
+        DisplayText("Convert to JPEG"),
         Command(f'{CONVERT_IMAGE_COMMAND} jpeg'),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".jpeg")
@@ -42,7 +42,7 @@ convert_to_jpeg_entry = ContextMenu(
 convert_to_ico_entry = ContextMenu(
     "ConvertToIco",
     [
-        EntryName("Convert to ICO"),
+        DisplayText("Convert to ICO"),
         Command(f'{CONVERT_IMAGE_COMMAND} ico'),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".ico")
@@ -53,7 +53,7 @@ convert_to_ico_entry = ContextMenu(
 convert_to_bmp_entry = ContextMenu(
     "ConvertToBmp",
     [
-        EntryName("Convert to BMP"),
+        DisplayText("Convert to BMP"),
         Command(f'{CONVERT_IMAGE_COMMAND} bmp'),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".bmp")
@@ -63,7 +63,7 @@ convert_to_bmp_entry = ContextMenu(
 convert_to_webp_entry = ContextMenu(
     "ConvertToWebp",
     [
-        EntryName("Convert to WEBP"),
+        DisplayText("Convert to WEBP"),
         Command(f'{CONVERT_IMAGE_COMMAND} webp'),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".webp")
@@ -73,7 +73,7 @@ convert_to_webp_entry = ContextMenu(
 main: ContextMenu = ContextMenu(
     "ConvertImageType",
     [
-        EntryName("Convert to..."),
+        DisplayText("Convert to..."),
         Icon(r"D:\Pictures\Convert_arrow.ico"),
         ConditionFeature(
             ExtensionType(ComparisonType.EQUALS, ".png") |
@@ -98,6 +98,9 @@ if __name__ == '__main__':
     apply_context_menu(
         main,
         bindings=[
-            ContextMenuBinding(MenuAccessScope.ALL_USERS, MenuItemType.ALL_FILES),
+            ContextMenuBinding(
+                MenuItemType.ALL_FILES,
+                MenuAccessScope.ALL_USERS,
+            ),
         ],
     )
