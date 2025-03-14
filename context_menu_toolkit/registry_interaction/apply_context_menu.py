@@ -9,12 +9,12 @@ from context_menu_toolkit.registry_structs.registry_path import RegistryPath, To
 RESERVED_FLAG = 0
 
 _TOP_LEVEL_KEY_TO_VALUE: dict[TopLevelKey, int] = {
-    TopLevelKey.HKEY_CLASSES_ROOT: winreg.HKEY_CLASSES_ROOT,
-    TopLevelKey.HKEY_CURRENT_USER: winreg.HKEY_CURRENT_USER,
-    TopLevelKey.HKEY_LOCAL_MACHINE: winreg.HKEY_LOCAL_MACHINE,
-    TopLevelKey.HKEY_USERS: winreg.HKEY_USERS,
-    TopLevelKey.HKEY_CURRENT_CONFIG: winreg.HKEY_CURRENT_CONFIG,
-}  # type: ignore
+    TopLevelKey.HKEY_CLASSES_ROOT: winreg.HKEY_CLASSES_ROOT,  # type: ignore
+    TopLevelKey.HKEY_CURRENT_USER: winreg.HKEY_CURRENT_USER,  # type: ignore
+    TopLevelKey.HKEY_LOCAL_MACHINE: winreg.HKEY_LOCAL_MACHINE,  # type: ignore
+    TopLevelKey.HKEY_USERS: winreg.HKEY_USERS,  # type: ignore
+    TopLevelKey.HKEY_CURRENT_CONFIG: winreg.HKEY_CURRENT_CONFIG,  # type: ignore
+}
 
 
 def apply_context_menu(

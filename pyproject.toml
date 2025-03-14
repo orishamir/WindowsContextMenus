@@ -5,14 +5,15 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "0.1.0rc3"
+version = "0.1.0rc4"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
 description = "Create windows context menus Pythonically"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 classifiers = [
     "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Operating System :: Microsoft :: Windows :: Windows 11",
@@ -54,19 +55,15 @@ exclude = [
 ]
 
 [tool.mypy]
+python_version = "3.12"
 files = [
     "context_menu_toolkit/",
 ]
-exclude = [
-    "context_menu_toolkit/registry_interaction/apply_context_menu.py"
-]
 
 [tool.pyright]
+pythonVersion = "3.12"
 include = [
     "context_menu_toolkit/",
-]
-exclude = [
-    "context_menu_toolkit/registry_interaction/apply_context_menu.py"
 ]
 
 [tool.ruff]
