@@ -19,11 +19,7 @@ class DataType(IntEnum):
 
 
 class RegistryValue(BaseModel):
-    """Represents a registry value.
-
-    Args:
-        name: aa
-    """
+    """Represents a registry value."""
 
     name: str
     type: DataType
@@ -33,17 +29,18 @@ class RegistryValue(BaseModel):
         """Export the registry value as a .reg file format.
 
         Syntax of .reg file:
-        <a href="https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23" target="_blank">
-        MSDN topic | How to add, modify, or delete registry subkeys and values by using a .reg file
-        </a>.
+        <https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23>.
 
         Example:
+            ```
             "MUIVerb"="Convert mp4..."
+            ```
 
         Returns:
             The .reg file line representing the registry value.
         """
-        assert self.type in (DataType.REG_SZ, DataType.REG_DWORD)
+        if self.type not in (DataType.REG_SZ, DataType.REG_DWORD):
+            return NotImplemented
 
         if self.type is DataType.REG_SZ:
             data_str = json.dumps(self.data)  # escapes "\" and '"'

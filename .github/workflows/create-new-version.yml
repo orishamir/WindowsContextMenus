@@ -134,6 +134,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build_docs
+    if: github.ref_name == 'master'
 
     permissions:
       contents: 'read'
