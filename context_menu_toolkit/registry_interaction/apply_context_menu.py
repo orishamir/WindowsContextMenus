@@ -1,3 +1,4 @@
+import typing
 import winreg
 
 from context_menu_toolkit.context_menu import ContextMenu
@@ -13,7 +14,7 @@ _TOP_LEVEL_KEY_TO_VALUE: dict[TopLevelKey, int] = {
     TopLevelKey.HKEY_LOCAL_MACHINE: winreg.HKEY_LOCAL_MACHINE,
     TopLevelKey.HKEY_USERS: winreg.HKEY_USERS,
     TopLevelKey.HKEY_CURRENT_CONFIG: winreg.HKEY_CURRENT_CONFIG,
-}
+}  # type: ignore
 
 
 def apply_context_menu(
@@ -40,6 +41,7 @@ def _apply_registry_key(key: RegistryKey, location: RegistryPath) -> None:
         _apply_registry_key(subkey, new_loc)
 
 
+@typing.no_type_check
 def _create_key(location: RegistryPath) -> None:
     winreg.CloseKey(
         winreg.CreateKey(
@@ -49,6 +51,7 @@ def _create_key(location: RegistryPath) -> None:
     )
 
 
+@typing.no_type_check
 def _set_value(location: RegistryPath, value: RegistryValue) -> None:
     with winreg.OpenKey(
         _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],

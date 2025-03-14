@@ -55,12 +55,18 @@ exclude = [
 
 [tool.mypy]
 files = [
-    "context_menu_toolkit",
+    "context_menu_toolkit/",
+]
+exclude = [
+    "context_menu_toolkit/registry_interaction/apply_context_menu.py"
 ]
 
 [tool.pyright]
 include = [
-    "context_menu_toolkit",
+    "context_menu_toolkit/",
+]
+exclude = [
+    "context_menu_toolkit/registry_interaction/apply_context_menu.py"
 ]
 
 [tool.ruff]
