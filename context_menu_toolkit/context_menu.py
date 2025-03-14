@@ -4,8 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from context_menu_toolkit.context_menu_bindings import ContextMenuBinding
-from context_menu_toolkit.features import EntryName, IFeature
-from context_menu_toolkit.features.mui_verb import MUIVerb
+from context_menu_toolkit.features import IFeature
 from context_menu_toolkit.features.sub_commands import SubCommands
 from context_menu_toolkit.registry_structs import RegistryKey
 
@@ -78,13 +77,13 @@ class ContextMenu:
         ]
 
         for i, binding in enumerate(bindings):
-            lines.append(f";;; menu for binding #{i+1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
+            lines.append(f";;; menu for binding #{i + 1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
             lines.extend(
                 built_menu.export_reg(
                     binding.construct_registry_path(),
                 ),
             )
-            lines.append(f";;; end of menu for binding #{i+1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
+            lines.append(f";;; end of menu for binding #{i + 1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
 
         return lines
 
@@ -95,14 +94,4 @@ class ContextMenu:
         a way to tell the label, we need to set MUIVerb to the label.
         Also, we need to add an empty SubCommands value.
         """
-        self.features = [
-            MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
-            for feature in self.features
-        ]
         self.features.append(SubCommands())
-
-        for submenu in self.submenus:
-            submenu.features = [
-                MUIVerb(feature.name) if isinstance(feature, EntryName) else feature
-                for feature in submenu.features
-            ]

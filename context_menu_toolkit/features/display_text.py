@@ -5,7 +5,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 
 @dataclass
-class MUIVerb(IFeature):
+class DisplayText(IFeature):
     """Defines the displayed text of the context menu, i.e. the text that appears on right click.
 
     Attributes:

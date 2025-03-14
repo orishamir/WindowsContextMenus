@@ -6,7 +6,6 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 from context_menu_toolkit.context_menu import ContextMenu
 from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
 from context_menu_toolkit.features import DisplayText, Command
-from context_menu_toolkit.features.separator import Separator
 from context_menu_toolkit.registry_interaction import apply_context_menu
 
 ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%V"-1.5x.mp4'

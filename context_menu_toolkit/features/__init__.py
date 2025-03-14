@@ -2,9 +2,9 @@
 from .command import Command, CommandPlaceholder
 from .conditionfeature import ConditionFeature
 from .disabled import Disabled
+from .display_text import DisplayText
 from .icon_feature import Icon, WindowsIcon
 from .ifeature import IFeature
-from .display_text import DisplayText
 from .never_default import NeverDefault
 from .no_working_directory import NoWorkingDirectory
 from .position import Position
