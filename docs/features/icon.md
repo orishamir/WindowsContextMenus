@@ -1,3 +1,7 @@
+# Icon
 ::: context_menu_toolkit.features.icon_feature.Icon
+
+::: context_menu_toolkit.features.icon_feature.WindowsIcon
     options:
-      heading_level: 2
+        show_if_no_docstring: true
+        show_labels: false
