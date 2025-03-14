@@ -1,0 +1,22 @@
+name: "Type Checking"
+description: "Perform type checking using Mypy and Pyright"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+    - uses: astral-sh/setup-uv@v5
+
+    - name: Install typechecking dependencies
+      run: uv sync --group typechecking
+      shell: sh
+
+    - run: uv run mypy
+      shell: sh
+
+    - run: uv run pyright
+      shell: sh
