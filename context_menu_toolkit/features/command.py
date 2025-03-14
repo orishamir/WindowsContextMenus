@@ -41,13 +41,15 @@ class CommandPlaceholder(StrEnum):
     r"""Enum representing Windows shell command placeholders used in registry context menus.
 
     References:
-        [^1]: [GitHub Gist](https://gist.github.com/Prince-Mandor/c1db742bd2951989db84acfbc7b9562f?permalink_comment_id=1921453#gistcomment-1921453)
-        [^2]: [Superuser answer](https://superuser.com/a/473602/)
+        [^1]: <https://gist.github.com/Prince-Mandor/c1db742bd2951989db84acfbc7b9562f#gistcomment-1921453>
+        [^2]: <https://superuser.com/a/473602>
 
     Warning:
         If you select multiple files/folders on right-click, each will be called separately.
-        This effectively makes placeholders such as %2, %3, %~, etc. useless, and %* equivalent to %1.
-        See https://stackoverflow.com/a/1822850/, https://superuser.com/a/473602/
+        This effectively makes placeholders such as %2, %3, %~, etc. useless, and %* equivalent to %1.[^1] [^2]
+
+        [^1]: <https://stackoverflow.com/a/1822850>
+        [^2]: <https://superuser.com/a/473602>
 
     Question:
         The difference between Directory and Folder is that Folders include special folders.
@@ -70,7 +72,7 @@ class CommandPlaceholder(StrEnum):
     |   Desktop Background    |   Error
 
     [^1]:
-        CLSIDs identify special folders. See [CLSID List](https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm)
+        CLSIDs identify special folders. See <https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm>
     """
 
     CURRENT_DIRECTORY = "%v"
@@ -89,7 +91,7 @@ class CommandPlaceholder(StrEnum):
     |   Desktop Background    |  The desktop path                               | "C:\Users\user\Desktop"                                         |
 
     [^1]:
-        CLSIDs identify special folders. See [CLSID List](https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm)
+        CLSIDs identify special folders. See <https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm>
     """
 
     WORKING_DIRECTORY = "%w"
@@ -145,6 +147,6 @@ class CommandPlaceholder(StrEnum):
     |   Desktop Background    |   Error (crashes explorer.exe)
 
     [^1]:
-        CLSIDs identify special folders. See [CLSID List](https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm)
+        CLSIDs identify special folders. See <https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm>
     """
 
