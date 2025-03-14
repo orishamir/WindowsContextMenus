@@ -9,10 +9,16 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 
 @dataclass
 class SelectionModel(IFeature):
-    r"""Specifies the amount of selected items the context menu supports.
+    r"""Specifies the amount of simultaneously selected items the context menu supports.
+
+    For example, when selecting SelectionModelAmount.SINGLE, if more than 1 item (file/folder/etc.)
+    is selected, right-clicking would not display the menu.
 
     Attributes:
         amount: The amount from the SelectionModelAmount enum.
+
+    References:
+        <https://learn.microsoft.com/en-us/windows/win32/shell/how-to-employ-the-verb-selection-model>
     """
     amount: SelectionModelAmount
 
@@ -25,9 +31,12 @@ class SelectionModel(IFeature):
 class SelectionModelAmount(StrEnum):
     """Possible values for selection model.
 
+    For example, when selecting SelectionModelAmount.SINGLE, if more than 1 item (file/folder/etc.)
+    is selected, right-clicking would not display the menu.
+
     References:
         <https://learn.microsoft.com/en-us/windows/win32/shell/how-to-employ-the-verb-selection-model>
     """
     SINGLE = "Single"
-    MULTIPLE = "Player"
-    FIFTEEN_ITEMS = "Document"
+    FIFTEEN_ITEMS_MAX = "Document"
+    HUNDRED_ITEMS_MAX = "Player"
