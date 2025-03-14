@@ -6,11 +6,22 @@ from enum import StrEnum
 from context_menu_toolkit.registry_structs.registry_path import RegistryPath
 
 
+class MenuAccessScope(StrEnum):
+    """The access scope of the context menu.
+
+    Either all users or current user only.
+    The enum's value indicates the base registry location of that scope.
+    """
+    ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
+    CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
+    # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.
+
+
 @dataclass
 class ContextMenuBinding:
     r"""Represents a binding for a context menu.
 
-    Bindings determines the basic conditions for a context menu
+    Bindings determine the basic conditions for a context menu
     to appear when right-clicking items.
 
     For example binding a context menu to files/folders/drives mean that it displays when right-clicking them.
@@ -24,8 +35,8 @@ class ContextMenuBinding:
                         For example files/folders/drives/etc.
                         Should be a string. See MenuItemType for options and descriptions.
     """
-    access_scope: MenuAccessScope
     menu_item_type: str | MenuItemType
+    access_scope: MenuAccessScope = MenuAccessScope.ALL_USERS
 
     def construct_registry_path(self) -> RegistryPath:
         r"""Compose the registry path that match the binding.
@@ -75,22 +86,15 @@ class ContextMenuBinding:
             raise ValueError(f'item type parameter not provided: "{missing_parameter}"') from None
 
 
-class MenuAccessScope(StrEnum):
-    """The access scope of the context menu.
-
-    Either all users or current user only.
-    The enum's value indicates the base registry location of that scope.
-    """
-    ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
-    CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
-    # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.
-
-
 class MenuItemType(StrEnum):
-    """Possible types of context menu item types.
+    """Possible types of context menu items.
 
     Menu items are types of clickable items, such as files, folders, drives, shortcuts, desktop background, etc.
     Also known as `shell` items.
+
+    Question:
+        The difference between Directory and Folder is that Folders include special folders such as "This PC" folder.
+        See [Directory vs. Folder](https://superuser.com/q/169457/), [CLSID List](https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm)
 
     Tip:
         For more advanced control of conditions see `Condition` feature, `ICondition`, and `conditions`.

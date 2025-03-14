@@ -61,13 +61,13 @@ class CommandPlaceholder(StrEnum):
 
     Value depends on the item type being clicked:
 
-    |   Item Type             |     Placeholder Value                           |    Example                                                      |
-    | :---------------------- | :---------------------------------------------- | :------------------------------------------------------------   |
-    |   File                  |   The file's path (resolved if its a shortcut)  | "C:\Windows\System32\cmd.exe"                                   |
-    |   Directory             |   The directory's path                          | "C:\Windows\System32\"                                          |
-    |   Folder                |   "::{CLSID}" of the special shell folder[^1]   | "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder   |
-    |   Drive                 |   Drive letter + ":\"                           | "C:\"                                                           |
-    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)               | "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" |
+    |   Item Type             |     Placeholder Value                           |    Example                                                         |
+    | :---------------------- | :---------------------------------------------- | :----------------------------------------------------------------- |
+    |   File                  |   The file's path (resolved if its a shortcut)  |   "C:\Windows\System32\cmd.exe"                                    |
+    |   Directory             |   The directory's path                          |   "C:\Windows\System32\"                                           |
+    |   Folder                |   "::{CLSID}" of the special shell folder[^1]   |   "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder    |
+    |   Drive                 |   Drive letter + ":\"                           |   "C:\"                                                            |
+    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)               |   "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk"  |
     |   Directory Background  |   Error
     |   Desktop Background    |   Error
 
@@ -80,15 +80,15 @@ class CommandPlaceholder(StrEnum):
 
     Value depends on the item type being clicked:
 
-    |   Item Type             |     Placeholder Value                           |    Example                                                      |
-    | :---------------------- | :---------------------------------------------- | :------------------------------------------------------------   |
-    |   File                  |   The file's path (resolved if its a shortcut)  | "C:\Windows\System32\cmd.exe"                                   |
-    |   Directory             |   The directory's path                          | "C:\Windows\System32\"                                          |
-    |   Folder                |   "::{CLSID}" of the special shell folder[^1]   | "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder   |
-    |   Drive                 |   Drive letter + ":\"                           | "C:\"                                                           |
-    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)               | "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" |
-    |   Directory Background  |  The directory path                             | "C:\Windows\System32\"                                          |
-    |   Desktop Background    |  The desktop path                               | "C:\Users\user\Desktop"                                         |
+    |   Item Type             |     Placeholder Value                           |    Example                                                         |
+    | :---------------------- | :---------------------------------------------- | :----------------------------------------------------------------- |
+    |   File                  |   The file's path (resolved if its a shortcut)  |   "C:\Windows\System32\cmd.exe"                                    |
+    |   Directory             |   The directory's path                          |   "C:\Windows\System32\"                                           |
+    |   Folder                |   "::{CLSID}" of the special shell folder[^1]   |   "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder    |
+    |   Drive                 |   Drive letter + ":\"                           |   "C:\"                                                            |
+    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)               |   "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk"  |
+    |   Directory Background  |  The directory path                             |   "C:\Windows\System32\"                                           |
+    |   Desktop Background    |  The desktop path                               |   "C:\Users\user\Desktop"                                          |
 
     [^1]:
         CLSIDs identify special folders. See <https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm>
@@ -99,16 +99,15 @@ class CommandPlaceholder(StrEnum):
 
     Value depends on the item type being clicked:
 
-    |   Item Type             |  Placeholder Value            |    Example                                               |
-    | :---------------------- | :---------------------------- | :------------------------------------------------------- |
-    |   File                  |  The file's parent path       | "C:\Windows\System32\cmd.exe"                            |
-    |   Directory             |  The directory's parent path  | "C:\Windows\System32\"                                   |
+    |   Item Type             |  Placeholder Value            |    Example                                                 |
+    | :---------------------- | :---------------------------- | :--------------------------------------------------------- |
+    |   File                  |  The file's parent path       |   "C:\Windows\System32\cmd.exe"                            |
+    |   Directory             |  The directory's parent path  |   "C:\Windows\System32\"                                   |
     |   Folder                |  Error
     |   Drive                 |  Error
-    |   Shortcut (Link File)  |  The shortcut's parent path   | "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\"  |
-    |   Directory Background  |  The directory path           | "C:\Windows\System32\"                                   |
-    |   Desktop Background    |  The desktop path             | "C:\Users\user\Desktop"                                  |
-
+    |   Shortcut (Link File)  |  The shortcut's parent path   |   "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\"  |
+    |   Directory Background  |  The directory path           |   "C:\Windows\System32\"                                   |
+    |   Desktop Background    |  The desktop path             |   "C:\Users\user\Desktop"                                  |
     """
 
     LONG_FILE_NAME = "%l"
@@ -124,7 +123,7 @@ class CommandPlaceholder(StrEnum):
     """
 
     IDLIST_HANDLE = "%i"
-    r"""IDList stored in a shared memory handle.
+    """IDList stored in a shared memory handle.
 
     I have no idea what this is.
     """
@@ -136,13 +135,13 @@ class CommandPlaceholder(StrEnum):
 
     Value depends on the item type being clicked:
 
-    |   Item Type             |   Placeholder Value                               |    Example                                                      |
-    | :---------------------- | :------------------------------------------------ | :------------------------------------------------------------   |
-    |   File                  |   The file's path (unresolved if its a shortcut)  | "C:\Windows\System32\cmd.exe"                                   |
-    |   Directory             |   The directory's path                            | "C:\Windows\System32\"                                          |
-    |   Folder                |   "::{CLSID}" of the special shell folder[^1]     | "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder   |
-    |   Drive                 |   Drive letter + ":\"                             | "C:\"                                                           |
-    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)                 | "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk" |
+    |   Item Type             |   Placeholder Value                               |    Example                                                         |
+    | :---------------------- | :------------------------------------------------ | :----------------------------------------------------------------- |
+    |   File                  |   The file's path (unresolved if its a shortcut)  |   "C:\Windows\System32\cmd.exe"                                    |
+    |   Directory             |   The directory's path                            |   "C:\Windows\System32\"                                           |
+    |   Folder                |   "::{CLSID}" of the special shell folder[^1]     |   "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" - "This PC" folder    |
+    |   Drive                 |   Drive letter + ":\"                             |   "C:\"                                                            |
+    |   Shortcut (Link File)  |   The path of the shortcut (.lnk)                 |   "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk"  |
     |   Directory Background  |   Error (crashes explorer.exe)
     |   Desktop Background    |   Error (crashes explorer.exe)
 
