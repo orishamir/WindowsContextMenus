@@ -39,13 +39,12 @@ class RegistryValue(BaseModel):
         Returns:
             The .reg file line representing the registry value.
         """
-        if self.type not in (DataType.REG_SZ, DataType.REG_DWORD):
-            return NotImplemented
-
         if self.type is DataType.REG_SZ:
             data_str = json.dumps(self.data)  # escapes "\" and '"'
         elif self.type is DataType.REG_DWORD:
             data_str = f"dword:{self.data}"
+        else:
+            raise NotImplementedError(f"registry data type not supported: {self.type}")
 
         if self.name == "":
             return f"@={data_str}"
