@@ -10,7 +10,7 @@ from context_menu_toolkit.registry_interaction import apply_context_menu
 from context_menu_toolkit.context_menu import ContextMenu
 from context_menu_toolkit.features import (
     Command,
-    EntryName,
+    DisplayText,
     Icon,
     ConditionFeature
 )
@@ -20,7 +20,7 @@ CONVERT_AUDIO_COMMAND = 'cmd.exe /c ffmpeg -i "%V" {}'
 ConvertToWAV = ContextMenu(
     "ConvertToWAV",
     [
-        EntryName("Convert to WAV"),
+        DisplayText("Convert to WAV"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".wav')),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".wav")
@@ -32,7 +32,7 @@ ConvertToWAV = ContextMenu(
 ConvertToMP3 = ContextMenu(
     "ConvertToMP3",
     [
-        EntryName("Convert to MP3"),
+        DisplayText("Convert to MP3"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".mp3')),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".mp3"),
@@ -43,7 +43,7 @@ ConvertToMP3 = ContextMenu(
 ConvertToOGG = ContextMenu(
     "ConvertToOGG",
     [
-        EntryName("Convert to OGG"),
+        DisplayText("Convert to OGG"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".ogg')),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".ogg"),
@@ -54,7 +54,7 @@ ConvertToOGG = ContextMenu(
 ConvertToFLAC = ContextMenu(
     "ConvertToFLAC",
     [
-        EntryName("Convert to FLAC"),
+        DisplayText("Convert to FLAC"),
         Command(CONVERT_AUDIO_COMMAND.format('"%V".flac')),
         ConditionFeature(
             ExtensionType(ComparisonType.NOT_EQUAL, ".flac"),
@@ -65,7 +65,7 @@ ConvertToFLAC = ContextMenu(
 main = ContextMenu(
     "ConvertAudioType",
     [
-        EntryName("Convert to..."),
+        DisplayText("Convert to..."),
         Icon(r"D:\Pictures\Convert_arrow.ico"),
         ConditionFeature(
             ExtensionType(ComparisonType.EQUALS, ".mp3") |
@@ -86,6 +86,9 @@ if __name__ == '__main__':
     apply_context_menu(
         main,
         bindings=[
-            ContextMenuBinding(MenuAccessScope.ALL_USERS, MenuItemType.ALL_FILES),
+            ContextMenuBinding(
+                MenuItemType.ALL_FILES,
+                MenuAccessScope.ALL_USERS,
+            ),
         ],
     )

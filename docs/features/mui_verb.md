@@ -1,3 +1,3 @@
-# MUI Verb
+# Display Text
 
-::: context_menu_toolkit.features.mui_verb.MUIVerb
+::: context_menu_toolkit.features.display_text.DisplayText
