@@ -15,7 +15,7 @@ class Position(IFeature):
     Warning:
         This feature will NOT necessarily set the position.
         The way Windows determines the location is complicated,
-        and this Position feature will merely specify the general preference.
+        and Position feature merely specifies the general preference.
         For example, it may move your context menu lower down the list, but not all the way.
     """
     position: Literal["Top", "Bottom"]

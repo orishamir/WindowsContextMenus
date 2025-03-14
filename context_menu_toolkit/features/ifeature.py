@@ -7,5 +7,5 @@ class IFeature(Protocol):
     """This interface represents classes which are "features", i.e. something that is added to the context menu."""
 
     def apply_to(self, tree: RegistryKey) -> None:
-        """Modify `tree` such that it contains the feature registry."""
+        """Modify `tree` such that the feature is applied."""
         raise NotImplementedError("Classes that realize IFeature must implement apply_to")

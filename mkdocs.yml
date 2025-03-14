@@ -9,14 +9,18 @@ nav:
     - context_menu_bindings/access_scope.md
     - context_menu_bindings/menu_item_type.md
   - Features:
-    - features/index.md
     - features/ifeature.md
-    - features/mui_verb.md
-    - features/disabled.md
-    - features/icon.md
+    - features/display_text.md
     - features/command.md
+    - features/icon.md
+    - features/shift_click.md
+    - features/separator.md
     - features/position.md
     - features/selection_model.md
+    - features/has_lua_shield.md
+    - features/disabled.md
+    - features/no_working_directory.md
+    - features/note.md
   - Registry Structs:
     - registry_structures/registry_path.md
     - registry_structures/registry_key.md

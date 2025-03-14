@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import IntEnum
 
@@ -12,16 +14,26 @@ class Separator(IFeature):
     Only works with submenus.
 
     References:
-        [MSDN - Creating Cascading Menus with the ExtendedSubCommandsKey Registry Entry](https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry)
+        <https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry>
     """
-    class Location(IntEnum):
-        """Where the separator should be, relative to the containing context menu."""
-        Before = 0x20  # ECF_SEPARATORBEFORE
-        After = 0x40  # ECF_SEPARATORAFTER
 
-    location: Location
+    location: SeperatorLocation
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.values.append(
             RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location),
         )
+
+
+class SeperatorLocation(IntEnum):
+    """Where the separator should be, relative to the containing context menu.
+
+    Warning:
+        This will most probably work if the context menu is a submenu,
+        but is not guaranteed to work with normal menu.
+
+    References:
+        <https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry>
+    """
+    Before = 0x20  # ECF_SEPARATORBEFORE
+    After = 0x40  # ECF_SEPARATORAFTER
