@@ -17,6 +17,7 @@ class ExtensionType(ConditionBase):
     Reference:
         [MSDN - System.FileExtension](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-fileextension)
     """
+
     comparison: ComparisonType
     extension: str
 

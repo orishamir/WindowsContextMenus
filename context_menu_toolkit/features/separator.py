@@ -14,8 +14,10 @@ class Separator(IFeature):
     References:
         [MSDN - Creating Cascading Menus with the ExtendedSubCommandsKey Registry Entry](https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry)
     """
+
     class Location(IntEnum):
         """Where the separator should be, relative to the containing context menu."""
+
         Before = 0x20  # ECF_SEPARATORBEFORE
         After = 0x40  # ECF_SEPARATORAFTER
 

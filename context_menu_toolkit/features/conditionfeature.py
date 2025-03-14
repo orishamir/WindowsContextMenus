@@ -26,6 +26,7 @@ class ConditionFeature(IFeature):
         )
         ```
     """
+
     condition: ICondition
 
     def apply_to(self, tree: RegistryKey) -> None:

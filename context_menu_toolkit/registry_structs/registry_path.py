@@ -6,6 +6,7 @@ from enum import StrEnum
 
 class TopLevelKey(StrEnum):
     """An enum representing the possible top-level registry keys."""
+
     HKEY_CLASSES_ROOT = "HKEY_CLASSES_ROOT"
     HKEY_CURRENT_USER = "HKEY_CURRENT_USER"
     HKEY_LOCAL_MACHINE = "HKEY_LOCAL_MACHINE"
@@ -88,7 +89,7 @@ class RegistryPath:
             other = str(other)
 
         return RegistryPath(
-            self._path + f"\\{other.strip("\\")}",
+            self._path + f"\\{other.strip('\\')}",
         )
 
     def __str__(self) -> str:

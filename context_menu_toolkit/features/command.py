@@ -27,13 +27,17 @@ class Command(IFeature):
         ```
 
     """
+
     command: str
 
     def apply_to(self, tree: RegistryKey) -> None:
         tree.subkeys.append(
-            RegistryKey(name=COMMAND_KEY_NAME, values=[
-                RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.command),
-            ]),
+            RegistryKey(
+                name=COMMAND_KEY_NAME,
+                values=[
+                    RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.command),
+                ],
+            ),
         )
 
 
@@ -56,6 +60,7 @@ class CommandPlaceholder(StrEnum):
         In the tables below, Folder refers to virtual folders only.
         See [Directory vs. Folder](https://superuser.com/q/169457/)
     """
+
     FIRST_SELECTED = "%1"
     r"""The first selected item.
 
@@ -148,4 +153,3 @@ class CommandPlaceholder(StrEnum):
     [^1]:
         CLSIDs identify special folders. See <https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm>
     """
-

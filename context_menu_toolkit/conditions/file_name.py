@@ -17,6 +17,7 @@ class FileName(ConditionBase):
     Reference:
         [MSDN - System.FileName](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-filename)
     """
+
     comparison: ComparisonType
     name: str
 

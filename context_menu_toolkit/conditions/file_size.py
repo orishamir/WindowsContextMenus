@@ -23,6 +23,7 @@ class FileSize(ConditionBase):
     References:
         [MSDN - System.Size](https://learn.microsoft.com/en-us/windows/win32/properties/props-system-size)
     """
+
     comparison: ComparisonType
     size: str
 

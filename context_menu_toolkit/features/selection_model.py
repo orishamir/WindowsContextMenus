@@ -14,6 +14,7 @@ class SelectionModel(IFeature):
     Attributes:
         amount: The amount from the SelectionModelAmount enum.
     """
+
     amount: SelectionModelAmount
 
     def apply_to(self, tree: RegistryKey) -> None:
@@ -28,6 +29,7 @@ class SelectionModelAmount(StrEnum):
     References:
         <https://learn.microsoft.com/en-us/windows/win32/shell/how-to-employ-the-verb-selection-model>
     """
+
     SINGLE = "Single"
     MULTIPLE = "Player"
     FIFTEEN_ITEMS = "Document"

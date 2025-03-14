@@ -13,6 +13,7 @@ class MUIVerb(IFeature):
               You can also use string localization, which tells Windows to look up a string resource from a DLL (or EXE) file.
               For example `MUIVerb=@shell32.dll,-8518` -> `"Send To"`
     """
+
     name: str
 
     def apply_to(self, tree: RegistryKey) -> None:

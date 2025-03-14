@@ -14,6 +14,7 @@ class Icon(IFeature):
     Attributes:
         path_to_icon: Windows dll/exe icon, or a path on the local machine for the icon.
     """
+
     path_to_icon: WindowsIcon | str
 
     def apply_to(self, tree: RegistryKey) -> None:
@@ -46,6 +47,7 @@ class WindowsIcon(StrEnum):
     [^2]: <https://www.digitalcitizen.life/where-find-most-windows-10s-native-icons>
     [^3]: <https://diymediahome.org/windows-icons-reference-list-with-details-locations-images> - Older icons
     """
+
     THIS_PC = "shell32.dll,-16"
     DOCUMENTS_FOLDER = "shell32.dll,-235"
     PICTURES_FOLDER = "shell32.dll,-236"

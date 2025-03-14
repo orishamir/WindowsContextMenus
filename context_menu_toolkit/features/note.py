@@ -11,6 +11,7 @@ class Note(IFeature):
     Attributes:
         note: The text note that should be added to the registry.
     """
+
     note: str
 
     def apply_to(self, tree: RegistryKey) -> None:

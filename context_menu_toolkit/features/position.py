@@ -18,6 +18,7 @@ class Position(IFeature):
         and this Position feature will merely specify the general preference.
         For example, it may move your context menu lower down the list, but not all the way.
     """
+
     position: Literal["Top", "Bottom"]
 
     def apply_to(self, tree: RegistryKey) -> None:

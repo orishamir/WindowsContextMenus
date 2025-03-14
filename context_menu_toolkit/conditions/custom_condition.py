@@ -6,6 +6,7 @@ from context_menu_toolkit.conditions.base_class.condition_base_class import Cond
 @dataclass
 class CustomCondition(ConditionBase):
     """Custom Condition in the Advanced Query Standard (aqs) representation."""
+
     aqs_condition: str
 
     def to_aqs_string(self) -> str:

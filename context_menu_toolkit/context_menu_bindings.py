@@ -12,6 +12,7 @@ class MenuAccessScope(StrEnum):
     Either all users or current user only.
     The enum's value indicates the base registry location of that scope.
     """
+
     ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
     CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
     # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.
@@ -35,6 +36,7 @@ class ContextMenuBinding:
                         For example files/folders/drives/etc.
                         Should be a string. See MenuItemType for options and descriptions.
     """
+
     menu_item_type: str | MenuItemType
     access_scope: MenuAccessScope = MenuAccessScope.ALL_USERS
 

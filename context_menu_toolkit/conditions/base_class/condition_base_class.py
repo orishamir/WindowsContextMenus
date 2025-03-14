@@ -69,6 +69,7 @@ class And(ConditionBase):
         )
         ```
     """
+
     conditions: list[ICondition]
 
     def to_aqs_string(self) -> str:
@@ -95,6 +96,7 @@ class Or(ConditionBase):
         )
         ```
     """
+
     conditions: list[ICondition]
 
     def to_aqs_string(self) -> str:
@@ -116,6 +118,7 @@ class Not(ConditionBase):
         )
         ```
     """
+
     condition: ICondition
 
     def to_aqs_string(self) -> str:
