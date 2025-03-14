@@ -9,7 +9,6 @@ nav:
     - context_menu_bindings/access_scope.md
     - context_menu_bindings/menu_item_type.md
   - Features:
-    - features/index.md
     - features/ifeature.md
     - features/display_text.md
     - features/command.md
