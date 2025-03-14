@@ -38,6 +38,10 @@ test = [
 lint = [
     "ruff",
 ]
+typechecking = [
+    'mypy',
+    'pyright',
+]
 
 [project.urls]
 Homepage = "https://github.com/orishamir/WindowsContextMenus"
@@ -47,6 +51,16 @@ exclude = [
   "/.*",
   "/design",
   "/examples",
+]
+
+[tool.mypy]
+files = [
+    "context_menu_toolkit",
+]
+
+[tool.pyright]
+include = [
+    "context_menu_toolkit",
 ]
 
 [tool.ruff]
