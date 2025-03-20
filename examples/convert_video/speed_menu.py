@@ -5,14 +5,14 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
 from context_menu_toolkit.context_menu import ContextMenu
 from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
-from context_menu_toolkit.features import DisplayText, Command
+from context_menu_toolkit.features import DisplayText, Command, Icon
 from context_menu_toolkit.registry_interaction import apply_context_menu
 
-ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%V"-1.5x.mp4'
-FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%V"-1.25x.mp4'
-THREE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/0.75" -filter:a "atempo=0.75" "%V"-0.75x.mp4'
-HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/0.5" -filter:a "atempo=0.5" "%V"-0.5x.mp4'
-QUARTER_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -filter:v "setpts=PTS/0.25" -filter:a "atempo=0.5,atempo=0.5" "%V"-0.25x.mp4'
+ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%1"-1.5x.mp4'
+FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%1"-1.25x.mp4'
+THREE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.75" -filter:a "atempo=0.75" "%1"-0.75x.mp4'
+HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.5" -filter:a "atempo=0.5" "%1"-0.5x.mp4'
+QUARTER_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.25" -filter:a "atempo=0.5,atempo=0.5" "%1"-0.25x.mp4'
 
 speed_submenus = [
     ContextMenu(
@@ -57,7 +57,7 @@ speed_menu = ContextMenu(
     "ConvertSpeedMenu",
     [
         DisplayText("Change speed..."),
-        # Icon(r"C:\Users\ori\Pictures\arrow.ico"),
+        Icon("wmploc.dll,-29608"),
     ],
     speed_submenus,
 )

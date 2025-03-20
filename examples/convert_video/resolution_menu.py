@@ -22,7 +22,7 @@ class Encoding(StrEnum):
     HEVC = "hevc"
 
 
-BASE_COMMAND = 'cmd.exe /c ffmpeg -i "%V" -vf "scale=-1:{res}" -c:v libx264 -preset fast -c:a copy {output_name}'
+BASE_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -vf "scale=-1:{res}" -c:v libx264 -preset fast -c:a copy {output_name}'
 
 resolution_submenus = []
 
@@ -35,7 +35,7 @@ for resolution in (Resolution.HD, Resolution.FHD):
                 Command(
                     BASE_COMMAND.format(
                         res=resolution.rstrip("p"),
-                        output_name=f'"%V"-{resolution}.mp4',
+                        output_name=f'"%1"-{resolution}.mp4',
                     )
                 ),
             ]
@@ -47,7 +47,7 @@ resolution_menu = ContextMenu(
     "ConvertResolutionMenu",
     [
         DisplayText("Convert resolution..."),
-        Icon(r"C:\Users\ori\Pictures\arrow.ico"),
+        Icon("wmploc.dll,-1503"),
     ],
     resolution_submenus,
 )
