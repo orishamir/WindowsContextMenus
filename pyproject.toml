@@ -100,7 +100,6 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
 "!tests/**" = ["PT"]  # disable PT everywhere except tests
 
 [tool.ruff.lint.pydocstyle]

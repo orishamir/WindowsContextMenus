@@ -6,3 +6,11 @@ References:
 from .registry_key import RegistryKey
 from .registry_path import RegistryPath, TopLevelKey
 from .registry_value import DataType, RegistryValue
+
+__all__ = [
+    "RegistryKey",
+    "RegistryPath",
+    "TopLevelKey",
+    "DataType",
+    "RegistryValue",
+]

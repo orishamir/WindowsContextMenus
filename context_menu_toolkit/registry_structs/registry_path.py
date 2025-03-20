@@ -75,14 +75,13 @@ class RegistryPath:
         return f"{top_level}\\{subkeys}"
 
     def _validate_path(self, path: str) -> None:
-        top_level, subkeys = path.split("\\", maxsplit=1)
+        top_level, _ = path.split("\\", maxsplit=1)
 
         if top_level not in TopLevelKey:
             raise ValueError(f"top level key does not exist: {top_level}")
 
     def __truediv__(self, other: str | RegistryPath) -> RegistryPath:
-        if not isinstance(other, str | RegistryPath):
-            raise TypeError(f"other must be a string or RegistryPath. {type(other)=}")
+        assert isinstance(other, str | RegistryPath), f"other must be a string or RegistryPath. {type(other)=}"
 
         if isinstance(other, RegistryPath):
             other = str(other)
