@@ -11,3 +11,18 @@ from .position import Position
 from .selection_model import SelectionModel, SelectionModelAmount
 from .separator import Separator
 from .shift_click import ShiftClick
+
+__all__ = [
+    "Command", "CommandPlaceholder",
+    "ConditionFeature",
+    "Disabled",
+    "DisplayText",
+    "Icon", "WindowsIcon",
+    "IFeature",
+    "NeverDefault",
+    "NoWorkingDirectory",
+    "Position",
+    "SelectionModel", "SelectionModelAmount",
+    "Separator",
+    "ShiftClick",
+]
