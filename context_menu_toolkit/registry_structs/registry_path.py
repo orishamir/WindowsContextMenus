@@ -55,7 +55,8 @@ class RegistryPath:
         _, subkeys = self._path.split("\\", maxsplit=1)
         return subkeys
 
-    def _normalize_raw_path(self, raw_path: str) -> str:
+    @staticmethod
+    def _normalize_raw_path(raw_path: str) -> str:
         r"""Convert raw_path to a normalized registry path string.
 
         Example:
