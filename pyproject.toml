@@ -40,8 +40,8 @@ lint = [
     "ruff",
 ]
 typechecking = [
-    'mypy',
-    'pyright',
+    "mypy",
+    "pyright",
 ]
 
 [project.urls]
@@ -65,6 +65,7 @@ pythonVersion = "3.12"
 include = [
     "context_menu_toolkit/",
 ]
+typeCheckingMode = "strict"
 
 [tool.ruff]
 extend-exclude = ["examples"]
