@@ -20,14 +20,16 @@ class RegistryPath:
     This class mimics the API of `pathlib.Path`, allowing intuitive manipulation of registry paths.
     """
 
-    _path: str
+    _normalized_path: str
 
-    def __init__(self, path: str) -> None:
+    def __init__(self, *args: str) -> None:
         """Construct RegistryLocation object from a human-readable location string."""
+        path = "\\".join(args)
+
         normalized_path = self._normalize_raw_path(path)
         self._validate_path(normalized_path)
 
-        self._path = normalized_path
+        self._normalized_path = normalized_path
 
     @property
     def top_level_key(self) -> TopLevelKey:
@@ -39,7 +41,7 @@ class RegistryPath:
             # TopLevelKey.HKEY_CURRENT_USER
             ```
         """
-        top_level_str, _ = self._path.split("\\", maxsplit=1)
+        top_level_str, _ = self._normalized_path.split("\\", maxsplit=1)
         return TopLevelKey(top_level_str)
 
     @property
@@ -52,8 +54,20 @@ class RegistryPath:
             # Software\classes\*
             ```
         """
-        _, subkeys = self._path.split("\\", maxsplit=1)
+        _, subkeys = self._normalized_path.split("\\", maxsplit=1)
         return subkeys
+
+    @property
+    def parent(self) -> RegistryPath:
+        parts = self.parts
+        if len(parts) == 1:
+            return self
+
+        return RegistryPath(*parts[:-1])
+
+    @property
+    def parts(self) -> list[str]:
+        return self._normalized_path.split("\\")
 
     @staticmethod
     def _normalize_raw_path(raw_path: str) -> str:
@@ -88,7 +102,7 @@ class RegistryPath:
             other = str(other)
 
         return RegistryPath(
-            self._path + f"\\{other.strip("\\")}",
+            self._normalized_path + f"\\{other.strip("\\")}",
         )
 
     def __str__(self) -> str:
@@ -100,10 +114,11 @@ class RegistryPath:
             > )
             # output: "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell"
         """
-        try:
-            self._validate_path(self._path)
-        except ValueError as e:
-            # this means something bad happened that caused _path to become invalid.
-            raise AssertionError("discrepancy found: internal path is invalid") from e
+        return self._normalized_path
 
-        return self._path
+    def __hash__(self) -> int:
+        return hash(self._normalized_path)
+
+    def __eq__(self, other: object) -> bool:
+        return str(self) == str(other)
+
