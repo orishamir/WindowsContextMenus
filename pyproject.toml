@@ -34,7 +34,7 @@ docs = [
 ]
 test = [
     "pytest",
-    "parameterized",
+    "pytest-mock",
 ]
 lint = [
     "ruff",
