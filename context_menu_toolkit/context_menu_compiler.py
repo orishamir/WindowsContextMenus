@@ -9,11 +9,10 @@ from context_menu_toolkit.features import (
     NoWorkingDirectory,
     Position,
     Separator,
+    SeperatorLocation,
     ShiftClick,
 )
-from context_menu_toolkit.features.separator import SeperatorLocation
-from context_menu_toolkit.registry_structs.registry_key import RegistryKey
-from context_menu_toolkit.registry_structs.registry_value import DataType, RegistryValue
+from context_menu_toolkit.registry_structs import DataType, RegistryKey, RegistryValue
 
 
 class ContextMenuRegistryCompiler:
@@ -23,18 +22,17 @@ class ContextMenuRegistryCompiler:
         """Compile to registry."""
         tree = RegistryKey(name=menu.display_text)
 
-        if menu.submenus:
-            tree.values.append(
-                RegistryValue(name="SubCommands", type=DataType.REG_SZ, data=""),
-            )
-
         self._apply_features(menu, tree)
 
         if menu.submenus:
             subkeys: list[RegistryKey] = [self.compile(submenu) for submenu in menu.submenus]
 
-            tree.subkeys.append(
+            tree.add_subkey(
                 RegistryKey(name="shell", subkeys=subkeys),
+            )
+
+            tree.add_value(
+                RegistryValue(name="SubCommands", type=DataType.REG_SZ, data=""),
             )
 
         return tree

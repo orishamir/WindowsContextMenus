@@ -20,7 +20,7 @@ class Separator(IFeature):
     location: SeperatorLocation
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=self.location),
         )
 

@@ -19,6 +19,12 @@ class RegistryKey(BaseModel):
     values: list[RegistryValue] = []
     subkeys: list[RegistryKey] = []
 
+    def add_subkey(self, key: RegistryKey) -> None:
+        self.subkeys.append(key)
+
+    def add_value(self, value: RegistryValue) -> None:
+        self.values.append(value)
+
     def export_reg(self, location: RegistryPath) -> Generator[str]:
         r"""Export the Context Menu as a .reg file format.
 

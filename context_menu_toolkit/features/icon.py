@@ -17,7 +17,7 @@ class Icon(IFeature):
     path_to_icon: WindowsIcon | str
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="Icon", type=DataType.REG_SZ, data=str(self.path_to_icon)),
         )
 

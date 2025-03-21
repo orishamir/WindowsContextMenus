@@ -12,6 +12,6 @@ class NeverDefault(IFeature):
     """
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="NeverDefault", type=DataType.REG_SZ, data=""),
         )

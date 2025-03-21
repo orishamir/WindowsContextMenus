@@ -30,7 +30,7 @@ class Command(IFeature):
     command: str
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.subkeys.append(
+        tree.add_subkey(
             RegistryKey(name=COMMAND_KEY_NAME, values=[
                 RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.command),
             ]),

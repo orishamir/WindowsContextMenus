@@ -21,6 +21,6 @@ class Position(IFeature):
     position: Literal["Top", "Bottom"]
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="Position", type=DataType.REG_SZ, data=self.position),
         )

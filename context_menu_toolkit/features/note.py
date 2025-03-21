@@ -14,6 +14,6 @@ class Note(IFeature):
     note: str
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="Note", type=DataType.REG_SZ, data=self.note),
         )

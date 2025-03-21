@@ -18,6 +18,6 @@ class NoWorkingDirectory(IFeature):
     """
 
     def apply_registry(self, tree: RegistryKey) -> None:
-        tree.values.append(
+        tree.add_value(
             RegistryValue(name="NoWorkingDirectory", type=DataType.REG_SZ, data=""),
         )

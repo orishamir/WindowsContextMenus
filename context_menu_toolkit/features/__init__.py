@@ -1,6 +1,6 @@
 """Features are used for customizing the context menu."""
+from .aqs_condition import AqsCondition
 from .command import Command, CommandPlaceholder
-from .condition import Condition
 from .disabled import Disabled
 from .display_text import DisplayText
 from .has_lua_shield import HasLuaShield
@@ -9,12 +9,12 @@ from .ifeature import IFeature
 from .never_default import NeverDefault
 from .no_working_directory import NoWorkingDirectory
 from .position import Position
-from .separator import Separator
+from .separator import Separator, SeperatorLocation
 from .shift_click import ShiftClick
 
 __all__ = [
+    "AqsCondition",
     "Command", "CommandPlaceholder",
-    "Condition",
     "Disabled",
     "DisplayText",
     "HasLuaShield",
@@ -23,6 +23,6 @@ __all__ = [
     "NeverDefault",
     "NoWorkingDirectory",
     "Position",
-    "Separator",
+    "Separator", "SeperatorLocation",
     "ShiftClick",
 ]
