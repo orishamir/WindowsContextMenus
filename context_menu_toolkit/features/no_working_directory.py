@@ -17,7 +17,7 @@ class NoWorkingDirectory(IFeature):
         <https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry>
     """
 
-    def apply_to(self, tree: RegistryKey) -> None:
+    def apply_registry(self, tree: RegistryKey) -> None:
         tree.values.append(
             RegistryValue(name="NoWorkingDirectory", type=DataType.REG_SZ, data=""),
         )

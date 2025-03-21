@@ -15,7 +15,7 @@ class HasLuaShield(IFeature):
         <https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#getting-dynamic-behavior-for-static-verbs-by-using-advanced-query-syntax>
     """
 
-    def apply_to(self, tree: RegistryKey) -> None:
+    def apply_registry(self, tree: RegistryKey) -> None:
         tree.values.append(
             RegistryValue(name="HasLUAShield", type=DataType.REG_SZ, data=""),
         )

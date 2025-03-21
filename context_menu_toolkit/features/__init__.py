@@ -1,28 +1,28 @@
 """Features are used for customizing the context menu."""
 from .command import Command, CommandPlaceholder
-from .conditionfeature import ConditionFeature
+from .condition import Condition
 from .disabled import Disabled
 from .display_text import DisplayText
-from .icon_feature import Icon, WindowsIcon
+from .has_lua_shield import HasLuaShield
+from .icon import Icon, WindowsIcon
 from .ifeature import IFeature
 from .never_default import NeverDefault
 from .no_working_directory import NoWorkingDirectory
 from .position import Position
-from .selection_model import SelectionModel, SelectionModelAmount
 from .separator import Separator
 from .shift_click import ShiftClick
 
 __all__ = [
     "Command", "CommandPlaceholder",
-    "ConditionFeature",
+    "Condition",
     "Disabled",
     "DisplayText",
+    "HasLuaShield",
     "Icon", "WindowsIcon",
     "IFeature",
     "NeverDefault",
     "NoWorkingDirectory",
     "Position",
-    "SelectionModel", "SelectionModelAmount",
     "Separator",
     "ShiftClick",
 ]

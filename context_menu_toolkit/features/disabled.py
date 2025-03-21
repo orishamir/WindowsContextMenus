@@ -8,7 +8,7 @@ from context_menu_toolkit.registry_structs import DataType, RegistryKey, Registr
 class Disabled(IFeature):
     """Make the context menu disabled."""
 
-    def apply_to(self, tree: RegistryKey) -> None:
+    def apply_registry(self, tree: RegistryKey) -> None:
         tree.values.append(
             RegistryValue(name="LegacyDisable", type=DataType.REG_SZ, data=""),
         )

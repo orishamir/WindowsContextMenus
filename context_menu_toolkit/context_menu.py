@@ -1,97 +1,51 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import datetime
+from typing import Literal
 
-from context_menu_toolkit.context_menu_bindings import ContextMenuBinding
-from context_menu_toolkit.features import IFeature
-from context_menu_toolkit.features.sub_commands import SubCommands
-from context_menu_toolkit.registry_structs import RegistryKey
+from pydantic import BaseModel
+
+from context_menu_toolkit.features.icon import WindowsIcon
 
 
-@dataclass
-class ContextMenu:
-    """Represents a context menu.
+class ContextMenu(BaseModel):
+    r"""Represents a context menu.
 
     Attributes:
-        name: The name of the context menu, as it would appear in the registry when applied.
-        features: The list of features to use. See [Features](../features/index.md).
-        submenus: An optional list of submenus.
+        display_text: The text that should be displayed for the context menu on right-click.
+            You can also use string localization, which tells Windows to look up a string resource from a DLL (or EXE) file.
+            For example `MUIVerb=@shell32.dll,-8518` -> `"Send To"`
+        command: Add a command that gets executed when clicking the context menu. Use CommandPlaceholder.
+        icon: An icon that will be displayed for the context menu. Can be a windows dll/exe icon, or a path on the local machine for the icon.
+        shift_click: Open context menu only when shift is pressed alongside right click.
+        never_default: Prevents Windows from using this context-menu item when no default app is set for the file extension.
+        no_working_directory: Don't use the clicked item's working directory path when opening the context menu item.
+            Normally, Windows sets the working directory to the folder containing the file/folder/etc you clicked on.
+            This can sometimes lead to unintended behavior if the program being launched makes assumptions about its working directory.
+            By setting NoWorkingDirectory, Windows skips setting the working directory, and the program will inherit the default working directory (often C:\Windows\System32 or whatever the default is for the parent process).[^1]
+        position: Determines the general position of the context menu.
+            Warning: This feature will NOT necessarily set the position.
+                The way Windows determines the location is complicated,
+                and Position feature merely specifies the general preference.
+                For example, it may move your context menu lower down the list, but not all the way.
+        separator: Adds a line separator before or after the context menu. Only works with submenus. [^2]
+        has_lua_shield: Display a User Account Control (UAC) shield.
+            Note: You can also use an Icon.[^3]
+        disabled: Make the context menu disabled.
+
+    References:
+        [^1]: <https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry>
+        [^2]: <https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#creating-cascading-menus-with-the-extendedsubcommandskey-registry-entry>
+        [^3]: <https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers#getting-dynamic-behavior-for-static-verbs-by-using-advanced-query-syntax>
     """
 
-    name: str
-    features: list[IFeature]
-    submenus: list[ContextMenu] | None = None
-
-    def build(self) -> RegistryKey:
-        """Build context menu as registry.
-
-        Builds the context menu to RegistryKey which can then
-        be added to the registry in the correct location.
-
-        Returns:
-            The registry-key representation of the context menu.
-        """
-        cm = RegistryKey(name=self.name)
-
-        if self.submenus:
-            self._modify_because_submenus()
-
-        for feature in self.features:
-            feature.apply_to(cm)
-
-        if self.submenus:
-            subkeys: list[RegistryKey] = [submenu.build() for submenu in self.submenus]
-
-            cm.subkeys.append(
-                RegistryKey(name="shell", subkeys=subkeys),
-            )
-
-        return cm
-
-    def export_reg(self, bindings: list[ContextMenuBinding]) -> list[str]:
-        r"""Export the Context Menu as a .reg file format.
-
-        Syntax of .reg file:
-        <https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23>
-
-        Example:
-            ```
-            Windows Registry Editor Version 5.00
-
-            [HKEY_LOCAL_MACHINE\Software\Classes\*\shell\ConvertVideo]
-            "MUIVerb"="Convert mp4..."
-            ```
-
-        Returns:
-            A list of lines of the .reg file.
-        """
-        built_menu: RegistryKey = self.build()
-
-        lines = [
-            "Windows Registry Editor Version 5.00",
-            "",
-            "; Created by: ContextMenuToolkit @ https://github.com/orishamir/WindowsContextMenus/",
-            f"; Created on: {datetime.now().strftime('%B %d, %Y')}",
-            "",
-        ]
-
-        for i, binding in enumerate(bindings):
-            lines.append(f";;; menu for binding #{i + 1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
-            lines.extend(
-                built_menu.export_reg(
-                    binding.construct_registry_path(),
-                ),
-            )
-            lines.append(f";;; end of menu for binding #{i + 1}: access_scope={binding.access_scope.name}, item_type={binding.menu_item_type}")
-
-        return lines
-
-    def _modify_because_submenus(self) -> None:
-        """Modify context menu to allow for submenus.
-
-        If we have submenus, then for whatever reason instead of using (Default) as
-        a way to tell the label, we need to set MUIVerb to the label.
-        Also, we need to add an empty SubCommands value.
-        """
-        self.features.append(SubCommands())
+    display_text: str
+    command: str
+    icon: WindowsIcon | str | None = None
+    shift_click: bool = False
+    never_default: bool = False
+    no_working_directory: bool | None = None
+    position: Literal["Top", "Bottom"] | None = None
+    separator: Literal["Before", "After"] | None = None
+    has_lua_shield: bool = False
+    disabled: bool = False
+    submenus: list[ContextMenu] = []
