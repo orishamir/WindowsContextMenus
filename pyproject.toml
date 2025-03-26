@@ -101,6 +101,7 @@ select = [
 ignore = [
     "D100", "D102", "D104", "D105",
     "E501",
+    "D101",  # docstring in class
 ]
 preview = true
 explicit-preview-rules = true

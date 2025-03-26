@@ -3,78 +3,71 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from context_menu_toolkit.conditions import ExtensionType
-from context_menu_toolkit.conditions.comparison_type import ComparisonType
-from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
-from context_menu_toolkit.registry_interaction import apply_context_menu
-from context_menu_toolkit.context_menu import ContextMenu
-from context_menu_toolkit.features import (
-    Command,
-    DisplayText,
-    Icon,
-    ConditionFeature
-)
+
+from context_menu_toolkit import ContextMenuBinding, MenuItemType, Condition, ContextMenu, RegistryHandler
+
 
 CONVERT_AUDIO_COMMAND = 'cmd.exe /c ffmpeg -i "%V" {}'
 
 ConvertToWAV = ContextMenu(
-    "ConvertToWAV",
-    [
-        DisplayText("Convert to WAV"),
-        Command(CONVERT_AUDIO_COMMAND.format('"%V".wav')),
-        ConditionFeature(
-            ExtensionType(ComparisonType.NOT_EQUAL, ".wav")
-        )
-    ],
-
+    display_text="Convert to WAV",
+    command=CONVERT_AUDIO_COMMAND.format('"%V".wav'),
+    condition=Condition.model_validate(
+        {
+            "extension": {
+                "ne": ".wav",
+            },
+        }
+    ),
 )
 
 ConvertToMP3 = ContextMenu(
-    "ConvertToMP3",
-    [
-        DisplayText("Convert to MP3"),
-        Command(CONVERT_AUDIO_COMMAND.format('"%V".mp3')),
-        ConditionFeature(
-            ExtensionType(ComparisonType.NOT_EQUAL, ".mp3"),
-        )
-    ]
+    display_text="Convert to MP3",
+    command=CONVERT_AUDIO_COMMAND.format('"%V".mp3'),
+    condition=Condition.model_validate(
+        {
+            "extension": {
+                "ne": ".mp3"
+            }
+        }
+    )
 )
 
 ConvertToOGG = ContextMenu(
-    "ConvertToOGG",
-    [
-        DisplayText("Convert to OGG"),
-        Command(CONVERT_AUDIO_COMMAND.format('"%V".ogg')),
-        ConditionFeature(
-            ExtensionType(ComparisonType.NOT_EQUAL, ".ogg"),
-        )
-    ]
+    display_text="Convert to OGG",
+    command=CONVERT_AUDIO_COMMAND.format('"%V".ogg'),
+    condition=Condition.model_validate(
+        {
+            "extension": {
+                "ne": ".ogg"
+            }
+        }
+    )
 )
 
 ConvertToFLAC = ContextMenu(
-    "ConvertToFLAC",
-    [
-        DisplayText("Convert to FLAC"),
-        Command(CONVERT_AUDIO_COMMAND.format('"%V".flac')),
-        ConditionFeature(
-            ExtensionType(ComparisonType.NOT_EQUAL, ".flac"),
-        )
-    ]
+    display_text="Convert to FLAC",
+    command=CONVERT_AUDIO_COMMAND.format('"%V".flac'),
+    condition=Condition.model_validate(
+        {
+            "extension": {
+                "ne": ".flac"
+            }
+        }
+    )
 )
 
-main = ContextMenu(
-    "ConvertAudioType",
-    [
-        DisplayText("Convert to..."),
-        Icon(r"D:\Pictures\Convert_arrow.ico"),
-        ConditionFeature(
-            ExtensionType(ComparisonType.EQUALS, ".mp3") |
-            ExtensionType(ComparisonType.EQUALS, ".wav") |
-            ExtensionType(ComparisonType.EQUALS, ".ogg") |
-            ExtensionType(ComparisonType.EQUALS, ".flac")
-        )
-    ],
-    [
+menu = ContextMenu(
+    display_text="Convert to...",
+    icon=r"D:\Pictures\Convert_arrow.ico",
+    condition=Condition.model_validate(
+        {
+            "extension": {
+                "in": [".mp3", ".wav", ".ogg", ".flac"],
+            },
+        }
+    ),
+    submenus=[
         ConvertToWAV,
         ConvertToMP3,
         ConvertToOGG,
@@ -83,12 +76,11 @@ main = ContextMenu(
 )
 
 if __name__ == '__main__':
-    apply_context_menu(
-        main,
+    RegistryHandler().apply_context_menu(
+        menu,
         bindings=[
             ContextMenuBinding(
                 MenuItemType.ALL_FILES,
-                MenuAccessScope.ALL_USERS,
             ),
         ],
     )
