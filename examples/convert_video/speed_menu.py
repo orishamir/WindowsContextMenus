@@ -3,10 +3,8 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from context_menu_toolkit.context_menu import ContextMenu
-from context_menu_toolkit.context_menu_bindings import ContextMenuBinding, MenuAccessScope, MenuItemType
-from context_menu_toolkit.features import DisplayText, Command, Icon
-from context_menu_toolkit.registry_interaction import apply_context_menu
+from context_menu_toolkit import ContextMenuBinding, MenuItemType, ContextMenu, RegistryHandler
+
 
 ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%1"-1.5x.mp4'
 FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%1"-1.25x.mp4'
@@ -16,59 +14,40 @@ QUARTER_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.25" -
 
 speed_submenus = [
     ContextMenu(
-        "SpeedBy1.5x",
-        [
-            DisplayText("Speed up by 1.5x"),
-            Command(ONE_AND_HALF_SPEED_COMMAND),
-        ],
+        display_text="Speed up by 1.5x",
+        command=ONE_AND_HALF_SPEED_COMMAND,
     ),
     ContextMenu(
-        "SpeedBy1.25x",
-        [
-            DisplayText("Speed up by 1.25x"),
-            Command(FIVE_QUARTERS_SPEED_COMMAND),
-        ],
+        display_text="Speed up by 1.25x",
+        command=FIVE_QUARTERS_SPEED_COMMAND,
     ),
     ContextMenu(
-        "SpeedBy0.75x",
-        [
-            DisplayText("Slow down by 0.75x"),
-            Command(THREE_QUARTERS_SPEED_COMMAND),
-        ],
+        display_text="Slow down by 0.75x",
+        command=THREE_QUARTERS_SPEED_COMMAND,
     ),
     ContextMenu(
-        "SpeedBy0.5x",
-        [
-            DisplayText("Slow down by 0.5x"),
-            Command(HALF_SPEED_COMMAND),
-        ],
+        display_text="Slow down by 0.5x",
+        command=HALF_SPEED_COMMAND,
     ),
     ContextMenu(
-        "SpeedBy0.25x",
-        [
-            DisplayText("Slow down by 0.25x"),
-            Command(QUARTER_SPEED_COMMAND),
-        ]
+        display_text="Slow down by 0.25x",
+        command=QUARTER_SPEED_COMMAND,
     ),
 ]
 
 
 speed_menu = ContextMenu(
-    "ConvertSpeedMenu",
-    [
-        DisplayText("Change speed..."),
-        Icon("wmploc.dll,-29608"),
-    ],
-    speed_submenus,
+    display_text=("Change speed..."),
+    icon=("wmploc.dll,-29608"),
+    submenus=speed_submenus,
 )
 
 if __name__ == '__main__':
-    apply_context_menu(
+    RegistryHandler().apply_context_menu(
         speed_menu,
         bindings=[
             ContextMenuBinding(
                 MenuItemType.ALL_FILES,
-                MenuAccessScope.ALL_USERS,
             ),
         ]
     )
