@@ -22,7 +22,7 @@ class RegistryValue(BaseModel):
 
     name: str
     type: DataType
-    data: str | bytes | int
+    data: str | int
 
     def export_reg(self) -> str:
         """Export the registry value as a .reg file format.

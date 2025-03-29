@@ -24,11 +24,26 @@ class Command(IShellAttribute):
         ```
 
     """
+
     command: str
 
     def apply_to_tree(self, tree: RegistryKey) -> None:
         tree.add_subkey(
-            RegistryKey(name=COMMAND_KEY_NAME, values=[
-                RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.command),
-            ]),
+            RegistryKey(
+                name=COMMAND_KEY_NAME,
+                values=[
+                    RegistryValue(name=DEFAULT_VALUE, type=DataType.REG_SZ, data=self.command),
+                ],
+            ),
         )
+
+    @classmethod
+    def from_tree(cls, tree: RegistryKey) -> "Command | None":
+        subkey = tree.get_subkey(COMMAND_KEY_NAME)
+        if subkey is None:
+            return None
+
+        value = subkey.get_value(DEFAULT_VALUE)
+        if value is not None and isinstance(value.data, str):
+            return Command(value.data)
+        return None

@@ -14,6 +14,7 @@ from context_menu_toolkit.models.condition_comparisons import (
 )
 from context_menu_toolkit.models.conditions import Condition
 from context_menu_toolkit.registry.aqs_conditions.aqs_property_condition import AqsProperty, AqsPropertyCondition, ComparisonType
+from context_menu_toolkit.registry.aqs_conditions.custom_aqs_condition import CustomAqsCondition
 from context_menu_toolkit.registry.aqs_conditions.iaqscondition import IAqsCondition
 from context_menu_toolkit.registry.aqs_conditions.logical_conditions import AqsAnd, AqsNot, AqsOr
 
@@ -31,6 +32,9 @@ class AqsConditionsExporter:
 
         if condition.extension is not None:
             conditions.append(self._compute_aqs_condition(AqsProperty.FILE_EXTENSION, condition.extension))
+
+        if condition.custom_aqs_condition is not None:
+            conditions.append(CustomAqsCondition(condition.custom_aqs_condition))
 
         if condition.and_ is not None:
             conditions.append(

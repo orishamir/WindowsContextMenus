@@ -22,6 +22,7 @@ class Condition(BaseModel, extra="forbid"):
     file_name: FileNameComparison | None = None
     extension: ExtensionComparison | None = None
     file_size: FileSizeComparison | None = None
+    custom_aqs_condition: str | None = None
     and_: list[Condition] | None = Field(default=None, alias="and")
     not_: Condition | None = Field(default=None, alias="not")
     nor: list[Condition] | None = None

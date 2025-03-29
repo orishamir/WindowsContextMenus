@@ -8,3 +8,7 @@ class IShellAttribute(Protocol):
 
     def apply_to_tree(self, tree: RegistryKey) -> None:
         """Modify `tree` such that the attribute is applied."""
+
+    @classmethod
+    def from_tree(cls, tree: RegistryKey) -> "IShellAttribute | None":
+        """Create the shell attribute from a RegistryKey tree."""

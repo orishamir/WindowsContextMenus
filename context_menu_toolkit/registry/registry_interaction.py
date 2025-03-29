@@ -1,14 +1,14 @@
 import typing
 import winreg
 
-from context_menu_toolkit.registry.registry_structs import RegistryKey, RegistryPath, RegistryValue, TopLevelKey
+from context_menu_toolkit.registry.registry_structs import DataType, RegistryKey, RegistryPath, RegistryValue, TopLevelKey
 
 RESERVED_FLAG = 0
 
 _TOP_LEVEL_KEY_TO_VALUE: dict[TopLevelKey, int] = {
     TopLevelKey.HKEY_CLASSES_ROOT: winreg.HKEY_CLASSES_ROOT,  # type: ignore[attr-defined]
     TopLevelKey.HKEY_CURRENT_USER: winreg.HKEY_CURRENT_USER,  # type: ignore[attr-defined]
-    TopLevelKey.HKEY_LOCAL_MACHINE: winreg.HKEY_LOCAL_MACHINE, # type: ignore[attr-defined]
+    TopLevelKey.HKEY_LOCAL_MACHINE: winreg.HKEY_LOCAL_MACHINE,  # type: ignore[attr-defined]
     TopLevelKey.HKEY_USERS: winreg.HKEY_USERS,  # type: ignore[attr-defined]
     TopLevelKey.HKEY_CURRENT_CONFIG: winreg.HKEY_CURRENT_CONFIG,  # type: ignore[attr-defined]
 }
@@ -25,6 +25,43 @@ def write_registry_key(key: RegistryKey, location: RegistryPath) -> None:
 
     for subkey in key.subkeys:
         write_registry_key(subkey, new_loc)
+
+
+def read_registry_key(location: RegistryPath) -> RegistryKey:
+    """Read key at `location`, recursively."""
+    with winreg.OpenKey(  # type: ignore[attr-defined]
+        _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
+        location.subkeys,
+        RESERVED_FLAG,
+        winreg.KEY_READ,  # type: ignore[attr-defined]
+    ) as key:
+        tree = RegistryKey(name=location.parts[-1])
+        tree.values.extend(_read_registry_values(key))
+
+        for i in range(1024):
+            try:
+                subkey_name = winreg.EnumKey(key, i)  # type: ignore[attr-defined]
+                tree.add_subkey(read_registry_key(location / subkey_name))
+            except OSError:
+                break
+    return tree
+
+
+def _read_registry_values(key: winreg.HKEYType) -> list[RegistryValue]:  # type: ignore[name-defined]
+    values: list[RegistryValue] = []
+    for i in range(1024):
+        try:
+            name, data, data_type = winreg.EnumValue(key, i)  # type: ignore[attr-defined]
+            values.append(
+                RegistryValue(
+                    name=name,
+                    type=DataType(data_type),
+                    data=data,
+                ),
+            )
+        except OSError:
+            break
+    return values
 
 
 @typing.no_type_check

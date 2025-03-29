@@ -21,4 +21,4 @@ if __name__ == '__main__':
             # ),
         # ]
     # )
-    print("\n".join(RegistryHandler().export_menu_as_reg_file(menu, bindings=[ContextMenuBinding(MenuItemType.ALL_FILES)])))
+    print("\n".join(RegistryHandler().export_reg_file(menu, bindings=[ContextMenuBinding(MenuItemType.ALL_FILES)])))

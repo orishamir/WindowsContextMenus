@@ -51,3 +51,21 @@ class RegistryKey(BaseModel):
         yield ""
         for subkey in self.subkeys:
             yield from subkey.export_reg(location / self.name)
+
+    def contains_subkey(self, name: str) -> bool:
+        return any(subkey.name.lower() == name.lower() for subkey in self.subkeys)
+
+    def contains_value(self, name: str) -> bool:
+        return any(value.name.lower() == name.lower() for value in self.values)
+
+    def get_value(self, name: str) -> RegistryValue | None:
+        for value in self.values:
+            if value.name.lower() == name.lower():
+                return value
+        return None
+
+    def get_subkey(self, name: str) -> RegistryKey | None:
+        for subkey in self.subkeys:
+            if subkey.name.lower() == name.lower():
+                return subkey
+        return None

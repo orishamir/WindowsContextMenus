@@ -5,11 +5,12 @@ from context_menu_toolkit.models.context_menu import ContextMenu
 from context_menu_toolkit.registry.exporting.aqs_conditions_exporter import AqsConditionsExporter
 from context_menu_toolkit.registry.registry_structs import DataType, RegistryKey, RegistryValue
 from context_menu_toolkit.registry.shell_attributes import (
+    AppliesTo,
     Command,
     Disabled,
-    DisplayText,
     HasLuaShield,
     Icon,
+    MUIVerb,
     NeverDefault,
     Note,
     NoWorkingDirectory,
@@ -22,35 +23,6 @@ from context_menu_toolkit.registry.shell_attributes import (
 
 class RegistryExporter:
     """Knows how to create a Registrykey from menu."""
-
-    def export_tree(self, menu: ContextMenu) -> RegistryKey:
-        """Export as a RegistryKey tree."""
-        tree = RegistryKey(name=menu.display_text)
-
-        self._apply_attributes(menu, tree)
-
-        if menu.condition is not None:
-            aqs_condition = AqsConditionsExporter().export_as_aqs_condition(menu.condition)
-            tree.add_value(
-                RegistryValue(
-                    name="AppliesTo",
-                    type=DataType.REG_SZ,
-                    data=aqs_condition.to_aqs_string(),
-                ),
-            )
-
-        if menu.submenus:
-            subkeys: list[RegistryKey] = [self.export_tree(submenu) for submenu in menu.submenus]
-
-            tree.add_subkey(
-                RegistryKey(name="shell", subkeys=subkeys),
-            )
-
-            tree.add_value(
-                RegistryValue(name="SubCommands", type=DataType.REG_SZ, data=""),
-            )
-
-        return tree
 
     def export_reg_file(self, menu: ContextMenu, bindings: list[ContextMenuBinding]) -> list[str]:
         r"""Export the Context Menu as a .reg file format.
@@ -69,7 +41,7 @@ class RegistryExporter:
         Returns:
             A list of lines of the .reg file.
         """
-        built_menu: RegistryKey = RegistryExporter().export_tree(menu)
+        built_menu: RegistryKey = self.export_tree(menu)
 
         lines = [
             "Windows Registry Editor Version 5.00",
@@ -90,8 +62,30 @@ class RegistryExporter:
 
         return lines
 
-    def _apply_attributes(self, menu: ContextMenu, tree: RegistryKey) -> None:
-        DisplayText(menu.display_text).apply_to_tree(tree)
+    def export_tree(self, menu: ContextMenu) -> RegistryKey:
+        """Export as a RegistryKey tree."""
+        tree = RegistryKey(name=menu.display_text)
+
+        self._export_attributes(menu, tree)
+
+        if menu.submenus:
+            self._export_submenus(menu, tree)
+
+        return tree
+
+    def _export_submenus(self, menu: ContextMenu, tree: RegistryKey) -> None:
+        subkeys: list[RegistryKey] = [self.export_tree(submenu) for submenu in menu.submenus]
+
+        tree.add_subkey(
+            RegistryKey(name="shell", subkeys=subkeys),
+        )
+
+        tree.add_value(
+            RegistryValue(name="SubCommands", type=DataType.REG_SZ, data=""),
+        )
+
+    def _export_attributes(self, menu: ContextMenu, tree: RegistryKey) -> None:
+        MUIVerb(menu.display_text).apply_to_tree(tree)
 
         if menu.command is not None:
             Command(menu.command).apply_to_tree(tree)
@@ -129,3 +123,7 @@ class RegistryExporter:
 
         if menu.disabled:
             Disabled().apply_to_tree(tree)
+
+        if menu.condition is not None:
+            aqs_condition = AqsConditionsExporter().export_as_aqs_condition(menu.condition)
+            AppliesTo(aqs_condition.to_aqs_string()).apply_to_tree(tree)

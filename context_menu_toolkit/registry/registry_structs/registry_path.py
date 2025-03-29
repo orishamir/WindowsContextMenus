@@ -6,6 +6,7 @@ from enum import StrEnum
 
 class TopLevelKey(StrEnum):
     """An enum representing the possible top-level registry keys."""
+
     HKEY_CLASSES_ROOT = "HKEY_CLASSES_ROOT"
     HKEY_CURRENT_USER = "HKEY_CURRENT_USER"
     HKEY_LOCAL_MACHINE = "HKEY_LOCAL_MACHINE"
@@ -35,8 +36,8 @@ class RegistryPath:
 
         Example:
             ```python
-            RegistryPath("HKEY_CURRENT_USER\Software\classes\*").top_level_key
-            # TopLevelKey.HKEY_CURRENT_USER
+            RegistryPath("HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*").top_level_key
+            # ["HKEY_LOCAL_MACHINE", "SOFTWARE", "Classes", "*"]
             ```
         """
         top_level_str, _ = self._path.split("\\", maxsplit=1)
@@ -54,6 +55,18 @@ class RegistryPath:
         """
         _, subkeys = self._path.split("\\", maxsplit=1)
         return subkeys
+
+    @property
+    def parts(self) -> list[str]:
+        r"""The path split into parts.
+
+        Example:
+            ```python
+            RegistryPath("HKEY_CURRENT_USER\Software\classes\*").parts
+            # Software\classes\*
+            ```
+        """
+        return self._path.split("\\")
 
     @staticmethod
     def _normalize_raw_path(raw_path: str) -> str:
@@ -88,7 +101,7 @@ class RegistryPath:
             other = str(other)
 
         return RegistryPath(
-            self._path + f"\\{other.strip("\\")}",
+            self._path + f"\\{other.strip('\\')}",
         )
 
     def __str__(self) -> str:
