@@ -110,7 +110,7 @@ jobs:
           pip install toml-cli
           VERSION=$(toml get --toml-path pyproject.toml project.version)
           echo "::notice::Package Version: $VERSION"
-          echo "VERSION=v$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Create release
         env:
@@ -118,7 +118,7 @@ jobs:
         run: |
           gh release create $VERSION \
               --repo="$GITHUB_REPOSITORY" \
-              --title="${GITHUB_REPOSITORY#*/} $VERSION" \
+              --title="$VERSION" \
               --generate-notes
 
       - name: Upload dists to release assets
