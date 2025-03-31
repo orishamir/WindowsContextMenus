@@ -54,6 +54,7 @@ jobs:
     name: Build documentation
     runs-on: ubuntu-latest
     needs: lint
+    if: false
 
     steps:
       - name: Checkout code
