@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "0.1.0rc5"
+version = "1.0.0a1"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
@@ -34,7 +34,6 @@ docs = [
 ]
 test = [
     "pytest",
-    "parameterized",
 ]
 lint = [
     "ruff",
@@ -93,14 +92,25 @@ select = [
     "D",    # pydocstyle
     "PL",   # pylint (all)
     "UP",   # pyupgrade
+    "TC",   # flake8-type-checking
+    "RUF",  # ruff
+    "PGH",  # pygrep-hooks
+    "FURB", # refurb
+    "W391", # preview - Extra newline at end of file
 ]
 ignore = [
     "D100", "D102", "D104", "D105",
     "E501",
+    "D101",  # docstring in class
 ]
+preview = true
+explicit-preview-rules = true
 
 [tool.ruff.lint.per-file-ignores]
 "!tests/**" = ["PT"]  # disable PT everywhere except tests
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = ["pydantic.BaseModel"]

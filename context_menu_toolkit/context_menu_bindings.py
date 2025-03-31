@@ -2,19 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import Literal
 
-from context_menu_toolkit.registry_structs.registry_path import RegistryPath
-
-
-class MenuAccessScope(StrEnum):
-    """The access scope of the context menu.
-
-    Either all users or current user only.
-    The enum's value indicates the base registry location of that scope.
-    """
-    ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
-    CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
-    # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.
+from context_menu_toolkit.registry.registry_structs.registry_path import RegistryPath
 
 
 @dataclass
@@ -30,13 +20,13 @@ class ContextMenuBinding:
         For more advanced control of conditions see `Condition` feature, `ICondition`, and `conditions`.
 
     Attributes:
-        access_scope: Bind to current user or all users
         menu_item_type: Determines which object type the context menu is relevant for.
                         For example files/folders/drives/etc.
                         Should be a string. See MenuItemType for options and descriptions.
+        access_scope: Bind to current user or all users.
     """
     menu_item_type: str | MenuItemType
-    access_scope: MenuAccessScope = MenuAccessScope.ALL_USERS
+    access_scope: Literal["all_users", "current_user"] = "all_users"
 
     def construct_registry_path(self) -> RegistryPath:
         r"""Compose the registry path that match the binding.
@@ -68,7 +58,9 @@ class ContextMenuBinding:
         """
         self._validate_parameters_provided()
 
-        return RegistryPath(self.access_scope) / self.menu_item_type / "shell"
+        scope_path = _MenuAccessScope.ALL_USERS if self.access_scope == "all_users" else _MenuAccessScope.CURRENT_USER
+
+        return RegistryPath(scope_path) / self.menu_item_type / "shell"
 
     def _validate_parameters_provided(self) -> None:
         """Validate that all parameters of the chosen item type are filled.
@@ -147,3 +139,13 @@ class MenuItemType(StrEnum):
         If both SHORTCUTS and ALL_FILES (or SPECIFIC_FILE_TYPE with .lnk) handler exists, this may cause unexpected
         behavior. See `CommandPlaceholder`s documentation for more details.
     """
+
+class _MenuAccessScope(StrEnum):
+    """The access scope of the context menu.
+
+    Either all users or current user only.
+    The enum's value indicates the base registry location of that scope.
+    """
+    ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
+    CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
+    # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.

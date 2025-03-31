@@ -8,7 +8,10 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
 
     steps:
       - name: Checkout code
@@ -16,10 +19,15 @@ jobs:
 
       - name: Lint
         uses: ./.github/actions/lint
+        with:
+          python-version: ${{ matrix.python-version }}
 
   typechecking:
     name: Typechecking
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
 
     steps:
       - name: Checkout code
@@ -27,10 +35,15 @@ jobs:
 
       - name: Typechecking
         uses: ./.github/actions/typechecking
+        with:
+          python-version: ${{ matrix.python-version }}
 
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
 
     steps:
       - name: Checkout code
@@ -38,6 +51,8 @@ jobs:
 
       - name: Test
         uses: ./.github/actions/test
+        with:
+          python-version: ${{ matrix.python-version }}
 
   build:
     name: Build
@@ -54,6 +69,7 @@ jobs:
     name: Build documentation
     runs-on: ubuntu-latest
     needs: lint
+    if: false
 
     steps:
       - name: Checkout code
