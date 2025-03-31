@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "1.0.0a1"
+version = "0.1.0"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
