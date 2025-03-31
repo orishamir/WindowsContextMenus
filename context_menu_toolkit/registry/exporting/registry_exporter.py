@@ -99,7 +99,7 @@ class RegistryExporter:
         if menu.never_default:
             NeverDefault().apply_to_tree(tree)
 
-        if menu.no_working_directory is not None:
+        if menu.no_working_directory:
             NoWorkingDirectory().apply_to_tree(tree)
 
         if menu.position is not None:

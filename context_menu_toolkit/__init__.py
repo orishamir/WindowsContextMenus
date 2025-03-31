@@ -9,7 +9,6 @@ __all__ = [
     "CommandPlaceholder",
     "Condition",
     "ContextMenu",
-    "ContextMenu",
     "ContextMenuBinding",
     "MenuItemType",
     "RegistryHandler",

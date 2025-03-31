@@ -47,7 +47,7 @@ class ContextMenu(BaseModel):
     icon: WindowsIcon | str | None = None
     shift_click: bool = False
     never_default: bool = False
-    no_working_directory: bool | None = None
+    no_working_directory: bool = False
     position: Literal["Top", "Bottom"] | None = None
     separator: Literal["After", "Before"] | None = None
     has_lua_shield: bool = False

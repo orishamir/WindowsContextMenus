@@ -5,9 +5,9 @@ from context_menu_toolkit.registry.shell_attributes import (
     AppliesTo,
     Command,
     Disabled,
-    MUIVerb,
     HasLuaShield,
     Icon,
+    MUIVerb,
     NeverDefault,
     Note,
     NoWorkingDirectory,
@@ -35,7 +35,7 @@ class RegistryImporter:
             return
 
         shell_subkey = root.subkeys[0]
-        if shell_subkey.name != "shell":
+        if shell_subkey.name.lower() != "shell":
             return
 
         menu.submenus = [self.import_menu(subtree) for subtree in shell_subkey.subkeys]
