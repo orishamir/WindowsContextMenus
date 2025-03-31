@@ -12,9 +12,9 @@ class DataType(IntEnum):
         [MSDN | Registry value types](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types)
     """
 
-    REG_BINARY = winreg.REG_BINARY  # type: ignore[attr-defined]
-    REG_DWORD = winreg.REG_DWORD  # type: ignore[attr-defined]
-    REG_SZ = winreg.REG_SZ  # type: ignore[attr-defined]
+    REG_BINARY = winreg.REG_BINARY
+    REG_DWORD = winreg.REG_DWORD
+    REG_SZ = winreg.REG_SZ
 
 
 class RegistryValue(BaseModel):
