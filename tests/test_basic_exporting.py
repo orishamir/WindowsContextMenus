@@ -1,5 +1,5 @@
 import itertools
-from typing import Literal
+from typing import Literal, NamedTuple
 
 import pytest
 
@@ -21,153 +21,118 @@ SELECTION_LIMIT_OPTIONS = (None, 1, 15, 100)
 SEPARATOR_OPTIONS = (None, "After", "Before")
 
 
+class MenuProperties(NamedTuple):
+    display_text: str
+    command: str | None
+    icon: str | None
+    shift_click: bool
+    never_default: bool
+    no_working_directory: bool
+    position: Literal["Top", "Bottom"] | None
+    separator: Literal["After", "Before"] | None
+    note: str | None
+    selection_limit: Literal[1, 15, 100] | None
+    has_lua_shield: bool
+    disabled: bool
+
+
 @pytest.mark.parametrize(
-    (
-        "display_text",
-        "command",
-        "icon",
-        "shift_click",
-        "never_default",
-        "no_working_directory",
-        "position",
-        "separator",
-        "note",
-        "selection_limit",
-        "has_lua_shield",
-        "disabled",
-    ),
-    itertools.product(  # all possible combinations
-        DISPLAY_TEXT_OPTIONS,
-        COMMAND_OPTIONS,
-        ICON_OPTIONS,
-        SHIFT_CLICK_OPTIONS,
-        NEVER_DEFAULT_OPTIONS,
-        NO_WORKING_DIRECTORY_OPTIONS,
-        POSITION_OPTIONS,
-        SEPARATOR_OPTIONS,
-        NOTE_OPTIONS,
-        SELECTION_LIMIT_OPTIONS,
-        HAS_LUA_SHIELD_OPTIONS,
-        DISABLED_OPTIONS,
-    ),
+    ("menu_properties"),
+    [
+        MenuProperties(*combination)  # type: ignore[arg-type]
+        for combination in itertools.product(
+            DISPLAY_TEXT_OPTIONS,
+            COMMAND_OPTIONS,
+            ICON_OPTIONS,
+            SHIFT_CLICK_OPTIONS,
+            NEVER_DEFAULT_OPTIONS,
+            NO_WORKING_DIRECTORY_OPTIONS,
+            POSITION_OPTIONS,
+            SEPARATOR_OPTIONS,
+            NOTE_OPTIONS,
+            SELECTION_LIMIT_OPTIONS,
+            HAS_LUA_SHIELD_OPTIONS,
+            DISABLED_OPTIONS,
+        )
+    ],
 )
-def test_exporting(  # noqa: PLR0913
-    display_text: str,
-    command: str | None,
-    icon: str | None,
-    shift_click: bool,
-    never_default: bool,
-    no_working_directory: bool,
-    position: Literal["Top", "Bottom"] | None,
-    separator: Literal["After", "Before"] | None,
-    note: str | None,
-    selection_limit: Literal[1, 15, 100] | None,
-    has_lua_shield: bool,
-    disabled: bool,
-) -> None:
+def test_exporting(menu_properties: MenuProperties) -> None:
     """Test exporting of ContextMenu, without considering submenus and conditions."""
     menu = ContextMenu(
-        display_text=display_text,
-        command=command,
-        icon=icon,
-        shift_click=shift_click,
-        disabled=disabled,
-        has_lua_shield=has_lua_shield,
-        never_default=never_default,
-        no_working_directory=no_working_directory,
-        note=note,
-        position=position,
-        selection_limit=selection_limit,
-        separator=separator,
+        display_text=menu_properties.display_text,
+        command=menu_properties.command,
+        icon=menu_properties.icon,
+        shift_click=menu_properties.shift_click,
+        disabled=menu_properties.disabled,
+        has_lua_shield=menu_properties.has_lua_shield,
+        never_default=menu_properties.never_default,
+        no_working_directory=menu_properties.no_working_directory,
+        note=menu_properties.note,
+        position=menu_properties.position,
+        selection_limit=menu_properties.selection_limit,
+        separator=menu_properties.separator,
         condition=None,
         submenus=[],
     )
-    expected_tree = _build_expected_tree(
-        display_text=display_text,
-        command=command,
-        icon=icon,
-        shift_click=shift_click,
-        never_default=never_default,
-        no_working_directory=no_working_directory,
-        position=position,
-        separator=separator,
-        note=note,
-        selection_limit=selection_limit,
-        has_lua_shield=has_lua_shield,
-        disabled=disabled,
-    )
+    expected_tree = _build_expected_tree(menu_properties)
 
     actual = RegistryExporter().export_tree(menu).model_dump()
     expected = expected_tree.model_dump()
     assert actual == expected
 
 
-def _build_expected_tree(  # noqa: PLR0912, PLR0913
-    *,
-    display_text: str,
-    command: str | None,
-    icon: str | None,
-    shift_click: bool,
-    never_default: bool,
-    no_working_directory: bool,
-    position: Literal["Top", "Bottom"] | None,
-    separator: Literal["After", "Before"] | None,
-    note: str | None,
-    selection_limit: Literal[1, 15, 100] | None,
-    has_lua_shield: bool,
-    disabled: bool,
-) -> RegistryKey:
+def _build_expected_tree(menu_properties: MenuProperties) -> RegistryKey:  # noqa: PLR0912
     """Build expected RegistryKey tree from menu paramters.
 
     Warning:
         Order of subkey/value insertion matters!
     """
-    tree = RegistryKey(name=display_text)
+    tree = RegistryKey(name=menu_properties.display_text)
 
-    tree.add_value(RegistryValue(name="MUIVerb", type=DataType.REG_SZ, data=display_text))
+    tree.add_value(RegistryValue(name="MUIVerb", type=DataType.REG_SZ, data=menu_properties.display_text))
 
-    if command is not None:
-        tree.add_subkey(RegistryKey(name="command", values=[RegistryValue(name="", type=DataType.REG_SZ, data=command)]))
+    if menu_properties.command is not None:
+        tree.add_subkey(RegistryKey(name="command", values=[RegistryValue(name="", type=DataType.REG_SZ, data=menu_properties.command)]))
 
-    if icon is not None:
-        tree.add_value(RegistryValue(name="Icon", type=DataType.REG_SZ, data=icon))
+    if menu_properties.icon is not None:
+        tree.add_value(RegistryValue(name="Icon", type=DataType.REG_SZ, data=menu_properties.icon))
 
-    if shift_click:
+    if menu_properties.shift_click:
         tree.add_value(RegistryValue(name="Extended", type=DataType.REG_SZ, data=""))
 
-    if never_default:
+    if menu_properties.never_default:
         tree.add_value(RegistryValue(name="NeverDefault", type=DataType.REG_SZ, data=""))
 
-    if no_working_directory:
+    if menu_properties.no_working_directory:
         tree.add_value(RegistryValue(name="NoWorkingDirectory", type=DataType.REG_SZ, data=""))
 
-    if position is not None:
-        tree.add_value(RegistryValue(name="Position", type=DataType.REG_SZ, data=position))
+    if menu_properties.position is not None:
+        tree.add_value(RegistryValue(name="Position", type=DataType.REG_SZ, data=menu_properties.position))
 
-    if separator is not None:
-        assert separator in ("Before", "After")
+    if menu_properties.separator is not None:
+        assert menu_properties.separator in ("Before", "After")
 
-        if separator == "Before":
+        if menu_properties.separator == "Before":
             tree.add_value(RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=0x20))
-        elif separator == "After":
+        elif menu_properties.separator == "After":
             tree.add_value(RegistryValue(name="CommandFlags", type=DataType.REG_DWORD, data=0x40))
 
-    if note is not None:
-        tree.add_value(RegistryValue(name="Note", type=DataType.REG_SZ, data=note))
+    if menu_properties.note is not None:
+        tree.add_value(RegistryValue(name="Note", type=DataType.REG_SZ, data=menu_properties.note))
 
-    if selection_limit is not None:
-        assert selection_limit in (1, 15, 100)
+    if menu_properties.selection_limit is not None:
+        assert menu_properties.selection_limit in (1, 15, 100)
 
-        if selection_limit == 1:
+        if menu_properties.selection_limit == 1:
             tree.add_value(RegistryValue(name="MultiSelectModel", type=DataType.REG_SZ, data="Single"))
-        elif selection_limit == 15:  # noqa: PLR2004
+        elif menu_properties.selection_limit == 15:  # noqa: PLR2004
             tree.add_value(RegistryValue(name="MultiSelectModel", type=DataType.REG_SZ, data="Document"))
-        elif selection_limit == 100:  # noqa: PLR2004
+        elif menu_properties.selection_limit == 100:  # noqa: PLR2004
             tree.add_value(RegistryValue(name="MultiSelectModel", type=DataType.REG_SZ, data="Player"))
 
-    if has_lua_shield:
+    if menu_properties.has_lua_shield:
         tree.add_value(RegistryValue(name="HasLUAShield", type=DataType.REG_SZ, data=""))
 
-    if disabled:
+    if menu_properties.disabled:
         tree.add_value(RegistryValue(name="LegacyDisable", type=DataType.REG_SZ, data=""))
     return tree

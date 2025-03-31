@@ -4,8 +4,8 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from .conditions import Condition  # noqa: TC001
-from .icons import WindowsIcon  # noqa: TC001
+from .conditions import Condition
+from .icons import WindowsIcon
 
 
 class ContextMenu(BaseModel):

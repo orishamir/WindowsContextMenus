@@ -4,11 +4,12 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
 
-from context_menu_toolkit.registry.registry_structs.registry_path import RegistryPath  # noqa: TC001
-from context_menu_toolkit.registry.registry_structs.registry_value import RegistryValue  # noqa: TC001
+from context_menu_toolkit.registry.registry_structs.registry_value import RegistryValue
 
 if TYPE_CHECKING:
     from collections.abc import Generator
+
+    from context_menu_toolkit.registry.registry_structs.registry_path import RegistryPath
 
 
 class RegistryKey(BaseModel):
@@ -28,7 +29,7 @@ class RegistryKey(BaseModel):
     def add_value(self, value: RegistryValue) -> None:
         self.values.append(value)
 
-    def export_reg(self, location: RegistryPath) -> Generator[str]:
+    def export_reg(self, location: RegistryPath) -> Generator[str, None, None]:
         r"""Export the Context Menu as a .reg file format.
 
         Syntax of .reg file:

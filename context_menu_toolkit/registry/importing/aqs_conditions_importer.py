@@ -2,6 +2,10 @@ from context_menu_toolkit.registry.aqs_conditions.iaqscondition import IAqsCondi
 
 
 class AqsConditionsImporter:
-    def import_aqs_to_condition(self, aqs_condition: str) -> IAqsCondition:  # noqa: ARG002
-        """Import IAqsCondition from string. With parsing and everything."""
+    def import_aqs_to_condition(self, aqs_condition: str) -> IAqsCondition:
+        """Import IAqsCondition from string. With parsing and everything.
+
+        WORK IN PROGRESS.
+        """
+        _ = aqs_condition
         return NotImplemented
