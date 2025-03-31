@@ -29,7 +29,7 @@ class RegistryKey(BaseModel):
     def add_value(self, value: RegistryValue) -> None:
         self.values.append(value)
 
-    def export_reg(self, location: RegistryPath) -> Generator[str, None, None]:
+    def export_reg(self, location: RegistryPath) -> Generator[str]:
         r"""Export the Context Menu as a .reg file format.
 
         Syntax of .reg file:
