@@ -94,8 +94,9 @@ class RegistryPath:
         if top_level not in TopLevelKey:
             raise ValueError(f"top level key does not exist: {top_level}")
 
-    def __truediv__(self, other: str | RegistryPath) -> RegistryPath:
-        assert isinstance(other, str | RegistryPath), f"other must be a string or RegistryPath. {type(other)=}"
+    def __truediv__(self, other: object) -> RegistryPath:
+        if not isinstance(other, str | RegistryPath):
+            return NotImplemented
 
         if isinstance(other, RegistryPath):
             other = str(other)
@@ -122,3 +123,12 @@ class RegistryPath:
             raise AssertionError("discrepancy found: internal path is invalid") from e
 
         return self._path
+
+    def __hash__(self) -> int:
+        return hash(self._path)
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, RegistryPath):
+            return NotImplemented
+
+        return self._path == other._path
