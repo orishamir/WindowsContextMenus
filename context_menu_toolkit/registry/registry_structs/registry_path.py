@@ -73,7 +73,7 @@ class RegistryPath:
         r"""Convert raw_path to a normalized registry path string.
 
         Example:
-            ```
+            ```python
             hkey_current_user\Software/classes\\.mp4/
             ->
             HKEY_CURRENT_USER\Software\classes\.mp4
@@ -108,10 +108,12 @@ class RegistryPath:
         r"""Representation of a registry location as a string.
 
         Example:
-            > RegistryLocation.from_string(
-            >     "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell",
-            > )
+            ```python
+            RegistryPath(
+                "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell",
+            )
             # output: "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\ConvertVideo\shell"
+            ```
         """
         try:
             self._validate_path(self._path)
