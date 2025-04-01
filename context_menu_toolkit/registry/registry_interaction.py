@@ -1,9 +1,8 @@
-import typing
 import winreg
 
 from context_menu_toolkit.registry.registry_structs import DataType, RegistryKey, RegistryPath, RegistryValue, TopLevelKey
 
-RESERVED_FLAG = 0
+_RESERVED_FLAG = 0
 
 _TOP_LEVEL_KEY_TO_VALUE: dict[TopLevelKey, int] = {
     TopLevelKey.HKEY_CLASSES_ROOT: winreg.HKEY_CLASSES_ROOT,
@@ -32,7 +31,7 @@ def read_registry_key(location: RegistryPath) -> RegistryKey:
     with winreg.OpenKey(
         _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
         location.subkeys,
-        RESERVED_FLAG,
+        _RESERVED_FLAG,
         winreg.KEY_READ,
     ) as key:
         tree = RegistryKey(name=location.parts[-1])
@@ -64,7 +63,6 @@ def _read_registry_values(key: winreg.HKEYType) -> list[RegistryValue]:
     return values
 
 
-@typing.no_type_check
 def _create_key(location: RegistryPath) -> None:
     winreg.CloseKey(
         winreg.CreateKey(
@@ -74,12 +72,11 @@ def _create_key(location: RegistryPath) -> None:
     )
 
 
-@typing.no_type_check
 def _set_value(location: RegistryPath, value: RegistryValue) -> None:
     with winreg.OpenKey(
         _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
         location.subkeys,
-        RESERVED_FLAG,
+        _RESERVED_FLAG,
         winreg.KEY_SET_VALUE,
     ) as key:
-        winreg.SetValueEx(key, value.name, RESERVED_FLAG, value.type, value.data)
+        winreg.SetValueEx(key, value.name, _RESERVED_FLAG, value.type, value.data)

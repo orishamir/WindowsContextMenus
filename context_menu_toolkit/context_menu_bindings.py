@@ -25,6 +25,7 @@ class ContextMenuBinding:
                         Should be a string. See MenuItemType for options and descriptions.
         access_scope: Bind to current user or all users.
     """
+
     menu_item_type: str | MenuItemType
     access_scope: Literal["all_users", "current_user"] = "all_users"
 
@@ -140,12 +141,14 @@ class MenuItemType(StrEnum):
         behavior. See `CommandPlaceholder`s documentation for more details.
     """
 
+
 class _MenuAccessScope(StrEnum):
     """The access scope of the context menu.
 
     Either all users or current user only.
     The enum's value indicates the base registry location of that scope.
     """
+
     ALL_USERS = r"HKEY_LOCAL_MACHINE\Software\Classes"
     CURRENT_USER = r"HKEY_CURRENT_USER\Software\Classes"
     # HKEY_CLASS_ROOT - https://stackoverflow.com/a/55118854 should not be written to.

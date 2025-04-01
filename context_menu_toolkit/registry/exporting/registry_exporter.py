@@ -113,9 +113,11 @@ class RegistryExporter:
 
         if menu.selection_limit is not None:
             SelectionModel(
-                "Single" if menu.selection_limit == 1 else
-                "Document" if menu.selection_limit == 15 else  # noqa: PLR2004
-                "Player",
+                "Single"
+                if menu.selection_limit == 1
+                else "Document"
+                if menu.selection_limit == 15  # noqa: PLR2004
+                else "Player",
             ).apply_to_tree(tree)
 
         if menu.has_lua_shield:
