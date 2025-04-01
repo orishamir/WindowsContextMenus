@@ -31,14 +31,11 @@ class RegistryImporter:
         return menu
 
     def _import_subkeys(self, root: RegistryKey, menu: ContextMenu) -> None:
-        if len(root.subkeys) != 1:
+        submenus = root.get_subkey("shell")
+        if submenus is None:
             return
 
-        shell_subkey = root.subkeys[0]
-        if shell_subkey.name.lower() != "shell":
-            return
-
-        menu.submenus = [self.import_menu(subtree) for subtree in shell_subkey.subkeys]
+        menu.submenus = [self.import_menu(subtree) for subtree in submenus.subkeys]
 
     def _import_attributes(self, tree: RegistryKey, menu: ContextMenu) -> None:  # noqa: PLR0912
         command = Command.from_tree(tree)
