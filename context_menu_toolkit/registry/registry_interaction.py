@@ -1,4 +1,3 @@
-import typing
 import winreg
 
 from context_menu_toolkit.registry.registry_structs import DataType, RegistryKey, RegistryPath, RegistryValue, TopLevelKey
@@ -18,13 +17,29 @@ def write_registry_key(key: RegistryKey, location: RegistryPath) -> None:
     """Apply RegistryKey at `location`."""
     new_loc = location / key.name
 
-    _create_key(new_loc)
+    winreg.CloseKey(
+        winreg.CreateKey(
+            _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
+            location.subkeys,
+        ),
+    )
 
     for value in key.values:
-        _set_value(new_loc, value)
+        write_registry_value(new_loc, value)
 
     for subkey in key.subkeys:
         write_registry_key(subkey, new_loc)
+
+
+def write_registry_value(location: RegistryPath, value: RegistryValue) -> None:
+    """Write registry value at `location`."""
+    with winreg.OpenKey(
+        _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
+        location.subkeys,
+        RESERVED_FLAG,
+        winreg.KEY_SET_VALUE,
+    ) as key:
+        winreg.SetValueEx(key, value.name, RESERVED_FLAG, value.type, value.data)
 
 
 def read_registry_key(location: RegistryPath) -> RegistryKey:
@@ -62,24 +77,3 @@ def _read_registry_values(key: winreg.HKEYType) -> list[RegistryValue]:
         except OSError:
             break
     return values
-
-
-@typing.no_type_check
-def _create_key(location: RegistryPath) -> None:
-    winreg.CloseKey(
-        winreg.CreateKey(
-            _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
-            location.subkeys,
-        ),
-    )
-
-
-@typing.no_type_check
-def _set_value(location: RegistryPath, value: RegistryValue) -> None:
-    with winreg.OpenKey(
-        _TOP_LEVEL_KEY_TO_VALUE[location.top_level_key],
-        location.subkeys,
-        RESERVED_FLAG,
-        winreg.KEY_SET_VALUE,
-    ) as key:
-        winreg.SetValueEx(key, value.name, RESERVED_FLAG, value.type, value.data)
