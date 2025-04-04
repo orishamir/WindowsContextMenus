@@ -33,8 +33,18 @@ class ContextMenu(BaseModel):
             Note: You can also use an Icon.[^3]
         disabled: Make the context menu disabled.
         note: Add a note to the menu (will display in the registry).
+        condition: Add a condition for when the context menu should appear.
+            It is recommended to initialize from a dictionary, for example:
+            ```python
+            Condition.model_validate({
+                "file_name": {
+                    "startswith": "my",
+                }
+            })
+            ```
         selection_limit: The maximum amount of simultaneously selected items the context menu supports.
                          For example, when selecting 1, if more than 1 item (file/folder/etc.) is selected, right-clicking would not display the menu.
+        submenus: Sub-context menus.
 
     References:
         [^1]: <https://superuser.com/questions/703275/whats-the-meaning-of-noworkingdirectory-string-value-in-windows-registry>
