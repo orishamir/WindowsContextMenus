@@ -15,6 +15,7 @@ class DataType(IntEnum):
     REG_BINARY = winreg.REG_BINARY
     REG_DWORD = winreg.REG_DWORD
     REG_SZ = winreg.REG_SZ
+    REG_EXPAND_SZ = winreg.REG_EXPAND_SZ
 
 
 class RegistryValue(BaseModel):
