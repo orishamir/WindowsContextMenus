@@ -3,7 +3,7 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from context_menu_toolkit import ContextMenuBinding, MenuItemType, ContextMenu, RegistryHandler
+from context_menu_toolkit import ContextMenuBinding, ExplorerItemType, ContextMenu, RegistryHandler
 
 
 ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%1"-1.5x.mp4'
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         speed_menu,
         bindings=[
             ContextMenuBinding(
-                MenuItemType.ALL_FILES,
+                ExplorerItemType.ALL_FILES,
             ),
         ]
     )

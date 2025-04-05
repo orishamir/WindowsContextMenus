@@ -20,7 +20,7 @@ from context_menu_toolkit.registry.shell_attributes import (
 
 
 class RegistryImporter:
-    """Knows how to create a menu from Registrykey."""
+    """Import a ContextMenu from Registrykey."""
 
     def import_menu(self, tree: RegistryKey) -> ContextMenu:
         """Import menu from a RegistryKey tree."""

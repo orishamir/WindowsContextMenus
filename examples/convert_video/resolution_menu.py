@@ -5,7 +5,7 @@ https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
 from enum import StrEnum
 
-from context_menu_toolkit import ContextMenuBinding, MenuItemType, RegistryHandler, ContextMenu
+from context_menu_toolkit import ContextMenuBinding, ExplorerItemType, RegistryHandler, ContextMenu
 
 
 class Resolution(StrEnum):
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         resolution_menu,
         bindings=[
             ContextMenuBinding(
-                MenuItemType.ALL_FILES,
+                ExplorerItemType.ALL_FILES,
             ),
         ]
     )
