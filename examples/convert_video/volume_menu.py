@@ -3,7 +3,7 @@ https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
 
 https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
 """
-from context_menu_toolkit import ContextMenu, ContextMenuBinding, MenuItemType, RegistryHandler
+from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 
 MUTE_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -c:v copy -an "%V"-no_audio.mp4'
@@ -34,7 +34,7 @@ if __name__ == '__main__':
         volume_menu,
         bindings=[
             ContextMenuBinding(
-                MenuItemType.ALL_FILES,
+                ExplorerItemType.ALL_FILES,
             ),
         ]
     )

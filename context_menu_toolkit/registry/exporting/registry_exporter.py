@@ -55,7 +55,7 @@ class RegistryExporter:
             lines.append(f";;; menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.menu_item_type}")
             lines.extend(
                 built_menu.export_reg(
-                    binding.construct_registry_path(),
+                    binding.to_path(),
                 ),
             )
             lines.append(f";;; end of menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.menu_item_type}")
