@@ -5,6 +5,7 @@ from context_menu_toolkit.registry.shell_attributes import (
     AppliesTo,
     Command,
     Disabled,
+    EntryName,
     HasLuaShield,
     Icon,
     MUIVerb,
@@ -19,7 +20,7 @@ from context_menu_toolkit.registry.shell_attributes import (
 
 
 class RegistryImporter:
-    """Knows how to create a menu from Registrykey."""
+    """Import a ContextMenu from Registrykey."""
 
     def import_menu(self, tree: RegistryKey) -> ContextMenu:
         """Import menu from a RegistryKey tree."""
@@ -55,6 +56,7 @@ class RegistryImporter:
         selection_limit = SelectionModel.from_tree(tree)
         applies_to = AppliesTo.from_tree(tree)
         display_text = MUIVerb.from_tree(tree)
+        fallback_display_text = EntryName.from_tree(tree)
 
         if icon is not None:
             menu.icon = icon.icon_path
@@ -94,6 +96,9 @@ class RegistryImporter:
 
         if applies_to is not None:
             menu.condition = Condition(custom_aqs_condition=applies_to.aqs_condition)
+
+        if fallback_display_text is not None:
+            menu.display_text = fallback_display_text.text
 
         if display_text is not None:
             menu.display_text = display_text.text

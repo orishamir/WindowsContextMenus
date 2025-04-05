@@ -1,6 +1,5 @@
 from context_menu_toolkit import ContextMenu, ContextMenuBinding
 from context_menu_toolkit.registry.exporting.registry_exporter import RegistryExporter
-from context_menu_toolkit.registry.registry_interaction import write_registry_key
 from context_menu_toolkit.registry.registry_structs.registry_key import RegistryKey
 
 
@@ -20,7 +19,7 @@ class RegistryHandler:
         built_menu: RegistryKey = self.exporter.export_tree(menu)
 
         for binding in bindings:
-            write_registry_key(built_menu, binding.construct_registry_path())
+            binding.to_path().write(built_menu)
 
     def export_tree(self, menu: ContextMenu) -> RegistryKey:
         """Export as a RegistryKey tree."""

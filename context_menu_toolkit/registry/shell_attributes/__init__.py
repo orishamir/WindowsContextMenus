@@ -1,6 +1,7 @@
 from .applies_to import AppliesTo
 from .command import Command
 from .disabled import Disabled
+from .entry_name import EntryName
 from .has_lua_shield import HasLuaShield
 from .icon import Icon
 from .ishellattribute import IShellAttribute
@@ -17,6 +18,7 @@ __all__ = [
     "AppliesTo",
     "Command",
     "Disabled",
+    "EntryName",
     "HasLuaShield",
     "IShellAttribute",
     "Icon",
