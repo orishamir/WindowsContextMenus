@@ -52,13 +52,13 @@ class RegistryExporter:
         ]
 
         for i, binding in enumerate(bindings):
-            lines.append(f";;; menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.menu_item_type}")
+            lines.append(f";;; menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.explorer_item}")
             lines.extend(
                 built_menu.export_reg(
                     binding.to_path(),
                 ),
             )
-            lines.append(f";;; end of menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.menu_item_type}")
+            lines.append(f";;; end of menu for binding #{i + 1}: access_scope={binding.access_scope}, item_type={binding.explorer_item}")
 
         return lines
 
