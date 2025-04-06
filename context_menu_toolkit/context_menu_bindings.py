@@ -28,6 +28,7 @@ class ContextMenuBinding:
                         Should be a string. See ExplorerItemType for options and descriptions.
         access_scope: Bind to current user or all users.
     """
+
     menu_item_type: str | ExplorerItemType
     access_scope: MenuAccessScope = MenuAccessScope.ALL_USERS
 
