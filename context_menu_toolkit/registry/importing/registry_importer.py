@@ -27,11 +27,11 @@ class RegistryImporter:
         menu = ContextMenu(display_text=tree.name)
 
         self._import_attributes(tree, menu)
-        self._import_subkeys(tree, menu)
+        self._import_submenus(tree, menu)
 
         return menu
 
-    def _import_subkeys(self, root: RegistryKey, menu: ContextMenu) -> None:
+    def _import_submenus(self, root: RegistryKey, menu: ContextMenu) -> None:
         submenus_root = root.get_subkey("shell")
         if submenus_root is None:
             return

@@ -9,7 +9,7 @@ class DataType(IntEnum):
     """Some constant data types.
 
     References:
-        [MSDN | Registry value types](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types)
+        [^1]: <https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types>
     """
 
     REG_BINARY = winreg.REG_BINARY
@@ -28,9 +28,6 @@ class RegistryValue(BaseModel):
     def export_reg(self) -> str:
         """Export the registry value as a .reg file format.
 
-        Syntax of .reg file:
-        <https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23>.
-
         Example:
             ```
             "MUIVerb"="Convert mp4..."
@@ -38,6 +35,9 @@ class RegistryValue(BaseModel):
 
         Returns:
             The .reg file line representing the registry value.
+
+        References:
+            [^1]: <https://support.microsoft.com/en-us/topic/how-to-add-modify-or-delete-registry-subkeys-and-values-by-using-a-reg-file-9c7f37cf-a5e9-e1cd-c4fa-2a26218a1a23>
         """
         if self.type is DataType.REG_SZ:
             data_str = json.dumps(self.data)  # escapes "\" and '"'

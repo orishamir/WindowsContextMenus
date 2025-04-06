@@ -43,7 +43,7 @@ class ContextMenu(BaseModel):
             })
             ```
         selection_limit: The maximum amount of simultaneously selected items the context menu supports.
-                         For example, when selecting 1, if more than 1 item (file/folder/etc.) is selected, right-clicking would not display the menu.
+            For example, when selecting 1, if more than 1 item (file/folder/etc.) is selected, right-clicking would not display the menu.
         submenus: Sub-context menus.
 
     References:
