@@ -1,4 +1,4 @@
-name: "Linting"
+name: "Linting and formatting"
 description: "Lints project using Ruff."
 
 inputs:
@@ -19,4 +19,7 @@ runs:
       shell: sh
 
     - run: uv run ruff check
+      shell: sh
+
+    - run: uv run ruff format --diff .
       shell: sh
