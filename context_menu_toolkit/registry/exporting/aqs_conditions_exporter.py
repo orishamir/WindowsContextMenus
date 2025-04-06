@@ -20,8 +20,14 @@ from context_menu_toolkit.registry.aqs_conditions.logical_conditions import AqsA
 
 
 class AqsConditionsExporter:
-    def export_as_aqs_condition(self, condition: Condition) -> IAqsCondition:
-        """Export Condition as a registry Advanced Query Syntax condition."""
+    def export_aqs_condition(self, condition: Condition) -> IAqsCondition:
+        """Export Condition as a registry Advanced Query Syntax condition.
+
+        References:
+            [^1]: <https://learn.microsoft.com/en-us/windows/win32/lwef/-search-2x-wds-aqsreference>
+            [^2]: <https://learn.microsoft.com/en-us/windows/win32/search/-search-3x-advancedquerysyntax>
+            [^3]: <https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)>
+        """
         conditions: list[IAqsCondition] = []
 
         if condition.file_name is not None:
@@ -39,28 +45,28 @@ class AqsConditionsExporter:
         if condition.and_ is not None:
             conditions.append(
                 AqsAnd(
-                    [self.export_as_aqs_condition(subcondition) for subcondition in condition.and_],
+                    [self.export_aqs_condition(subcondition) for subcondition in condition.and_],
                 ),
             )
 
         if condition.not_ is not None:
             conditions.append(
                 AqsNot(
-                    self.export_as_aqs_condition(condition.not_),
+                    self.export_aqs_condition(condition.not_),
                 ),
             )
 
         if condition.nor is not None:
             conditions.append(
                 AqsAnd(
-                    [AqsNot(self.export_as_aqs_condition(subcondition)) for subcondition in condition.nor],
+                    [AqsNot(self.export_aqs_condition(subcondition)) for subcondition in condition.nor],
                 ),
             )
 
         if condition.or_ is not None:
             conditions.append(
                 AqsOr(
-                    [self.export_as_aqs_condition(subcondition) for subcondition in condition.or_],
+                    [self.export_aqs_condition(subcondition) for subcondition in condition.or_],
                 ),
             )
 

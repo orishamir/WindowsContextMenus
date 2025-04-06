@@ -28,7 +28,8 @@ class ContextMenuBinding:
                         Should be a string. See ExplorerItemType for options and descriptions.
         access_scope: Bind to current user or all users.
     """
-    menu_item_type: str | ExplorerItemType
+
+    explorer_item: str | ExplorerItemType
     access_scope: MenuAccessScope = MenuAccessScope.ALL_USERS
 
     def to_path(self) -> RegistryPath:
@@ -61,7 +62,7 @@ class ContextMenuBinding:
         """
         self._validate_parameters_provided()
 
-        return RegistryPath(self.access_scope) / self.menu_item_type / "shell"
+        return RegistryPath(self.access_scope) / self.explorer_item / "shell"
 
     def _validate_parameters_provided(self) -> None:
         """Validate that all parameters of the chosen item type are filled.
@@ -73,7 +74,7 @@ class ContextMenuBinding:
             # raises KeyError if the string contains unsubstituted arguments.
             # Example: "some {name} string".format() -> raises KeyError: name.
             #          "some string".format() -> does not raise anything.
-            self.menu_item_type.format()
+            self.explorer_item.format()
         except KeyError as e:
             missing_parameter, *_ = e.args
             raise ValueError(f'item type parameter not provided: "{missing_parameter}"') from None

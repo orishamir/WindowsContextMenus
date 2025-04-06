@@ -1,4 +1,3 @@
-
 from enum import StrEnum
 
 
@@ -22,10 +21,12 @@ class WindowsIcon(StrEnum):
         It is possible that a newer, more modern icon exists for the icon you're looking for.
         For example "shell32.dll,-322" is the newer "ieframe.dll,19".
 
-    [^1]: <https://www.urtech.ca/2022/07/solved-download-list-of-icons-in-shell32-dll/amp>
-    [^2]: <https://www.digitalcitizen.life/where-find-most-windows-10s-native-icons>
-    [^3]: <https://diymediahome.org/windows-icons-reference-list-with-details-locations-images> - Older icons
+    References:
+        [^1]: <https://www.urtech.ca/2022/07/solved-download-list-of-icons-in-shell32-dll/amp>
+        [^2]: <https://www.digitalcitizen.life/where-find-most-windows-10s-native-icons>
+        [^3]: <https://diymediahome.org/windows-icons-reference-list-with-details-locations-images> - Older icons
     """
+
     THIS_PC = "shell32.dll,-16"
     DOCUMENTS_FOLDER = "shell32.dll,-235"
     PICTURES_FOLDER = "shell32.dll,-236"

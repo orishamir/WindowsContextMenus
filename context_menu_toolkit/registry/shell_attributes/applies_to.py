@@ -9,6 +9,7 @@ ATTRIBUTE_NAME = "AppliesTo"
 @dataclass
 class AppliesTo(IShellAttribute):
     """Add an Advanced Query Syntax condition."""
+
     aqs_condition: str
 
     def apply_to_tree(self, tree: RegistryKey) -> None:

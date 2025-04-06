@@ -27,19 +27,16 @@ class RegistryImporter:
         menu = ContextMenu(display_text=tree.name)
 
         self._import_attributes(tree, menu)
-        self._import_subkeys(tree, menu)
+        self._import_submenus(tree, menu)
 
         return menu
 
-    def _import_subkeys(self, root: RegistryKey, menu: ContextMenu) -> None:
-        if len(root.subkeys) != 1:
+    def _import_submenus(self, root: RegistryKey, menu: ContextMenu) -> None:
+        submenus_root = root.get_subkey("shell")
+        if submenus_root is None:
             return
 
-        shell_subkey = root.subkeys[0]
-        if shell_subkey.name.lower() != "shell":
-            return
-
-        menu.submenus = [self.import_menu(subtree) for subtree in shell_subkey.subkeys]
+        menu.submenus = [self.import_menu(subtree) for subtree in submenus_root.subkeys]
 
     def _import_attributes(self, tree: RegistryKey, menu: ContextMenu) -> None:  # noqa: PLR0912
         command = Command.from_tree(tree)
@@ -92,7 +89,7 @@ class RegistryImporter:
             menu.has_lua_shield = True
 
         if disabled:
-           menu.disabled = True
+            menu.disabled = True
 
         if applies_to is not None:
             menu.condition = Condition(custom_aqs_condition=applies_to.aqs_condition)
