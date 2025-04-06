@@ -100,4 +100,4 @@ class FileSizeComparison(
     NinComparison[int],
     extra="forbid",
 ):
-    """Filter based on file size."""
+    """Filter based on file size, in bytes."""
