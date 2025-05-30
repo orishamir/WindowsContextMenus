@@ -1,2 +1,2 @@
 # Registry Value
-::: context_menu_toolkit.registry_structs.registry_value.RegistryValue
+::: context_menu_toolkit.registry.registry_structs.registry_value.RegistryValue
