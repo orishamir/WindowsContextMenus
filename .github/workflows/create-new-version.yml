@@ -134,7 +134,6 @@ jobs:
       - lint
       - test
       - typechecking
-    if: false
 
     steps:
       - name: Checkout code
