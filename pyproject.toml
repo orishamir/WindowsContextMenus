@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "context_menu_toolkit"
 readme = "README.md"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Ori Shamir", email="orishamir04@gmail.com" },
 ]
@@ -31,6 +31,7 @@ docs = [
     "mkdocs-material",
     "mkdocstrings[python]",
     "mkdocs-panzoom-plugin",
+    "ruff>=0.11.12",
 ]
 test = [
     "pytest",

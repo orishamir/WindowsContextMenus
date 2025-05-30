@@ -9,8 +9,8 @@
 [//]: # (---)
 # Context Menu Toolkit
 
-## Architecture
-
-```mermaid
---8<-- "docs/design.mmd"
-```
+<!-- ## Architecture -->
+<!--  -->
+<!-- ```mermaid -->
+<!-- --8<-- "docs/design.mmd" -->
+<!-- ``` -->

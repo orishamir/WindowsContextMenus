@@ -5,6 +5,8 @@ from context_menu_toolkit.registry.aqs_conditions.iaqscondition import IAqsCondi
 
 @dataclass
 class CustomAqsCondition(IAqsCondition):
+    """Freestyle Advanced Query Syntax string, for representing custom conditions which are not supported."""
+
     condition: str
 
     def to_aqs_string(self) -> str:

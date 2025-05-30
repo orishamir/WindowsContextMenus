@@ -1,4 +1,3 @@
-
 from enum import StrEnum
 
 
@@ -13,7 +12,7 @@ class ExplorerItemType(StrEnum):
         See [Directory vs. Folder](https://superuser.com/q/169457/), [CLSID List](https://www.autohotkey.com/docs/v1/misc/CLSID-List.htm)
 
     Tip:
-        For more advanced control of conditions see `Condition` feature, `ICondition`, and `conditions`.
+        For more advanced control of conditions see `Condition`.
     """
 
     ALL_FILES = "*"

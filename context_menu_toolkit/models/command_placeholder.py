@@ -20,6 +20,7 @@ class CommandPlaceholder(StrEnum):
         In the tables below, Folder refers to virtual folders only.
         See [Directory vs. Folder](https://superuser.com/q/169457/)
     """
+
     FIRST_SELECTED = "%1"
     r"""The first selected item.
 

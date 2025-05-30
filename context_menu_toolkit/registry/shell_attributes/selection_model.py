@@ -34,7 +34,7 @@ class SelectionModel(IShellAttribute):
     def from_tree(cls, tree: RegistryKey) -> "SelectionModel | None":
         value = tree.get_value(ATTRIBUTE_NAME)
         if value is not None and isinstance(value.data, str):
-            assert value.data in ("Single", "Document", "Player"), f"Bad selection model value: {value.data}"
+            assert value.data.title() in ("Single", "Document", "Player"), f"Bad selection model value: {value.data}"
 
-            return SelectionModel(value.data)  # type: ignore[arg-type]
+            return SelectionModel(value.data.title())  # type: ignore[arg-type]
         return None

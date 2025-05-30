@@ -196,9 +196,7 @@ class RegistryPath:
         if isinstance(other, RegistryPath):
             other = str(other)
 
-        return RegistryPath(
-            self._path + f"\\{other.strip('\\')}",
-        )
+        return RegistryPath(self._path + f"\\{other.strip('\\')}")
 
     def __str__(self) -> str:
         try:
