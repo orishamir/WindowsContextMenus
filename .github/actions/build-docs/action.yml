@@ -19,7 +19,7 @@ runs:
       shell: sh
 
     - name: Upload Documentation Files
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: 'site-files'
         path: site
