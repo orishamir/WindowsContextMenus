@@ -15,7 +15,7 @@ runs:
       shell: sh
 
     - name: Upload Built Artifacts (Wheel & SDist)
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ inputs.dist-artifact-name }}
         path: dist/*
