@@ -34,7 +34,7 @@ class Separator(IShellAttribute):
     @classmethod
     def from_tree(cls, tree: RegistryKey) -> "Separator | None":
         value = tree.get_value(ATTRIBUTE_NAME)
-        if value is not None and isinstance(value.data, str):
+        if value is not None and isinstance(value.data, int):
             return Separator(
                 "After" if value.data == SeperatorLocation.After else "Before",
             )
