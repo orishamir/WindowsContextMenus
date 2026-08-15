@@ -195,11 +195,11 @@ wheels = [
 
 [[package]]
 name = "idna"
-version = "3.10"
+version = "3.15"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9", size = 190490, upload-time = "2024-09-15T18:07:39.745Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/77/7b3966d0b9d1d31a36ddf1746926a11dface89a83409bf1483f0237aa758/idna-3.15.tar.gz", hash = "sha256:ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc", size = 199245, upload-time = "2026-05-12T22:45:57.011Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/23/408243171aa9aaba178d3e2559159c24c1171a641aa83b67bdd3394ead8e/idna-3.15-py3-none-any.whl", hash = "sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8", size = 72340, upload-time = "2026-05-12T22:45:55.733Z" },
 ]
 
 [[package]]
@@ -333,12 +333,11 @@ wheels = [
 
 [[package]]
 name = "mkdocs-material"
-version = "9.6.20"
+version = "9.7.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel" },
     { name = "backrefs" },
-    { name = "click" },
     { name = "colorama" },
     { name = "jinja2" },
     { name = "markdown" },
@@ -349,9 +348,9 @@ dependencies = [
     { name = "pymdown-extensions" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ba/ee/6ed7fc739bd7591485c8bec67d5984508d3f2733e708f32714c21593341a/mkdocs_material-9.6.20.tar.gz", hash = "sha256:e1f84d21ec5fb730673c4259b2e0d39f8d32a3fef613e3a8e7094b012d43e790", size = 4037822, upload-time = "2025-09-15T08:48:01.816Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f1/cd/c05d3a530ba7934f144fb45f7203cd236adc25c7bdcc34673d202f4b0278/mkdocs_material-9.7.7.tar.gz", hash = "sha256:c0649c065b1b0512d60aad8c10f947f8e455284475239b364b610f2deb4d0855", size = 4097923, upload-time = "2026-07-17T16:21:33.156Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/d8/a31dd52e657bf12b20574706d07df8d767e1ab4340f9bfb9ce73950e5e59/mkdocs_material-9.6.20-py3-none-any.whl", hash = "sha256:b8d8c8b0444c7c06dd984b55ba456ce731f0035c5a1533cc86793618eb1e6c82", size = 9193367, upload-time = "2025-09-15T08:47:58.722Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/21/17c1bc9e6f47c972ad66fb2ac2568f99f90f1207eeb6fc3b34d094dba7b5/mkdocs_material-9.7.7-py3-none-any.whl", hash = "sha256:8ea9bb1737a5b524a5f9dcf2e1b4ebda8274ae3008aa7845720a97083bef708f", size = 9305438, upload-time = "2026-07-17T16:21:30.017Z" },
 ]
 
 [[package]]
@@ -569,15 +568,15 @@ wheels = [
 
 [[package]]
 name = "pymdown-extensions"
-version = "10.15"
+version = "11.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/08/92/a7296491dbf5585b3a987f3f3fc87af0e632121ff3e490c14b5f2d2b4eb5/pymdown_extensions-10.15.tar.gz", hash = "sha256:0e5994e32155f4b03504f939e501b981d306daf7ec2aa1cd2eb6bd300784f8f7", size = 852320, upload-time = "2025-04-27T23:48:29.183Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/21/a9/5f0c535ba3b08fe09270c16808e053a968868242ecbd5676d4e3a488bf28/pymdown_extensions-11.0.1.tar.gz", hash = "sha256:dd2905ae6fc5b75582fafb139a1266ffc754705efa902aa50067fa7ff4f94ec0", size = 857113, upload-time = "2026-07-02T17:59:22.955Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/d1/c54e608505776ce4e7966d03358ae635cfd51dff1da6ee421c090dbc797b/pymdown_extensions-10.15-py3-none-any.whl", hash = "sha256:46e99bb272612b0de3b7e7caf6da8dd5f4ca5212c0b273feb9304e236c484e5f", size = 265845, upload-time = "2025-04-27T23:48:27.359Z" },
+    { url = "https://files.pythonhosted.org/packages/d6/54/da572c98c0b77626a91b5d3b89f0231d8bff5125c225420908632f8b342d/pymdown_extensions-11.0.1-py3-none-any.whl", hash = "sha256:db3943a62bab7e03af1364f0c4083e64b91fb097675a4b6cceccfbe9a77e5eb2", size = 269455, upload-time = "2026-07-02T17:59:21.271Z" },
 ]
 
 [[package]]
@@ -595,7 +594,7 @@ wheels = [
 
 [[package]]
 name = "pytest"
-version = "8.4.2"
+version = "9.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
@@ -604,9 +603,9 @@ dependencies = [
     { name = "pluggy" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a3/5c/00a0e072241553e1a7496d638deababa67c5058571567b92a7eaa258397c/pytest-8.4.2.tar.gz", hash = "sha256:86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01", size = 1519618, upload-time = "2025-09-04T14:34:22.711Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7d/0d/549bd94f1a0a402dc8cf64563a117c0f3765662e2e668477624baeec44d5/pytest-9.0.3.tar.gz", hash = "sha256:b86ada508af81d19edeb213c681b1d48246c1a91d304c6c81a427674c17eb91c", size = 1572165, upload-time = "2026-04-07T17:16:18.027Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a8/a4/20da314d277121d6534b3a980b29035dcd51e6744bd79075a6ce8fa4eb8d/pytest-8.4.2-py3-none-any.whl", hash = "sha256:872f880de3fc3a5bdc88a11b39c9710c3497a547cfa9320bc3c5e62fbf272e79", size = 365750, upload-time = "2025-09-04T14:34:20.226Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/24/a372aaf5c9b7208e7112038812994107bc65a84cd00e0354a88c2c77a617/pytest-9.0.3-py3-none-any.whl", hash = "sha256:2c5efc453d45394fdd706ade797c0a81091eccd1d6e4bccfcd476e2b8e0ab5d9", size = 375249, upload-time = "2026-04-07T17:16:16.13Z" },
 ]
 
 [[package]]
@@ -661,7 +660,7 @@ wheels = [
 
 [[package]]
 name = "requests"
-version = "2.32.3"
+version = "2.33.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -669,9 +668,9 @@ dependencies = [
     { name = "idna" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218, upload-time = "2024-05-29T15:37:49.536Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz", hash = "sha256:c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652", size = 134232, upload-time = "2026-03-25T15:10:41.586Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6", size = 64928, upload-time = "2024-05-29T15:37:47.027Z" },
+    { url = "https://files.pythonhosted.org/packages/56/5d/c814546c2333ceea4ba42262d8c4d55763003e767fa169adc693bd524478/requests-2.33.0-py3-none-any.whl", hash = "sha256:3324635456fa185245e24865e810cecec7b4caf933d7eb133dcde67d48cee69b", size = 65017, upload-time = "2026-03-25T15:10:40.382Z" },
 ]
 
 [[package]]
@@ -711,11 +710,11 @@ wheels = [
 
 [[package]]
 name = "soupsieve"
-version = "2.7"
+version = "2.8.4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/3f/f4/4a80cd6ef364b2e8b65b15816a843c0980f7a5a2b4dc701fc574952aa19f/soupsieve-2.7.tar.gz", hash = "sha256:ad282f9b6926286d2ead4750552c8a6142bc4c783fd66b0293547c8fe6ae126a", size = 103418, upload-time = "2025-04-20T18:50:08.518Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/2c/0a5f6f8ee0d5589e48c7640213ed5175d52cf540a06725b628cc1a45d6ce/soupsieve-2.8.4.tar.gz", hash = "sha256:e121fd02e975c695e4e9e8774a5ee35d74714b59307868dcc5319ad2d9e3328e", size = 121110, upload-time = "2026-05-24T13:55:57.154Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/9c/0e6afc12c269578be5c0c1c9f4b49a8d32770a080260c333ac04cc1c832d/soupsieve-2.7-py3-none-any.whl", hash = "sha256:6e60cc5c1ffaf1cebcc12e8188320b72071e922c2e897f737cadce79ad5d30c4", size = 36677, upload-time = "2025-04-20T18:50:07.196Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/f5/0c41cb68dcae6b7de4fac4188a3a9589e21fb31df21ea3a2e888db95e6c9/soupsieve-2.8.4-py3-none-any.whl", hash = "sha256:e7e6b0769c8f51ed59acab6e994b00621096cfb1c640a7509295987388fbaf65", size = 37304, upload-time = "2026-05-24T13:55:55.406Z" },
 ]
 
 [[package]]
@@ -741,11 +740,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.4.0"
+version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/8a/78/16493d9c386d8e60e442a35feac5e00f0913c0f4b7c217c11e8ec2ff53e0/urllib3-2.4.0.tar.gz", hash = "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466", size = 390672, upload-time = "2025-04-10T15:23:39.232Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6b/11/cc635220681e93a0183390e26485430ca2c7b5f9d33b15c74c2861cb8091/urllib3-2.4.0-py3-none-any.whl", hash = "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813", size = 128680, upload-time = "2025-04-10T15:23:37.377Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
 
 [[package]]
