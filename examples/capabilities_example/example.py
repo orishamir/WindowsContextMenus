@@ -1,11 +1,6 @@
-"""
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
+from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, MenuAccessScope, RegistryHandler
 
-https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
-"""
-from context_menu_toolkit import ContextMenu, ContextMenuBinding, MenuAccessScope, MenuItemType, RegistryHandler, Condition
-
-BASE_COMMAND = 'cmd.exe /c start chrome google.com'
+BASE_COMMAND = "cmd.exe /c start chrome google.com"
 
 some_menu = ContextMenu(
     display_text="name of the thing",
@@ -14,20 +9,20 @@ some_menu = ContextMenu(
         {
             "extension": {"eq": ".mp4"},  # also possible via MenuItemType.SPECIFIC_FILE_TYPE.format(".mp4")
             "not": {"file_name": {"startswith": "my"}},
-            "file_size": {"lt": 30_000_000}
-        }
+            "file_size": {"lt": 30_000_000},
+        },
     ),
     submenus=[],
 )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     RegistryHandler().apply_context_menu(
         some_menu,
         bindings=[
             ContextMenuBinding(
-                MenuItemType.ALL_FILES,
+                ExplorerItemType.ALL_FILES,
                 MenuAccessScope.ALL_USERS,
             ),
-        ]
+        ],
     )

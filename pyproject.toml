@@ -15,13 +15,14 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Operating System :: Microsoft :: Windows :: Windows 10",
     "Operating System :: Microsoft :: Windows :: Windows 11",
 ]
 license = "MIT"
 
 dependencies = [
-    "pydantic==2.*",
+    "pydantic~=2.0",
     "dataclasses",
 ]
 
@@ -68,7 +69,7 @@ include = [
 typeCheckingMode = "strict"
 
 [tool.ruff]
-extend-exclude = ["examples"]
+# extend-exclude = ["examples"]
 indent-width = 4
 line-length = 140
 output-format = "grouped"

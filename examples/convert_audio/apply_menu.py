@@ -1,11 +1,14 @@
-"""
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "context-menu-toolkit",
+# ]
+#
+# [tool.uv.sources]
+# context-menu-toolkit = { path = "../../" }
+# ///
 
-https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
-"""
-
-from context_menu_toolkit import ContextMenuBinding, MenuItemType, Condition, ContextMenu, RegistryHandler
-
+from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 CONVERT_AUDIO_COMMAND = 'cmd.exe /c ffmpeg -i "%V" {}'
 
@@ -17,7 +20,7 @@ ConvertToWAV = ContextMenu(
             "extension": {
                 "ne": ".wav",
             },
-        }
+        },
     ),
 )
 
@@ -27,10 +30,10 @@ ConvertToMP3 = ContextMenu(
     condition=Condition.model_validate(
         {
             "extension": {
-                "ne": ".mp3"
-            }
-        }
-    )
+                "ne": ".mp3",
+            },
+        },
+    ),
 )
 
 ConvertToOGG = ContextMenu(
@@ -39,10 +42,10 @@ ConvertToOGG = ContextMenu(
     condition=Condition.model_validate(
         {
             "extension": {
-                "ne": ".ogg"
-            }
-        }
-    )
+                "ne": ".ogg",
+            },
+        },
+    ),
 )
 
 ConvertToFLAC = ContextMenu(
@@ -51,10 +54,10 @@ ConvertToFLAC = ContextMenu(
     condition=Condition.model_validate(
         {
             "extension": {
-                "ne": ".flac"
-            }
-        }
-    )
+                "ne": ".flac",
+            },
+        },
+    ),
 )
 
 menu = ContextMenu(
@@ -65,22 +68,22 @@ menu = ContextMenu(
             "extension": {
                 "in": [".mp3", ".wav", ".ogg", ".flac"],
             },
-        }
+        },
     ),
     submenus=[
         ConvertToWAV,
         ConvertToMP3,
         ConvertToOGG,
-        ConvertToFLAC
-    ]
+        ConvertToFLAC,
+    ],
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     RegistryHandler().apply_context_menu(
         menu,
         bindings=[
             ContextMenuBinding(
-                MenuItemType.ALL_FILES,
+                ExplorerItemType.ALL_FILES,
             ),
         ],
     )

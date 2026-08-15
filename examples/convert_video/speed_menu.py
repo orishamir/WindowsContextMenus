@@ -1,10 +1,13 @@
-"""
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
-
-https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
-"""
-from context_menu_toolkit import ContextMenuBinding, ExplorerItemType, ContextMenu, RegistryHandler
-
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "context-menu-toolkit",
+# ]
+#
+# [tool.uv.sources]
+# context-menu-toolkit = { path = "../../" }
+# ///
+from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%1"-1.5x.mp4'
 FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%1"-1.25x.mp4'
@@ -42,12 +45,12 @@ speed_menu = ContextMenu(
     submenus=speed_submenus,
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     RegistryHandler().apply_context_menu(
         speed_menu,
         bindings=[
             ContextMenuBinding(
                 ExplorerItemType.ALL_FILES,
             ),
-        ]
+        ],
     )

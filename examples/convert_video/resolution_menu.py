@@ -1,11 +1,16 @@
-"""
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "context-menu-toolkit",
+# ]
+#
+# [tool.uv.sources]
+# context-menu-toolkit = { path = "../../" }
+# ///
 
-https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
-"""
 from enum import StrEnum
 
-from context_menu_toolkit import ContextMenuBinding, ExplorerItemType, RegistryHandler, ContextMenu
+from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 
 class Resolution(StrEnum):
@@ -28,10 +33,10 @@ for resolution in (Resolution.HD, Resolution.FHD):
         ContextMenu(
             display_text=(f"Convert to {resolution}"),
             command=BASE_COMMAND.format(
-                    res=resolution.rstrip("p"),
-                    output_name=f'"%1"-{resolution}.mp4',
-                )
-        )
+                res=resolution.rstrip("p"),
+                output_name=f'"%1"-{resolution}.mp4',
+            ),
+        ),
     )
 
 
@@ -41,12 +46,12 @@ resolution_menu = ContextMenu(
     submenus=resolution_submenus,
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     RegistryHandler().apply_context_menu(
         resolution_menu,
         bindings=[
             ContextMenuBinding(
                 ExplorerItemType.ALL_FILES,
             ),
-        ]
+        ],
     )

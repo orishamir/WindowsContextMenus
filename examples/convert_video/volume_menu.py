@@ -1,10 +1,13 @@
-"""
-https://learn.microsoft.com/en-us/windows/win32/shell/context-menu-handlers
-
-https://learn.microsoft.com/en-us/previous-versions//ff521735(v=vs.85)
-"""
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "context-menu-toolkit",
+# ]
+#
+# [tool.uv.sources]
+# context-menu-toolkit = { path = "../../" }
+# ///
 from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
-
 
 MUTE_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -c:v copy -an "%V"-no_audio.mp4'
 DOUBLE_VOLUME_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -c:v copy -af "volume=2.0" "%1"-double_volume.mp4'
@@ -29,12 +32,12 @@ volume_menu = ContextMenu(
     submenus=volume_submenus,
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     RegistryHandler().apply_context_menu(
         volume_menu,
         bindings=[
             ContextMenuBinding(
                 ExplorerItemType.ALL_FILES,
             ),
-        ]
+        ],
     )
