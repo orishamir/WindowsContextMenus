@@ -11,4 +11,4 @@ class IShellAttribute(Protocol):
 
     @classmethod
     def from_tree(cls, tree: RegistryKey) -> "IShellAttribute | None":
-        """Create the shell attribute from a RegistryKey tree."""
+        """Create the shell attribute from a RegistryKey tree. Parsing may fail."""

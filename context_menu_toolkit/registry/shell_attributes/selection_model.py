@@ -16,8 +16,8 @@ class SelectionModel(IShellAttribute):
 
     Attributes:
         Model: Single - One item.
-                Document - Maximum of 15 items.
-                Player - Maximum of 100 items.
+               Document - Maximum of 15 items.
+               Player - Maximum of 100 items.
 
     References:
         [^1]: <https://learn.microsoft.com/en-us/windows/win32/shell/how-to-employ-the-verb-selection-model>

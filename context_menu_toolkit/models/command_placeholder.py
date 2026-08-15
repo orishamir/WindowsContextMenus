@@ -4,10 +4,6 @@ from enum import StrEnum
 class CommandPlaceholder(StrEnum):
     r"""Enum representing Windows shell command placeholders used in registry context menus.
 
-    References:
-        [^1]: <https://gist.github.com/Prince-Mandor/c1db742bd2951989db84acfbc7b9562f#gistcomment-1921453>
-        [^2]: <https://superuser.com/a/473602>
-
     Warning:
         If you select multiple files/folders on right-click, each will be called separately.
         This effectively makes placeholders such as %2, %3, %~, etc. useless, and %* equivalent to %1.[^1] [^2]
@@ -19,6 +15,10 @@ class CommandPlaceholder(StrEnum):
         The difference between Directory and Folder is that Folders include special folders.
         In the tables below, Folder refers to virtual folders only.
         See [Directory vs. Folder](https://superuser.com/q/169457/)
+
+    References:
+        [^1]: <https://gist.github.com/Prince-Mandor/c1db742bd2951989db84acfbc7b9562f#gistcomment-1921453>
+        [^2]: <https://superuser.com/a/473602>
     """
 
     FIRST_SELECTED = "%1"

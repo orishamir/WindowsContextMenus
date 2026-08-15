@@ -28,10 +28,11 @@ dependencies = [
 
 [dependency-groups]
 docs = [
-    "mkdocs",
+    "mkdocs~=1.0",
     "mkdocs-material",
     "mkdocstrings[python]",
     "mkdocs-panzoom-plugin",
+    "ruff>=0.16.3",
 ]
 test = [
     "pytest",

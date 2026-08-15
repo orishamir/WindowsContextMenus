@@ -1,6 +1,11 @@
-from context_menu_toolkit import ContextMenu, ContextMenuBinding
+from typing import TYPE_CHECKING
+
+from context_menu_toolkit.context_menu_bindings import ContextMenuBinding
+from context_menu_toolkit.models.context_menu import ContextMenu
 from context_menu_toolkit.registry.exporting.registry_exporter import RegistryExporter
-from context_menu_toolkit.registry.registry_structs.registry_key import RegistryKey
+
+if TYPE_CHECKING:
+    from context_menu_toolkit.registry.registry_structs.registry_key import RegistryKey
 
 
 class RegistryHandler:
@@ -20,10 +25,6 @@ class RegistryHandler:
 
         for binding in bindings:
             binding.to_path().write(built_menu)
-
-    def export_tree(self, menu: ContextMenu) -> RegistryKey:
-        """Export as a RegistryKey tree."""
-        return self.exporter.export_tree(menu)
 
     def export_reg_file(self, menu: ContextMenu, bindings: list[ContextMenuBinding]) -> list[str]:
         r"""Export the Context Menu as a .reg file format.

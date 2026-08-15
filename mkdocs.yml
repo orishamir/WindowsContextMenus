@@ -1,19 +1,23 @@
 site_name: Context Menu Python Toolkit
 nav:
   - Home:
-    - index.md
+      - index.md
   - Useful Models:
-    - models/context_menu.md
-    - models/command_placeholder.md
-    - models/icons.md
+      - models/context_menu.md
+      - models/command_placeholder.md
+      - models/icons.md
+  - Exporting and Applying:
+      - registry/registry_handler.md
+      - registry/registry_exporter.md
+      - registry/registry_importer.md
   - Context Menu Bindings:
-    - context_menu_bindings/bindings.md
-    - context_menu_bindings/access_scope.md
-    - context_menu_bindings/explorer_item_type.md
+      - context_menu_bindings/bindings.md
+      - context_menu_bindings/access_scope.md
+      - context_menu_bindings/explorer_item_type.md
   - Registry Structs:
-    - registry_structures/registry_path.md
-    - registry_structures/registry_key.md
-    - registry_structures/registry_value.md
+      - registry_structures/registry_path.md
+      - registry_structures/registry_key.md
+      - registry_structures/registry_value.md
 
 watch:
   - context_menu_toolkit
@@ -21,7 +25,7 @@ watch:
   - mkdocs.yml
 
 theme:
-  name: 'material'
+  name: "material"
   features:
     - navigation.path
     - navigation.tabs
@@ -52,39 +56,39 @@ markdown_extensions:
   - footnotes
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.snippets  # allows --8<--
-  - pymdownx.details  # allows ??? note, warn, success
+  - pymdownx.snippets # allows --8<--
+  - pymdownx.details # allows ??? note, warn, success
   - pymdownx.superfences: # ```python {linenums="1"}
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 plugins:
-- search
-- panzoom:
-    always_show_hint: true
-    full_screen: true
-- autorefs
-- mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        inventories:
-          - url: https://docs.python.org/3/objects.inv
-            domains: [ py, std ]
-        options:
-          members_order: source
-          separate_signature: true
-          filters: [ "!^_" ]
-          docstring_options:
-            heading_level: 2
-            ignore_init_summary: true
-          merge_init_into_class: true
-          show_signature_annotations: true
-          signature_crossrefs: true
-          show_root_heading: true
-          show_root_full_path: false
-          show_root_toc_entry: false
+  - search
+  - panzoom:
+      always_show_hint: true
+      full_screen: true
+  - autorefs
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          inventories:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [py, std]
+          options:
+            members_order: source
+            separate_signature: true
+            filters: ["!^_"]
+            docstring_options:
+              heading_level: 2
+              ignore_init_summary: true
+            merge_init_into_class: true
+            show_signature_annotations: true
+            signature_crossrefs: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_root_toc_entry: false
 
 extra_javascript:
   - javascripts/katex.js

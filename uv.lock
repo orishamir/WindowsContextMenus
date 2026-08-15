@@ -277,6 +277,7 @@ docs = [
     { name = "mkdocs-material" },
     { name = "mkdocs-panzoom-plugin" },
     { name = "mkdocstrings", extra = ["python"] },
+    { name = "ruff" },
 ]
 lint = [
     { name = "ruff" },
@@ -297,10 +298,11 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 docs = [
-    { name = "mkdocs" },
+    { name = "mkdocs", specifier = "~=1.0" },
     { name = "mkdocs-material" },
     { name = "mkdocs-panzoom-plugin" },
     { name = "mkdocstrings", extras = ["python"] },
+    { name = "ruff", specifier = ">=0.16.3" },
 ]
 lint = [{ name = "ruff" }]
 test = [{ name = "pytest" }]
