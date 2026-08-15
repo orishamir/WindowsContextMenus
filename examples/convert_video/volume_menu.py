@@ -7,10 +7,12 @@
 # [tool.uv.sources]
 # context-menu-toolkit = { path = "../../" }
 # ///
-from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
-MUTE_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -c:v copy -an "%V"-no_audio.mp4'
-DOUBLE_VOLUME_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -c:v copy -af "volume=2.0" "%1"-double_volume.mp4'
+MUTE_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -c:v copy -an "{CommandPlaceholder.FIRST_SELECTED}"-no_audio.mp4'
+)
+DOUBLE_VOLUME_COMMAND = f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -c:v copy -af "volume=2.0" "{CommandPlaceholder.FIRST_SELECTED}"-double_volume.mp4'
 
 volume_submenus = [
     ContextMenu(

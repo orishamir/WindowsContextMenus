@@ -9,9 +9,9 @@
 # ///
 """Adds a context menu for converting images from and to formats."""
 
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
-CONVERT_IMAGE_COMMAND = 'cmd.exe /c magick "%V" "%V".{}'
+CONVERT_IMAGE_COMMAND = f'cmd.exe /c magick "{CommandPlaceholder.FIRST_SELECTED}" "{CommandPlaceholder.FIRST_SELECTED}".{{}}'
 
 convert_to_png_entry = ContextMenu(
     display_text="Convert to PNG",

@@ -7,13 +7,21 @@
 # [tool.uv.sources]
 # context-menu-toolkit = { path = "../../" }
 # ///
-from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
-ONE_AND_HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "%1"-1.5x.mp4'
-FIVE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "%1"-1.25x.mp4'
-THREE_QUARTERS_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.75" -filter:a "atempo=0.75" "%1"-0.75x.mp4'
-HALF_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.5" -filter:a "atempo=0.5" "%1"-0.5x.mp4'
-QUARTER_SPEED_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.25" -filter:a "atempo=0.5,atempo=0.5" "%1"-0.25x.mp4'
+ONE_AND_HALF_SPEED_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "{CommandPlaceholder.FIRST_SELECTED}"-1.5x.mp4'
+)
+FIVE_QUARTERS_SPEED_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "{CommandPlaceholder.FIRST_SELECTED}"-1.25x.mp4'
+)
+THREE_QUARTERS_SPEED_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.75" -filter:a "atempo=0.75" "{CommandPlaceholder.FIRST_SELECTED}"-0.75x.mp4'
+)
+HALF_SPEED_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.5" -filter:a "atempo=0.5" "{CommandPlaceholder.FIRST_SELECTED}"-0.5x.mp4'
+)
+QUARTER_SPEED_COMMAND = f'cmd.exe /c ffmpeg -i "%1" -filter:v "setpts=PTS/0.25" -filter:a "atempo=0.5,atempo=0.5" "{CommandPlaceholder.FIRST_SELECTED}"-0.25x.mp4'
 
 speed_submenus = [
     ContextMenu(

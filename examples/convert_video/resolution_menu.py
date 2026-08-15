@@ -10,7 +10,7 @@
 
 from enum import StrEnum
 
-from context_menu_toolkit import ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 
 class Resolution(StrEnum):
@@ -24,7 +24,9 @@ class Encoding(StrEnum):
     HEVC = "hevc"
 
 
-BASE_COMMAND = 'cmd.exe /c ffmpeg -i "%1" -vf "scale=-1:{res}" -c:v libx264 -preset fast -c:a copy {output_name}'
+BASE_COMMAND = (
+    f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -vf "scale=-1:{{res}}" -c:v libx264 -preset fast -c:a copy {{output_name}}'
+)
 
 resolution_submenus: list[ContextMenu] = []
 

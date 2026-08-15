@@ -2,8 +2,9 @@ site_name: Context Menu Python Toolkit
 nav:
   - Home:
     - index.md
-  - Context Menu:
-    - context_menu/context_menu.md
+  - Useful Models:
+    - models/context_menu.md
+    - models/command_placeholder.md
   - Context Menu Bindings:
     - context_menu_bindings/bindings.md
     - context_menu_bindings/access_scope.md

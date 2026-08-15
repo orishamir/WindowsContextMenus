@@ -8,9 +8,9 @@
 # context-menu-toolkit = { path = "../../" }
 # ///
 
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
-CONVERT_AUDIO_COMMAND = 'cmd.exe /c ffmpeg -i "%V" {}'
+CONVERT_AUDIO_COMMAND = f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" {{}}'
 
 ConvertToWAV = ContextMenu(
     display_text="Convert to WAV",
