@@ -1,5 +1,5 @@
 # Command Placeholder
 
-::: context_menu_toolkit.models.command_placeholder.CommandPlaceholder
+::: windows_context_menus.models.command_placeholder.CommandPlaceholder
     options:
       group_by_category: false

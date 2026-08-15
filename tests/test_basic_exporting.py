@@ -3,9 +3,9 @@ from typing import Literal, NamedTuple
 
 import pytest
 
-from context_menu_toolkit.models.context_menu import ContextMenu
-from context_menu_toolkit.registry.exporting.registry_exporter import RegistryExporter
-from context_menu_toolkit.registry.registry_structs import DataType, RegistryKey, RegistryValue
+from windows_context_menus.models.context_menu import ContextMenu
+from windows_context_menus.registry.exporting.registry_exporter import RegistryExporter
+from windows_context_menus.registry.registry_structs import DataType, RegistryKey, RegistryValue
 
 DISPLAY_TEXT_OPTIONS = ("My Text",)
 COMMAND_OPTIONS = ("cmd.exe /c start chrome.exe",)

@@ -1,14 +1,14 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# windows_context_menus = { path = "../../" }
 # ///
 
-from context_menu_toolkit import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from windows_context_menus import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 CONVERT_AUDIO_COMMAND = f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" {{}}'
 

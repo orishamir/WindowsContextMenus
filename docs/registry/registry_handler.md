@@ -1,5 +1,5 @@
 # Registry Handler
 
-::: context_menu_toolkit.registry.registry_handler.RegistryHandler
+::: windows_context_menus.registry.registry_handler.RegistryHandler
     options:
         group_by_category: false
