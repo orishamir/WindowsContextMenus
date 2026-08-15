@@ -69,7 +69,7 @@ include = [
 typeCheckingMode = "strict"
 
 [tool.ruff]
-# extend-exclude = ["examples"]
+extend-exclude = ["docs"]
 indent-width = 4
 line-length = 140
 output-format = "grouped"

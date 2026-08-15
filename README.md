@@ -86,9 +86,9 @@ if __name__ == "__main__":
     )
 ```
 
-Produces:
-![image.png](./examples/convert_image/image.png)
+Produces:  
+![convert_image.png](docs/convert_image.png)
 
 Note that I currently do not publish this package to PyPi.
 
-For a more complicated example, see [Convert Video Example](./examples/convert_video/video_menu.py)
+For a more complicated example, see [Documentation](https://orishamir.github.io/WindowsContextMenus/)
