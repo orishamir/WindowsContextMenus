@@ -11,6 +11,7 @@
 from enum import StrEnum
 
 from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from examples.convert_video.volume_menu import WindowsIcon
 
 
 class Resolution(StrEnum):
@@ -44,7 +45,7 @@ for resolution in (Resolution.HD, Resolution.FHD):
 
 resolution_menu = ContextMenu(
     display_text=("Convert resolution..."),
-    icon="wmploc.dll,-1503",
+    icon=WindowsIcon.PICTURE_IN_PICTURE,
     submenus=resolution_submenus,
 )
 

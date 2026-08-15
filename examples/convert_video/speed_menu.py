@@ -49,7 +49,7 @@ speed_submenus = [
 
 speed_menu = ContextMenu(
     display_text=("Change speed..."),
-    icon=("wmploc.dll,-29608"),
+    icon="wmploc.dll,-29608",
     submenus=speed_submenus,
 )
 

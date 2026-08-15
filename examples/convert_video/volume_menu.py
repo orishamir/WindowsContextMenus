@@ -8,6 +8,7 @@
 # context-menu-toolkit = { path = "../../" }
 # ///
 from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit.models.icons import WindowsIcon
 
 MUTE_COMMAND = (
     f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -c:v copy -an "{CommandPlaceholder.FIRST_SELECTED}"-no_audio.mp4'
@@ -18,19 +19,18 @@ volume_submenus = [
     ContextMenu(
         display_text="Mute Audio",
         command=MUTE_COMMAND,
-        icon="SndVol.exe,-111",
+        icon=WindowsIcon.MUTE,
     ),
     ContextMenu(
         display_text="Double the volume",
         command=DOUBLE_VOLUME_COMMAND,
-        # icon="SndVol.exe,-111",
     ),
 ]
 
 
 volume_menu = ContextMenu(
     display_text=("Volume options..."),
-    icon=("SndVol.exe,-101"),
+    icon=WindowsIcon.SPEAKER,
     submenus=volume_submenus,
 )
 

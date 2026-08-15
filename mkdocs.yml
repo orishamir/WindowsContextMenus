@@ -5,6 +5,7 @@ nav:
   - Useful Models:
     - models/context_menu.md
     - models/command_placeholder.md
+    - models/icons.md
   - Context Menu Bindings:
     - context_menu_bindings/bindings.md
     - context_menu_bindings/access_scope.md

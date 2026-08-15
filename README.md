@@ -19,13 +19,13 @@ Provided [imagemagick](https://imagemagick.org/download/) is installed:
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# context-menu-toolkit = { path = "." }
 # ///
 """Adds a context menu for converting images from and to formats."""
 
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from context_menu_toolkit import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
-CONVERT_IMAGE_COMMAND = 'cmd.exe /c magick "%V" "%V".{}'
+CONVERT_IMAGE_COMMAND = f'cmd.exe /c magick "{CommandPlaceholder.FIRST_SELECTED}" "{CommandPlaceholder.FIRST_SELECTED}".{{}}'
 
 convert_to_png_entry = ContextMenu(
     display_text="Convert to PNG",
@@ -55,6 +55,7 @@ convert_to_bmp_entry = ContextMenu(
 
 main: ContextMenu = ContextMenu(
     display_text=("Convert to..."),
+    command=r"D:\Pictures\Convert_arrow.ico",
     selection_limit=1,  # This menu supports only 1 file at a time.
     condition=Condition.model_validate(
         {

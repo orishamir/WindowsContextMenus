@@ -56,4 +56,8 @@ class WindowsIcon(StrEnum):
     GREEN_CHECKMARK_BOXED = "imageres.dll,-1400"
     REFRESH = "imageres.dll,-1401"
 
+    SPEAKER = "SndVol.exe,-101"
+    MUTE = "SndVol.exe,-111"
+    PICTURE_IN_PICTURE = "wmploc.dll,-1503"
+
     CMD = "cmd.exe"
