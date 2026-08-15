@@ -85,6 +85,6 @@ if __name__ == "__main__":
 ```
 
 Produces:  
-![convert_image.png](docs/convert_image.png)
+![convert_image.png](https://orishamir.github.io/WindowsContextMenus/convert_image.png)
 
 For a more complicated example, see [Documentation](https://orishamir.github.io/WindowsContextMenus/)
