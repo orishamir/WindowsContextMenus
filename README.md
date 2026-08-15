@@ -1,4 +1,4 @@
-# Context Menu Toolkit
+# Windows Context Menus
 
 Create native Windows Explorer context menus declaratively in Python
 
@@ -15,15 +15,15 @@ Provided [imagemagick](https://imagemagick.org/download/) is installed:
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { git = "https://github.com/orishamir/WindowsContextMenus", tag = "0.1.3" }
+# windows_context_menus = { git = "https://github.com/orishamir/WindowsContextMenus", tag = "0.1.3" }
 # ///
 """Adds a context menu for converting images from and to formats."""
 
-from context_menu_toolkit import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from windows_context_menus import CommandPlaceholder, Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 CONVERT_IMAGE_COMMAND = f'cmd.exe /c magick "{CommandPlaceholder.FIRST_SELECTED}" "{CommandPlaceholder.FIRST_SELECTED}".{{}}'
 

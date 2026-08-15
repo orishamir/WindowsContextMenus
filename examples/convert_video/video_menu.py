@@ -1,17 +1,17 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# windows_context_menus = { path = "../../" }
 # ///
 from resolution_menu import resolution_menu
 from speed_menu import speed_menu
 from volume_menu import volume_menu
 
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from windows_context_menus import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 menu = ContextMenu(
     display_text="Convert mp4...",

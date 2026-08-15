@@ -1,13 +1,13 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# windows_context_menus = { path = "../../" }
 # ///
-from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from windows_context_menus import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 ONE_AND_HALF_SPEED_COMMAND = f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -filter:v "setpts=PTS/1.5" -filter:a "atempo=1.5" "{CommandPlaceholder.FIRST_SELECTED}"-1.5x.mp4'
 FIVE_QUARTERS_SPEED_COMMAND = f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -filter:v "setpts=PTS/1.25" -filter:a "atempo=1.25" "{CommandPlaceholder.FIRST_SELECTED}"-1.25x.mp4'

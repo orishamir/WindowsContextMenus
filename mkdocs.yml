@@ -1,4 +1,4 @@
-site_name: Context Menu Python Toolkit
+site_name: Windows Context Menus
 nav:
   - Home:
       - index.md
@@ -20,7 +20,7 @@ nav:
       - registry_structures/registry_value.md
 
 watch:
-  - context_menu_toolkit
+  - windows_context_menus
   - docs/
   - mkdocs.yml
 

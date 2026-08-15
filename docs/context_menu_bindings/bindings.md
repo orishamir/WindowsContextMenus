@@ -1,2 +1,3 @@
 # Context Menu Binding
-::: context_menu_toolkit.context_menu_bindings.ContextMenuBinding
+
+::: windows_context_menus.context_menu_bindings.ContextMenuBinding

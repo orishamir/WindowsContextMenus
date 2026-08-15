@@ -1,2 +1,3 @@
 # Registry Key
-::: context_menu_toolkit.registry.registry_structs.registry_key.RegistryKey
+
+::: windows_context_menus.registry.registry_structs.registry_key.RegistryKey

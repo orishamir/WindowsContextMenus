@@ -1,14 +1,14 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# windows_context_menus = { path = "../../" }
 # ///
-from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
-from context_menu_toolkit.models.icons import WindowsIcon
+from windows_context_menus import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from windows_context_menus.models.icons import WindowsIcon
 
 MUTE_COMMAND = (
     f'cmd.exe /c ffmpeg -i "{CommandPlaceholder.FIRST_SELECTED}" -c:v copy -an "{CommandPlaceholder.FIRST_SELECTED}"-no_audio.mp4'

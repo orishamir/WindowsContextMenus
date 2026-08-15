@@ -1,17 +1,17 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "context-menu-toolkit",
+#     "windows_context_menus",
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "../../" }
+# windows_context_menus = { path = "../../" }
 # ///
 
 from enum import StrEnum
 
-from context_menu_toolkit import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 from examples.convert_video.volume_menu import WindowsIcon
+from windows_context_menus import CommandPlaceholder, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 
 class Resolution(StrEnum):

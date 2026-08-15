@@ -1,4 +1,4 @@
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, MenuAccessScope, RegistryHandler
+from windows_context_menus import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, MenuAccessScope, RegistryHandler
 
 BASE_COMMAND = "cmd.exe /c start chrome google.com"
 
