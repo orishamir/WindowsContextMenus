@@ -55,6 +55,7 @@ convert_to_bmp_entry = ContextMenu(
 
 main: ContextMenu = ContextMenu(
     display_text=("Convert to..."),
+    selection_limit=1,  # This menu supports only 1 file at a time.
     condition=Condition.model_validate(
         {
             "extension": {
@@ -85,4 +86,9 @@ if __name__ == "__main__":
     )
 ```
 
+Produces:
+![image.png](./examples/convert_image/image.png)
+
 Note that I currently do not publish this package to PyPi.
+
+For a more complicated example, see [Convert Video Example](./examples/convert_video/video_menu.py)

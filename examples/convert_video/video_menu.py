@@ -7,11 +7,11 @@
 # [tool.uv.sources]
 # context-menu-toolkit = { path = "../../" }
 # ///
-from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
+from resolution_menu import resolution_menu
+from speed_menu import speed_menu
+from volume_menu import volume_menu
 
-from .resolution_menu import resolution_menu
-from .speed_menu import speed_menu
-from .volume_menu import volume_menu
+from context_menu_toolkit import Condition, ContextMenu, ContextMenuBinding, ExplorerItemType, RegistryHandler
 
 menu = ContextMenu(
     display_text="Convert mp4...",

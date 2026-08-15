@@ -36,6 +36,7 @@ class MenuProperties(NamedTuple):
     disabled: bool
 
 
+# Test every possible context menu using the dot product (`itertools.product`) of `ContextMenu`'s arguments
 @pytest.mark.parametrize(
     ("menu_properties"),
     [
