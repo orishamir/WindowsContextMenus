@@ -41,7 +41,6 @@ convert_to_bmp_entry = ContextMenu(
 
 main: ContextMenu = ContextMenu(
     display_text=("Convert to..."),
-    command=r"D:\Pictures\Convert_arrow.ico",
     selection_limit=1,  # This menu supports only 1 file at a time.
     condition=Condition.model_validate(
         {

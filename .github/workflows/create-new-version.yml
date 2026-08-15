@@ -6,8 +6,8 @@ name: Create new package version
 on:
   workflow_dispatch:
   # push:
-    # branches:
-      # - 'master'
+  # branches:
+  # - 'master'
 
 jobs:
   lint:
@@ -64,7 +64,7 @@ jobs:
     needs: build
 
     permissions:
-      id-token: write  # mandatory for Trusted Publishing
+      id-token: write # mandatory for Trusted Publishing
 
     steps:
       - name: Checkout code
@@ -79,8 +79,7 @@ jobs:
       - name: Publish distribution
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: "https://test.pypi.org/legacy/"
-          verbose: 'true'
+          verbose: "true"
 
   create_github_release:
     name: Create tag & release
@@ -150,24 +149,24 @@ jobs:
     if: github.ref_name == 'master'
 
     permissions:
-      contents: 'read'
-      id-token: 'write'
-      pages: 'write'
-      actions: 'write'
-      checks: 'write'
-      deployments: 'write'
+      contents: "read"
+      id-token: "write"
+      pages: "write"
+      actions: "write"
+      checks: "write"
+      deployments: "write"
 
     steps:
       - name: "Download static files from build_docs stage"
         uses: actions/download-artifact@v8
         with:
-          name: 'site-files'
+          name: "site-files"
           path: site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: 'site/'
+          path: "site/"
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v5

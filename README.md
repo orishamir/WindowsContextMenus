@@ -1,6 +1,6 @@
-# ContextMenus
+# Context Menu Toolkit
 
-Easily add context menus to right-click in windows.
+Create native Windows Explorer context menus declaratively in Python
 
 ## Quick example
 
@@ -19,7 +19,7 @@ Provided [imagemagick](https://imagemagick.org/download/) is installed:
 # ]
 #
 # [tool.uv.sources]
-# context-menu-toolkit = { path = "." }
+# context-menu-toolkit = { git = "https://github.com/orishamir/WindowsContextMenus", tag = "0.1.3" }
 # ///
 """Adds a context menu for converting images from and to formats."""
 
@@ -30,9 +30,7 @@ CONVERT_IMAGE_COMMAND = f'cmd.exe /c magick "{CommandPlaceholder.FIRST_SELECTED}
 convert_to_png_entry = ContextMenu(
     display_text="Convert to PNG",
     command=CONVERT_IMAGE_COMMAND.format("png"),
-    condition=Condition.model_validate(
-        {"extension": {"ne": ".png"}},
-    ),
+    condition=Condition.model_validate({"extension": {"ne": ".png"}}),
 )
 
 convert_to_jpeg_entry = ContextMenu(
@@ -55,7 +53,6 @@ convert_to_bmp_entry = ContextMenu(
 
 main: ContextMenu = ContextMenu(
     display_text=("Convert to..."),
-    command=r"D:\Pictures\Convert_arrow.ico",
     selection_limit=1,  # This menu supports only 1 file at a time.
     condition=Condition.model_validate(
         {
@@ -89,7 +86,5 @@ if __name__ == "__main__":
 
 Produces:  
 ![convert_image.png](docs/convert_image.png)
-
-Note that I currently do not publish this package to PyPi.
 
 For a more complicated example, see [Documentation](https://orishamir.github.io/WindowsContextMenus/)

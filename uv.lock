@@ -277,7 +277,6 @@ docs = [
     { name = "mkdocs-material" },
     { name = "mkdocs-panzoom-plugin" },
     { name = "mkdocstrings", extra = ["python"] },
-    { name = "ruff" },
 ]
 lint = [
     { name = "ruff" },
@@ -302,7 +301,6 @@ docs = [
     { name = "mkdocs-material" },
     { name = "mkdocs-panzoom-plugin" },
     { name = "mkdocstrings", extras = ["python"] },
-    { name = "ruff", specifier = ">=0.11.12" },
 ]
 lint = [{ name = "ruff" }]
 test = [{ name = "pytest" }]
