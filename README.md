@@ -1,6 +1,8 @@
 # Windows Context Menus
 
-Create native Windows Explorer context menus declaratively in Python
+Create native Windows Explorer context menus declaratively in Python  
+Windows context menus normally require manipulating convoluted and implementation-specific Registry structures.  
+WindowsContextMenus provides a typed, declarative model and translates that desired configuration into the corresponding Windows Registry representation
 
 ## Quick example
 
@@ -17,9 +19,6 @@ Provided [imagemagick](https://imagemagick.org/download/) is installed:
 # dependencies = [
 #     "windows_context_menus",
 # ]
-#
-# [tool.uv.sources]
-# windows_context_menus = { git = "https://github.com/orishamir/WindowsContextMenus", tag = "0.1.3" }
 # ///
 """Adds a context menu for converting images from and to formats."""
 
@@ -88,3 +87,5 @@ Produces:
 ![convert_image.png](https://orishamir.github.io/WindowsContextMenus/convert_image.png)
 
 For a more complicated example, see [Documentation](https://orishamir.github.io/WindowsContextMenus/)
+
+And more broadly, `WindowsContextMenus` allows you to create custom context menus for your specific need
