@@ -6,51 +6,70 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: windows-2025
-    strategy:
-      matrix:
-        python-version: ["3.12", "3.13"]
+    runs-on: windows-2025 # winreg module is not available on linux
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
-      - name: Lint
-        uses: ./.github/actions/lint
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@v10.0.1
+
+      - name: Install lint dependencies
+        run: uv sync --group lint
+        shell: sh
+
+      - run: uv run ruff check
+        shell: sh
+
+      - run: uv run ruff format --diff .
+        shell: sh
 
   typechecking:
     name: Typechecking
-    runs-on: windows-2025
+    runs-on: windows-2025 # winreg module is not available on linux
     strategy:
       matrix:
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
-      - name: Typechecking
-        uses: ./.github/actions/typechecking
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Install typechecking dependencies
+        run: uv sync --group typechecking
+        shell: sh
+
+      - run: uv run mypy
+        shell: sh
+
+      - run: uv run pyright
+        shell: sh
 
   test:
     name: Test
-    runs-on: windows-2025
+    runs-on: windows-2025 # winreg module is not available on linux
     strategy:
       matrix:
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
-      - name: Test
-        uses: ./.github/actions/test
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Install test dependencies
+        run: uv sync --group test
+        shell: sh
+
+      - run: uv run pytest
+        shell: sh
 
   build:
     name: Build
@@ -58,7 +77,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Build
         uses: ./.github/actions/build-package
@@ -66,11 +85,10 @@ jobs:
   build_docs:
     name: Build documentation
     runs-on: ubuntu-latest
-    needs: lint
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Build Docs
         uses: ./.github/actions/build-docs
