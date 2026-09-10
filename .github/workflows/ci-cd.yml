@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
 
-      - uses: astral-sh/setup-uv@v10.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
 
       - name: Install lint dependencies
         run: uv sync --group lint
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
 
-      - uses: astral-sh/setup-uv@v10.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -60,7 +60,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
 
-      - uses: astral-sh/setup-uv@v10.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: ${{ matrix.python-version }}
 
